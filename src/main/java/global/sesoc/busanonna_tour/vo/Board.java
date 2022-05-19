@@ -1,4 +1,4 @@
-package global.sesoc.web5.vo;
+package global.sesoc.busanonna_tour.vo;
 
 public class Board {
 	

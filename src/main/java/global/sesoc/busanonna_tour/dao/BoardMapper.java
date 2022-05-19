@@ -1,11 +1,11 @@
-package global.sesoc.web5.dao;
+package global.sesoc.busanonna_tour.dao;
 
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 
-import global.sesoc.web5.vo.Board;
-import global.sesoc.web5.vo.Reply;
+import global.sesoc.busanonna_tour.vo.Board;
+import global.sesoc.busanonna_tour.vo.Reply;
 
 public interface BoardMapper {
     //글쓰기

@@ -1,4 +1,4 @@
-package global.sesoc.web5.util;
+package global.sesoc.busanonna_tour.util;
 
 /**
  * 게시판 페이징 처리 클래스

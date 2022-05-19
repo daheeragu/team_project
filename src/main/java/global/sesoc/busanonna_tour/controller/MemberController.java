@@ -1,5 +1,5 @@
 //회원정보 관련 처리 콘트롤러
-package global.sesoc.web5.controller;
+package global.sesoc.busanonna_tour.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import global.sesoc.web5.dao.MemberDAO;
-import global.sesoc.web5.vo.Member;
+import global.sesoc.busanonna_tour.dao.MemberDAO;
+import global.sesoc.busanonna_tour.vo.Member;
 
 
 @Controller

@@ -22,10 +22,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="global.sesoc.web5" />
+	<context:component-scan base-package="global.sesoc.busanonna_tour" />
 	
 	<!-- 로그인 인터셉터 정의 -->
-	<beans:bean id="loginInterceptor" class="global.sesoc.web5.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="loginInterceptor" class="global.sesoc.busanonna_tour.interceptor.LoginInterceptor"></beans:bean>
 	                                   
 	                                         
 	<!-- 로그인 인터셉터를 경유해서 처리할 경로들 지정 -->

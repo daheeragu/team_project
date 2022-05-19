@@ -1,4 +1,4 @@
-package global.sesoc.web5;
+package global.sesoc.busanonna_tour;
 
 import javax.servlet.http.HttpServletRequest;
 

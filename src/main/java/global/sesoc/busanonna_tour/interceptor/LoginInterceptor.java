@@ -1,4 +1,4 @@
-package global.sesoc.web5.interceptor;
+package global.sesoc.busanonna_tour.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

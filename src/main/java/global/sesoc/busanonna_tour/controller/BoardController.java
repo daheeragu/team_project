@@ -1,4 +1,4 @@
-package global.sesoc.web5.controller;
+package global.sesoc.busanonna_tour.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import global.sesoc.web5.dao.BoardDAO;
-import global.sesoc.web5.util.FileService;
-import global.sesoc.web5.util.PageNavigator;
-import global.sesoc.web5.vo.Board;
-import global.sesoc.web5.vo.Reply;
+import global.sesoc.busanonna_tour.dao.BoardDAO;
+import global.sesoc.busanonna_tour.util.FileService;
+import global.sesoc.busanonna_tour.util.PageNavigator;
+import global.sesoc.busanonna_tour.vo.Board;
+import global.sesoc.busanonna_tour.vo.Reply;
 
 @Controller
 @RequestMapping("board") 
