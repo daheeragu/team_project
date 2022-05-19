@@ -2,45 +2,54 @@ package global.sesoc.busanonna_tour.vo;
 
 public class Reply {
 
-	int replynum; //댓글 번호
-	int boardnum; //본문 글 번호 
-	String id;
-	String text;  //리플 내용
-	String inputdate; //작성일 
+	private int reply_num; //댓글 번호
+	private int review_num; //리뷰 글 번호
+	private String content;	//리플 내용
+	private String user_id;  //작성자 아이디
+	private String inputdate; //작성일 
 	
 	public Reply() {	
 	}
 
-	public int getReplynum() {
-		return replynum;
+	public Reply(int reply_num, int review_num, String content, String user_id, String inputdate) {
+		super();
+		this.reply_num = reply_num;
+		this.review_num = review_num;
+		this.content = content;
+		this.user_id = user_id;
+		this.inputdate = inputdate;
 	}
 
-	public void setReplynum(int replynum) {
-		this.replynum = replynum;
+	public int getReply_num() {
+		return reply_num;
 	}
 
-	public int getBoardnum() {
-		return boardnum;
+	public void setReply_num(int reply_num) {
+		this.reply_num = reply_num;
 	}
 
-	public void setBoardnum(int boardnum) {
-		this.boardnum = boardnum;
+	public int getReview_num() {
+		return review_num;
 	}
 
-	public String getId() {
-		return id;
+	public void setReview_num(int review_num) {
+		this.review_num = review_num;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getContent() {
+		return content;
 	}
 
-	public String getText() {
-		return text;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getInputdate() {
@@ -53,11 +62,9 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [replynum=" + replynum + ", boardnum=" + boardnum + ", id=" + id + ", text=" + text
-				+ ", inputdate=" + inputdate + "]";
-	} 
-	
-	
+		return "Reply [reply_num=" + reply_num + ", review_num=" + review_num + ", content=" + content + ", user_id="
+				+ user_id + ", inputdate=" + inputdate + "]";
+	}
 	
 	
 }
