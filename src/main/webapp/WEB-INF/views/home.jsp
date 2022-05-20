@@ -225,7 +225,7 @@
     </div><!-- /.row -->
 
     <div id="fixed_layer">
-     <p><a href="../chatView"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
+     <p><a href="./chatView" target="_blank"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
     </div>
 
 

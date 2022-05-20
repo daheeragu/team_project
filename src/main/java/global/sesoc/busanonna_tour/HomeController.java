@@ -27,4 +27,12 @@ public class HomeController {
 	
 		return "home";
 	}
+	
+	/**
+	 * 채팅 화면으로 이동
+	 */
+	@RequestMapping(value="chatView", method=RequestMethod.GET)
+	public String chatView() {
+		return "chat";
+	}
 }
