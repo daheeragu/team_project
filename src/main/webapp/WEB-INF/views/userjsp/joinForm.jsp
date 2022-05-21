@@ -134,10 +134,6 @@ function formCheck(){
       	
       }
       
-      button{
-      	width : 200px;
-      	margin : auto;
-      }
     </style>
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
@@ -151,11 +147,7 @@ function formCheck(){
 
     <div class="form-floating">
       <input type="text" class="form-control" name = "user_id" id="floatingInput" placeholder="아이디">
-      <label for="floatingInput">아이디</label>
-    </div>
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingName" name = "user_name" placeholder="이름">
-      <label for="floatingName">이름</label>
+      <label for="floatingInput">아이디</label> <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" name = "user_password" placeholder="비밀번호">
@@ -164,6 +156,10 @@ function formCheck(){
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword2" placeholder="비밀번호">
       <label for="floatingPassword2">비밀번호 확인</label>
+    </div>
+     <div class="form-floating">
+      <input type="text" class="form-control" id="floatingName" name = "user_name" placeholder="이름">
+      <label for="floatingName">이름</label>
     </div>
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingEmail" name = "user_email" placeholder="이메일">

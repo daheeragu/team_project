@@ -7,8 +7,8 @@
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Member" alias="Member" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Board" alias="Board" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Reply" alias="Reply"/>
-	 <typeAlias type="global.sesoc.busanonna_tour.vo.Userinfo" alias="user"/>
-	 <typeAlias type="global.sesoc.busanonna_tour.vo.Admin" alias="admin"/>
+	 <typeAlias type="global.sesoc.busanonna_tour.vo.user.Userinfo" alias="user"/>
+	 
  	</typeAliases> 
 	
 	<mappers>
