@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.busanonna_tour.dao.*;
+import global.sesoc.busanonna_tour.vo.user.Userinfo;
 
 @Controller
 @RequestMapping("user") 
@@ -30,6 +32,32 @@ public class UserController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String id, String password, HttpSession session) {
 			logger.info("전달받은 값 : {}, {}", id, password);
+		return "redirect:/"; 
+	}
+
+	// 가입폼으로 이동
+	@RequestMapping(value = "joinForm", method = RequestMethod.GET)
+	public String joinForm() {
+				
+		return "userjsp/joinForm";
+	}	
+	
+	// ID 중복 체크
+	@ResponseBody
+	@RequestMapping(value = "select", method = RequestMethod.POST)
+	public Userinfo doubleCheck(String id) {
+		Userinfo user = null;
+		user = dao.selectUserinfo(id);		
+		return user;
+	}
+	
+	// 로그인 폼에서 입력한 정보 가져오기
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(Userinfo user) {
+		logger.info("전달받은 값 : {}", user);
+		
+		int result = 0;
+		result = dao.insertUserinfo(user);
 		return "redirect:/"; 
 	}
 	

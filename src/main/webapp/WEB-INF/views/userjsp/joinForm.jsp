@@ -10,10 +10,37 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.98.0">
     <title>Signin Template · Bootstrap v5.2</title>
+<script src="../resources/js/jquery-3.6.0.js"></script>    
 <script type = "text/javascript">
+$(document).ready(function(){
+	$('#bt').on('click', doubleCheck);
+});
+
+function doubleCheck(){
+	var id = $('#user_id').val();
+	
+	//사용자가 입력한 내용을 서버로 전송.
+	$.ajax({
+		url: 'select',
+		type: 'POST',
+		data: {"user_id": id},
+		success: function(cnt) {
+			
+			if(cnt != null){
+				alert('이미 저장된 아이디 입니다');
+			} else {
+				alert('사용 가능한 아이디 입니다');
+			}
+		},
+		error: function(e) {
+			alert(JSON.stringify(e));
+		}
+	});
+}
 function formCheck(){
 	let id = document.getElementById('floatingInput');
 	let pwd = document.getElementById('floatingpassword');
+	let pwd2 = document.getElementById('floatingpassword2');
 	
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');
@@ -22,6 +49,11 @@ function formCheck(){
 	
 	if(pwd.value.length < 3 || pwd.value.length > 10){
 		alert('비밀번호는 3자리 이상 10자리 이하로 입력해 주세요');
+		return false;
+	}
+	
+	if(pwd.value != pwd2.value){
+		alert('비밀번호와 비밀번호 확인은 똑같이 입력해 주세요');
 		return false;
 	}
 	
@@ -113,25 +145,31 @@ function formCheck(){
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form action = "login" method = "post" onsubmit = "return formCheck()">
+  <form action = "join" method = "post" onsubmit = "return formCheck()">
     
-    <h1 class="h3 mb-3 fw-normal">정보이외의 컨텐츠를 이용하시려면 로그인을 해주세요</h1>
+    <h1 class="h3 mb-3 fw-normal">회원가입</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" name = "id" id="floatingInput" placeholder="아이디">
+      <input type="text" class="form-control" name = "user_id" id="floatingInput" placeholder="아이디">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" name = "password" placeholder="비밀번호">
+      <input type="text" class="form-control" id="floatingName" name = "user_name" placeholder="이름">
+      <label for="floatingName">이름</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name = "user_password" placeholder="비밀번호">
       <label for="floatingPassword">비밀번호</label>
     </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="아이디 기억하기"> 아이디 기억하기
-      </label>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword2" placeholder="비밀번호">
+      <label for="floatingPassword2">비밀번호 확인</label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingEmail" name = "user_email" placeholder="이메일">
+      <label for="floatingEmail">이메일</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">가입하기</button>
   </form>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
