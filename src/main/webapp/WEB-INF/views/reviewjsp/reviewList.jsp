@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 글읽기</title>
+<title>리뷰 글읽기</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
 
 <script>
@@ -38,7 +38,7 @@
 </head>
 <body>
 <div class="centerdiv">
-<h2>[게시판 글읽기]</h2>
+<h2>[리뷰 글읽기]</h2>
 
 <table>
  <colgroup>
