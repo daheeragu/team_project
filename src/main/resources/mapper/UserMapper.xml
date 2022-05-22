@@ -6,11 +6,16 @@
 	
 	<!-- ID로 Userinfo select 하기 -->
 	<select id = "selectUserinfo" parameterType = "string" resultType = "user">
-		select * from userinfo where user_id = #{user_id}
+		select * from userinfo where user_id = #{id}
 	</select>
 	
 	<!-- user 등록 -->
 	<insert id = "insertUserinfo" parameterType = "user">
 		insert into userinfo values (#{user_id}, #{user_password}, #{user_name}, #{user_email})
 	</insert>
+	
+	<!-- ID로 Admin select 하기 -->
+	<select id = "selectAdmin" parameterType = "string" resultType = "admin">
+		select * from admin where admin_id = #{id}
+	</select>
 </mapper>

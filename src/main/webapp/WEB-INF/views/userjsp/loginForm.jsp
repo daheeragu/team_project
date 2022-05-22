@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.98.0">
-    <title>Signin Template · Bootstrap v5.2</title>
+    <title>로그인</title>
 <script type = "text/javascript">
 function formCheck(){
 	let id = document.getElementById('floatingInput');
-	let pwd = document.getElementById('floatingpassword');
+	let pwd = document.getElementById('floatingPassword');
 	
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');

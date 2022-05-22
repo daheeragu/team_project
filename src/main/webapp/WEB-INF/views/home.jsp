@@ -115,12 +115,30 @@
 					   
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
+                          <c:if test = "${loginId == null}">
                            <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="user/loginForm">로그인</a>
                            </li>
                            <li class="nav-item">
                              <a class="nav-link" href="user/joinForm">회원가입</a>
                            </li>
+                          </c:if>
+                          <c:if test = "${loginId != 'manager' && loginName != '관리자' && loginId != null}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="user/logout">로그아웃</a>
+                           </li>
+                          </c:if>
+                          <c:if test = "${loginId == 'manager' && loginName == '관리자'}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="user/logout">로그아웃</a>
+                           </li>
+                          </c:if>
                            <li class="nav-item">
                             <a class="nav-link" href="#">Language</a>
                            </li>

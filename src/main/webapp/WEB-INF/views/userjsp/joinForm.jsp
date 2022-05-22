@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.98.0">
-    <title>Signin Template · Bootstrap v5.2</title>
+    <title>회원가입</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>    
 <script type = "text/javascript">
 $(document).ready(function(){
@@ -17,19 +17,19 @@ $(document).ready(function(){
 });
 
 function doubleCheck(){
-	var id = $('#user_id').val();
+	var id = $('#floatingId').val();
 	
 	//사용자가 입력한 내용을 서버로 전송.
 	$.ajax({
 		url: 'select',
-		type: 'POST',
+		type: 'post',
 		data: {"user_id": id},
 		success: function(cnt) {
 			
 			if(cnt != null){
-				alert('이미 저장된 아이디 입니다');
+				alert(id + '는 이미 있는 아이디 입니다');
 			} else {
-				alert('사용 가능한 아이디 입니다');
+				alert(id + '는 사용 가능한 아이디 입니다');
 			}
 		},
 		error: function(e) {
@@ -38,9 +38,11 @@ function doubleCheck(){
 	});
 }
 function formCheck(){
-	let id = document.getElementById('floatingInput');
-	let pwd = document.getElementById('floatingpassword');
-	let pwd2 = document.getElementById('floatingpassword2');
+	let id = document.getElementById('floatingId');
+	let pwd = document.getElementById('floatingPassword');
+	let pwd2 = document.getElementById('floatingPassword2');
+	let name = document.getElementById('floatingName');
+	let email = document.getElementById('floatingEmail');
 	
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');
@@ -53,9 +55,15 @@ function formCheck(){
 	}
 	
 	if(pwd.value != pwd2.value){
-		alert('비밀번호와 비밀번호 확인은 똑같이 입력해 주세요');
+		alert('비밀번호와 확인을 일치시켜 주세요');
 		return false;
 	}
+	
+	if(name.value.length < 1){
+		  alert('이름을 입력해 주세요');
+		  return false; 
+	  } 
+	
 	
 	return true;
 }
@@ -146,7 +154,7 @@ function formCheck(){
     <h1 class="h3 mb-3 fw-normal">회원가입</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" name = "user_id" id="floatingInput" placeholder="아이디">
+      <input type="text" class="form-control" name = "user_id" id="floatingId" placeholder="아이디">
       <label for="floatingInput">아이디</label> <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
     </div>
     <div class="form-floating">

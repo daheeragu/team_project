@@ -8,6 +8,7 @@
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Board" alias="Board" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Reply" alias="Reply"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.user.Userinfo" alias="user"/>
+	 <typeAlias type="global.sesoc.busanonna_tour.vo.user.Admin" alias="admin"/>
 	 
  	</typeAliases> 
 	
