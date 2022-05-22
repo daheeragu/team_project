@@ -97,7 +97,7 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="boardjsp/readReview">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
