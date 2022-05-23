@@ -13,16 +13,6 @@
     <script src="../resources/js/jquery-3.6.0.js"></script>    
 
 <script type = "text/javascript">
-$(document).ready(function(){
-	$('#remember').on('click', remember);
-});
-	
-function remember(){
-	var remember = document.getElementsById('remember')[0].value;
-	if(remember){
-		$('#remember').attr('checked', 'checked');
-	}
-}
 function formCheck(){
 	let id = document.getElementById('floatingInput');
 	let pwd = document.getElementById('floatingPassword');
@@ -143,7 +133,7 @@ function formCheck(){
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember" name = "remember" id = "remember" > 아이디 기억하기
+        <input type="checkbox" value="remember" name = "remember" id = "remember" checked ="checked"> 아이디 기억하기
       </label>
       <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
     </div>

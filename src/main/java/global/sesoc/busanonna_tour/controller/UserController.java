@@ -65,7 +65,7 @@ public class UserController {
 	public String loginForm(Model m, @CookieValue(value = "id", defaultValue = "none") String id) {
 			if(!id.equals("none")) {
 				m.addAttribute("id", id);
-				return "uesrjsp/loginForm";
+				return "userjsp/loginForm";
 			}
 		return "userjsp/loginForm";
 	}
@@ -80,10 +80,24 @@ public class UserController {
 		Admin admin = dao.selectAdmin(id);
 		System.out.println(user);
 		System.out.println(admin);
+		Cookie cookie = new Cookie("id", id);
+		if(remember == null){ 
+			
+			cookie.setMaxAge(0);
+			hsr.addCookie(cookie);
+		} else if(remember.equals("remember")) {
+			
+			cookie.setMaxAge(60*60*24*30*3);
+			hsr.addCookie(cookie);
+		}
+		
+		
 		if(user != null && user.getUser_password().equals(password)) {
 			session.setAttribute("loginId", user.getUser_id());
 			session.setAttribute("loginName", user.getUser_name());
+			
 			return "redirect:/";
+			
 		}
 		
 		if(admin != null && admin.getAdmin_password().equals(password)) {
@@ -92,17 +106,7 @@ public class UserController {
 			return "redirect:/";
 		}
 		
-		if(remember.equals("remember")) {
-			Cookie cookie = new Cookie("id", id);
-			cookie.setMaxAge(60*60*24*30*3);
-			hsr.addCookie(cookie);
-		}
 		
-		if(remember == null){ 
-			Cookie cookie = new Cookie("id", id);
-			cookie.setMaxAge(0);
-			hsr.addCookie(cookie);
-		}
 		return "redirect:loginForm"; 
 	}
 
