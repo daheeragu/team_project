@@ -23,49 +23,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.busanonna_tour.dao.BoardDAO;
+import global.sesoc.busanonna_tour.dao.ReviewDAO;
 import global.sesoc.busanonna_tour.util.FileService;
 import global.sesoc.busanonna_tour.util.PageNavigator;
 import global.sesoc.busanonna_tour.vo.Board;
 import global.sesoc.busanonna_tour.vo.Reply;
+import global.sesoc.busanonna_tour.vo.review.Review;
 
 @Controller
-@RequestMapping("board") 
+@RequestMapping("review") 
 public class ReviewController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
 	//게시판 관련 상수값들
-	 final int countPerPage = 10; //페이지당 글 수 
-	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
-	 final String uploadPath = "/boardfile"; // 파일 업로드 경로 
+//	 final int countPerPage = 10; //페이지당 글 수 
+//	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
+//	 final String uploadPath = "/boardfile"; // 파일 업로드 경로 
 	 
 	@Autowired
-	BoardDAO dao;
+	ReviewDAO dao;
 	
-	//글목록 이동
-	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String list(Model model
-			, @RequestParam(value="searchText", defaultValue="") String searchText
-			, @RequestParam(value="page", defaultValue="1") int page){
+	//리뷰 리스트 이동
+	@RequestMapping(value = "List", method = RequestMethod.GET)
+	public String reviewlist(Model model){
+		ArrayList<Review> review = dao.reviewList();
 		
-		logger.debug("page: {}, searchText: {}", page, searchText);
+		model.addAttribute("reviewlist", review);
 		
-		//전체 글 개수 
-		int total = dao.getTotal(searchText);
-		//페이지 계산을 위한 객체 생성 
-		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
-		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
-		ArrayList<Board> boardlist = dao.list(searchText, navi.getStartRecord(), navi.getCountPerPage());	
-		
-		
-		//페이지 정보 객체와 글 목록, 검색어를 모델에 저장
-		model.addAttribute("boardlist", boardlist);
-		model.addAttribute("navi", navi);
-		model.addAttribute("searchText", searchText);
-		
-		return "boardjsp/allList";
+		return "reviewjsp/reviewList";
 	}
-//	
+	
 //	//글쓰기 폼으로 이동
 //	@RequestMapping(value = "write", method = RequestMethod.GET)
 //	public String write() {

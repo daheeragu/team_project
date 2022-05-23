@@ -8,127 +8,121 @@
 <title>리뷰 글읽기</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
 
-<script>
-  function deleteBoard(num){
-	  if(confirm('정말 삭제하시겠습니까?')){
-		  location.href = 'delete?boardnum=' + num;
-	  }
-  }  
- 
-  function deleteReply(replynum, boardnum){
-	  if(confirm('정말 삭제하시겠습니까?')){
-		  location.href = 'deleteReply?replynum=' + replynum + '&boardnum=' + boardnum;
-	  }
- 
-  }
-</script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-<style>
-  table {
-     margin: auto; 
-  }
-  th, td{
-    border: 1px solid; 
-    border-color: white;
-    }
-   td {
-    text-align: left;
-   }
- </style>  
+
 </head>
 <body>
-<div class="centerdiv">
-<h2>[리뷰 글읽기]</h2>
 
-<table>
- <colgroup>
-    <col style="background-color:#BDBDBD;">
-    <col style="background-color:#EAEAEA;">
- </colgroup>
-  <tr>
-   <th style="width:100px;">작성자</th>
-   <td style="width:500px;">${board.id}</td>
-  </tr>
-  
-  <tr>
-   <th>작성일</th>
-   <td>${board.inputdate}</td>
-  </tr>
-  
-  <tr>
-   <th>조회수</th>
-   <td>${board.hits}</td>
-  </tr>
-  
-  <tr>
-   <th>제목</th>
-   <td>${board.title}</td>
-  </tr>
-  
-  <tr>
-   <th>내용</th>
-   <td style="font-size:15px;"><pre>${board.contents}</pre></td>
-  </tr>
-  
-  <tr>
-   <th>파일첨부</th>
-   <td>
-       <a href="download?boardnum=${board.boardnum}">${board.originalfile}</a>
-   </td>
-  </tr> 
-</table>
-
-<!-- 본인 글 수정/삭제 : 출력하고 있는 id와 세션에 저장된 id가 같아야 함-->
-<c:if test="${sessionScope.loginId == board.id}">
-<a href="edit?boardnum=${board.boardnum}">수정</a>
-<a href="javascript:deleteBoard(${board.boardnum})">삭제</a>
-       <!-- 자바스크립트로 보냄  -->
-</c:if>
-
-<!-- 목록보기 -->
-<a href="list">목록보기</a><br>
-
-<!-- 리플 작성 폼 -->
-<c:if test="${sessionScope.loginId != null}">
-<form action ="replyWrite" method="post" onsubmit="return replyFormCheck();">
-리플 내용 
-    <input type="hidden" name="boardnum" value="${board.boardnum}">
-    <input type="text" name="text" style="width:500px;">
-    <input type="submit" value="확인"> 
-</form>
-</c:if>
-<!-- 리플 작성 폼 끝 -->
+<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">BUSAN</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+					aria-controls="navbarCollapse" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								여행지 </a>
+								
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">명소</a></li>
+								<li><a class="dropdown-item" href="#">먹거리</a></li>
+								<li><a class="dropdown-item" href="#">레저</a></li>
+								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">내주변</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								회원마당 </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="review/List">리뷰</a></li>
+								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
+							</ul>
+						</li>
+						
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								꿀팁 </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">공지</a></li>
+								<li><a class="dropdown-item" href="#">이벤트</a></li>
+							</ul>
+						</li>
+				
+						</ul>
+					   
+					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
+                         <ul class="navbar-nav text-center">
+                          <c:if test = "${loginId == null}">
+                           <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="user/loginForm">로그인</a>
+                           </li>
+                           <li class="nav-item">
+                             <a class="nav-link" href="user/joinForm">회원가입</a>
+                           </li>
+                          </c:if>
+                          <c:if test = "${loginId != 'manager' && loginName != '관리자' && loginId != null}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="user/logout">로그아웃</a>
+                           </li>
+                          </c:if>
+                          <c:if test = "${loginId == 'manager' && loginName == '관리자'}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="user/logout">로그아웃</a>
+                           </li>
+                          </c:if>
+                           <li class="nav-item">
+                            <a class="nav-link" href="#">Language</a>
+                           </li>
+                          </ul>
+				    
+					<form class="d-flex">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
 <br>
-
-<!-- 리플 목록 출력 시작 -->
-<c:forEach var="reply" items="${replyList}">
-<table>
-<colgroup>
-    <col style="background-color:#BDBDBD;">
-    <col span="3" style="background-color:#EAEAEA;">
- </colgroup>
- <tr>
-  <th style="width:70px">${reply.id}</th>
-  <td style="width:300px">${reply.text}</td>
- 
- <!-- 글 작성자와 로그인 아이디가 같은 경우 수정/삭제 버튼 보이게 하기 --> 
-
-     <c:if test="${loginId == reply.id}">
-        <td style="width:70px">
-	       [<a href="javascript:deleteReply(${reply.replynum}, ${reply.boardnum })">삭제</a>]
-	     </td>
-	     <td style="width:70px">
-	       [수정]
-	     </td>
-	   </c:if>
-     <c:if test="${loginId != reply.id}">
-       <td style="width:70px"></td>
-       <td style="width:70px"></td>
-     </c:if>
-             
- </tr>
+<br>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">제목</th>
+      <th scope="col">작성자</th>
+      <th scope="col">등록일</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+   <c:forEach var="review" items="${reviewlist}">
+    <tr>
+      <th scope="row">${review.review_num}</th>
+      <td>${review.review_title}</td>
+      <td>${review.user_id}</td>
+      <td>${review.review_inputdate}</td>
+    </tr>
+   </c:forEach>
+  </tbody>
 </table>
-</c:forEach>
-</div> 
+
 </body>
 </html>
