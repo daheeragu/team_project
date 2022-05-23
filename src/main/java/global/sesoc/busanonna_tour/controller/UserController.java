@@ -1,5 +1,7 @@
 package global.sesoc.busanonna_tour.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -7,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import global.sesoc.busanonna_tour.dao.*;
 import global.sesoc.busanonna_tour.vo.user.*;
@@ -58,15 +62,19 @@ public class UserController {
 		
 	// 로그인 폼으로 이동
 	@RequestMapping(value = "loginForm", method = RequestMethod.GET)
-	public String loginForm() {
-			
+	public String loginForm(Model m, @CookieValue(value = "id", defaultValue = "none") String id) {
+			if(!id.equals("none")) {
+				m.addAttribute("id", id);
+				return "uesrjsp/loginForm";
+			}
 		return "userjsp/loginForm";
 	}
 	
 	// 로그인 폼에서 입력한 정보 가져오기
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String id, String password, HttpSession session) {
-		logger.info("전달받은 값 : {}, {}", id, password);
+	public String login(String id, String password,String remember, 
+			HttpSession session, HttpServletResponse hsr) {
+		logger.info("전달받은 값 : {}, {}, {}", id, password, remember);
 		
 		Userinfo user = dao.selectUserinfo(id);
 		Admin admin = dao.selectAdmin(id);
@@ -83,8 +91,21 @@ public class UserController {
 			session.setAttribute("loginName", admin.getAdmin_name());
 			return "redirect:/";
 		}
+		
+		if(remember.equals("remember")) {
+			Cookie cookie = new Cookie("id", id);
+			cookie.setMaxAge(60*60*24*30*3);
+			hsr.addCookie(cookie);
+		}
+		
+		if(remember == null){ 
+			Cookie cookie = new Cookie("id", id);
+			cookie.setMaxAge(0);
+			hsr.addCookie(cookie);
+		}
 		return "redirect:loginForm"; 
 	}
+
 	
 	// 로그아웃
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -93,6 +114,13 @@ public class UserController {
 			session.removeAttribute("loginName");
 			session.removeAttribute("loginAdmin");
 		return "redirect:/";
+	}
+	
+	// 마이페이지로 이동
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public String mypage() {
+			
+		return "userjsp/mypage";
 	}
 	
 }

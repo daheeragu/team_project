@@ -10,7 +10,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
    
-    <title>Carousel Template · Bootstrap v5.1</title>
+    <title>부산온나</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
@@ -138,10 +138,10 @@
                            <li class="nav-item">
                             <a class="nav-link" href="user/logout">로그아웃</a>
                            </li>
-                          </c:if>
                            <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
+                            <a class="nav-link" href="user/mypage">마이페이지</a>
                            </li>
+                          </c:if>
                           </ul>
 				    
 					<form class="d-flex">
