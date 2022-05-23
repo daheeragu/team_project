@@ -79,7 +79,7 @@ public class UserController {
 		}
 		
 		if(admin != null && admin.getAdmin_password().equals(password)) {
-			session.setAttribute("loginId", admin.getAdmin_id());
+			session.setAttribute("loginAdmin", admin.getAdmin_id());
 			session.setAttribute("loginName", admin.getAdmin_name());
 			return "redirect:/";
 		}
@@ -91,6 +91,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 			session.removeAttribute("loginId");
 			session.removeAttribute("loginName");
+			session.removeAttribute("loginAdmin");
 		return "redirect:/";
 	}
 	
