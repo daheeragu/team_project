@@ -33,13 +33,18 @@ public class UserController {
 	// ID 중복 체크
 	@ResponseBody
 	@RequestMapping(value = "select", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
-	public Userinfo doubleCheck(String user_id, Model m) {
+	public int doubleCheck(String user_id) {
 		logger.info("전달받은 값 : {}", user_id);
 		Userinfo user = null;
 		user = dao.selectUserinfo(user_id);		
-		m.addAttribute("user", user);
-		m.addAttribute("searchId", user_id);
-		return user;
+		System.out.println(user);
+		int result = 0;
+		if(user != null) {
+			result = 1;
+			return result;
+		}
+		return result;
+		
 	}
 	
 	// 회원가입 폼에 입력한 정보 가져오기 및 가입 처리하기

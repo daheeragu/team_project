@@ -26,8 +26,9 @@ function doubleCheck(){
 		data: {"user_id": id},
 		success: function(cnt) {
 			
-			if(cnt != null){
+			if(cnt == 1){
 				alert(id + '는 이미 있는 아이디 입니다');
+				$('#floatingId').val('');
 			} else {
 				alert(id + '는 사용 가능한 아이디 입니다');
 			}
@@ -64,10 +65,13 @@ function formCheck(){
 		  return false; 
 	  } 
 	
-	
+	if(eamil.value.length < 1){
+		alert('email을 입력해 주세요');
+		return false;
+	}
 	return true;
 }
-</script>
+</script>	
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
