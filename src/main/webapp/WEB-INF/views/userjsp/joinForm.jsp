@@ -14,7 +14,12 @@
 <script type = "text/javascript">
 $(document).ready(function(){
 	$('#bt').on('click', doubleCheck);
+	$('#btn').on('click', welcome);
 });
+
+function welcome(){
+	alert('가입을 환영합니다');
+}
 
 function doubleCheck(){
 	var id = $('#floatingId').val();
@@ -45,6 +50,7 @@ function formCheck(){
 	let name = document.getElementById('floatingName');
 	let email = document.getElementById('floatingEmail');
 	
+	alert(email.value);
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');
 		return false;
@@ -65,7 +71,7 @@ function formCheck(){
 		  return false; 
 	  } 
 	
-	if(eamil.value.length < 1){
+	if(email.value.length < 1){
 		alert('email을 입력해 주세요');
 		return false;
 	}
@@ -176,8 +182,9 @@ function formCheck(){
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingEmail" name = "user_email" placeholder="이메일">
       <label for="floatingEmail">이메일</label>
+       <button class="w-100 btn btn-lg btn-primary" type="submit">가입하기</button>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">가입하기</button>
+   
   </form>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
