@@ -14,13 +14,17 @@
 <script type = "text/javascript">
 $(document).ready(function(){
 	$('#bt').on('click', doubleCheck);
-	$('#btn').on('click', welcome);
+	$('#submit').on('click', welcome);
+	$('#back').on('click', backHome);
 });
 
 function welcome(){
 	alert('가입을 환영합니다');
 }
 
+function backHome(){
+	location.href = "../"
+}
 function doubleCheck(){
 	var id = $('#floatingId').val();
 	
@@ -165,7 +169,7 @@ function formCheck(){
 
     <div class="form-floating">
       <input type="text" class="form-control" name = "user_id" id="floatingId" placeholder="아이디">
-      <label for="floatingInput">아이디</label> <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
+      <label for="floatingInput" >아이디</label> <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" name = "user_password" placeholder="비밀번호">
@@ -182,9 +186,12 @@ function formCheck(){
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingEmail" name = "user_email" placeholder="이메일">
       <label for="floatingEmail">이메일</label>
-       <button class="w-100 btn btn-lg btn-primary" type="submit">가입하기</button>
+       
+       
     </div>
-   
+   <button type="submit" class="btn btn-primary" id = "submit">가입하기</button>
+   <button type="reset" class="btn btn-secondary">다시 입력</button>
+   <button type="button" class="btn btn-success" id = "back">홈 화면</button>
   </form>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

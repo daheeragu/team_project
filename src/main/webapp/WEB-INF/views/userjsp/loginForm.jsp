@@ -13,6 +13,13 @@
     <script src="../resources/js/jquery-3.6.0.js"></script>    
 
 <script type = "text/javascript">
+$(document).ready(function(){
+	$('#back').on('click', backHome);
+});
+
+function backHome(){
+	location.href = "../"
+}
 function formCheck(){
 	let id = document.getElementById('floatingInput');
 	let pwd = document.getElementById('floatingPassword');
@@ -129,15 +136,16 @@ function formCheck(){
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" name = "password" placeholder="비밀번호">
       <label for="floatingPassword">비밀번호</label>
+      
     </div>
 
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember" name = "remember" id = "remember" checked ="checked"> 아이디 기억하기
-      </label>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+      </label>      
     </div>
-    
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <button type="button" id = "back" class="btn btn-success">홈 화면</button>
   </form>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
