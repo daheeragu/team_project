@@ -1,19 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글쓰기</title>
+<title>리뷰 읽기</title>
+<link rel="stylesheet" type="text/css" href="../resources/css/default.css"/> 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-</head>
+<script type="text/javascript">
+//게시글 삭제
+function deleteBoard(num){
+	if(confirm('정말 삭제하시겠습니까?')) {
+		location.href = 'delete?boardnum='+num;
+	}
+}
 
-   
-</style>
+//리플 삭제
+function replyDelete(replynum, boardnum) {
+	if (confirm('리플을 삭제하시겠습니까?')) {
+		location.href='replyDelete?replynum=' + replynum + '&boardnum=' + boardnum;
+	}
+}
+
+
+
+
+</script>
+</head>
 <body>
+
+
+<div class = "centerview">
+
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
@@ -99,43 +120,85 @@
 			</div>
 		</nav>
 	</header>
-<br>
-<br>
-<br>
-                                                   <!-- 파일 보낼 때 꼭 필요 -->
-<form id="writeForm" action = "write" method ="post" enctype="multipart/form-data"
-      onsubmit="return formCheck();">
+
 <table>
-  <tr>
-    <th>제목</th>
-    <td><input type="text" name="review_title" id="title"></td> 
-  </tr>
-</table>
-  
-  <label for="spot">관광지</label> 
-		<select id="job" name="info_num" size="1">
-			<option value="">선택하세요</option>
-			<option value="1">해운대</option>
-			<option value="2">광안리</option>
-			<option value="3">남포동</option>
-			
-		</select> <br>
-  
-<table>   
-  <tr>
-    <th>내용</th>
-    <td><textarea rows="15" cols="70" name="review_content" 
-                  id="contents" style="resize:none;"></textarea> 
-  </tr>
-  
-  <tr id="save">
-    <td colspan ="2" >
-      <input type="submit" value="저장" style="float:right">
-    </td>
-  </tr>
-  
+<tr>
+<th style="width:100px;">작성자</th>
+<td style="width:600px;">${review.user_id}</td>
+</tr>
+
+
+<tr>
+<th>작성일</th>
+<td>${review.review_inputdate}</td>
+</tr>
+
+
+<tr>
+<th>조회수</th>
+<td>${review.review_hits}</td>
+</tr>
+
+
+<tr>
+<th>제목</th>
+<td>${review.review_title}</td>
+</tr>
+
+<tr>
+<th>내용</th>
+<td>${review.review_content}</td>
+</tr>
+
+<tr>
+<th>파일첨부</th>
+<td>
+	<a href = "download"?boardnum=${board.boardnum}">${board.originalfile}</a>
+</td><!-- 글번호가 컨트롤러의 파일 다운로드 메소드로 전달됨 -->
+</tr>
 </table>
 
+<!-- 본인 글 수정/삭제 출력하고 있는 ID와 세션에 저장된 ID가 같을 때만 보임-->
+<c:if test="${sessionScope.loginId == review.user_id}">
+	<a href="edit?review_num=${review.review_num}">수정</a>
+	<a href="javascript:deleteReview(${review.review_num})">삭제</a>
+</c:if>
+
+<!-- 목록보기 -->
+<a href="list">목록보기</a>
+
+
+<!-- 리플 작성 폼 (로그인 한 사람에게만 보이게)-->
+<c:if test="${sessionScope.loginId != null}">
+<form action="replyWrite" method="post" onSubmit="return replyFormCheck();">
+리플내용
+	<input type="hidden" name="boardnum" value="${board.boardnum}">
+	<input type="text" name="text" style="width500px;">
+	<input type="submit" value="확인">
 </form>
+</c:if>
+
+
+
+<!-- 리플 목록 출력 시작 -->
+<table class="reply">
+<c:forEach var="reply" items="${replylist}">
+	<tr>
+		<td class="replyid">
+			<b>${reply.id}</b>
+		</td>
+		<td class="replytext">
+			${reply.text}
+		</td>
+		<td class="replybutton">
+			<c:if test="${loginId == reply.id}">
+				[<a href="javascript:replyDelete(${reply.replynum}, ${reply.boardnum })">삭제</a>]
+			</c:if>
+		</td>
+	</tr>	
+</c:forEach>
+</table>
+<!-- /리플 목록 출력 끝 --> 
+</div>
 </body>
 </html>

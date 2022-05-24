@@ -108,6 +108,7 @@
       <th scope="col">번호</th>
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
+      <th scope="col">조회수</th>
       <th scope="col">등록일</th>
     </tr>
   </thead>
@@ -116,13 +117,19 @@
    <c:forEach var="review" items="${reviewlist}">
     <tr>
       <th scope="row">${review.review_num}</th>
-      <td>${review.review_title}</td>
+      <td><a href="readReview?review_num=${review.review_num}">${review.review_title}</a></td>
       <td>${review.user_id}</td>
+      <td>${review.review_hits}</td>
       <td>${review.review_inputdate}</td>
     </tr>
    </c:forEach>
   </tbody>
 </table>
+
+<p>
+		<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
+	</p>
+
 
 </body>
 </html>

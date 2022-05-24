@@ -8,4 +8,8 @@ public interface ReviewMapper {
 
 	ArrayList<Review> reviewList();
 
+	int writeReview(Review review);
+
+	Review readReview(int review_num);
+
 }

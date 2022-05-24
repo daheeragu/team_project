@@ -54,60 +54,51 @@ public class ReviewController {
 		return "reviewjsp/reviewList";
 	}
 	
-//	//글쓰기 폼으로 이동
-//	@RequestMapping(value = "write", method = RequestMethod.GET)
-//	public String write() {
-//		
-//		return "boardjsp/writeForm";
-//	}
-//	//글쓰기 기능 처리 
-//	@RequestMapping(value = "write", method = RequestMethod.POST)
-//	 public String write(Board board, HttpSession session, MultipartFile upload) {
-//	    logger.info("파일정보 : {}", upload.getContentType());
-//	    logger.info("파일정보 : {}", upload.getName());
-//	    logger.info("파일정보 : {}", upload.getOriginalFilename());
-//	    logger.info("파일정보 : {}", upload.getSize());
-//	    logger.info("파일정보 : {}", upload.isEmpty());
-//	    
-//		//세션에서 아이디 받아오기 
-//		String loginId = (String) session.getAttribute("loginId");
-//		board.setId(loginId);
-//		
-//		//첨부파일이 있는 경우 지정된 경로에 저장하고, 원본 파일명과 저장된 파일명을 Board객체에 세팅
-//		if(!upload.isEmpty()) {
-//			String savedfile = FileService.saveFile(upload, uploadPath);
-//			board.setOriginalfile(upload.getOriginalFilename());
-//			board.setSavedfile(savedfile);
-//		}
-//       
-//	    //Board객체를 DAO로 보내서 글쓰기
-//		logger.info("저장할 글정보 : {}", board);
-//		dao.write(board);
-//		
-//		return "redirect:list";
-//		
-//	}
-//	
-//	//글 읽기로 이동
-//	@RequestMapping(value = "read", method = RequestMethod.GET)
-//	public String read(int boardnum, Model model) {
-//		
-//		 //글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
-//	      Board board = dao.readBoard(boardnum);
-//	     //결과가 없으면 글 목록으로 이동 
-//	      if(board == null) {
-//	    	  return "redirect:list";
-//	      }
-//	      //결과가 있으면 모델에 글 정보 저장하고 JSP로 포워딩
-//	      model.addAttribute("board", board);
-//	      
+	//글쓰기 폼으로 이동
+	@RequestMapping(value = "write", method = RequestMethod.GET)
+	public String writeReview() {
+		
+		return "reviewjsp/writeReview";
+	}
+	//글쓰기 기능 처리 
+	@RequestMapping(value = "write", method = RequestMethod.POST)
+	 public String write(Review review, HttpSession session) {
+	    
+	    
+		//세션에서 아이디 받아오기 
+		String loginId = (String) session.getAttribute("loginId");
+		review.setUser_id(loginId);
+		
+			
+       
+	
+		logger.info("저장할 글정보 : {}", review);
+		dao.writeReview(review);
+		
+		return "redirect:List";
+		
+	}
+	
+	//글 읽기로 이동
+	@RequestMapping(value = "readReview", method = RequestMethod.GET)
+	public String readReview(int review_num, Model model) {
+		
+		 //글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
+	      Review review = dao.readReview(review_num);
+	     //결과가 없으면 글 목록으로 이동 
+	      if(review == null) {
+	    	  return "redirect:List";
+	      }
+	      //결과가 있으면 모델에 글 정보 저장하고 JSP로 포워딩
+	      model.addAttribute("review", review);
+	      
 //	      //이 글에 달린 댓글 목록도 가져감 
 //	      ArrayList<Reply> replyList = dao.listReply(boardnum);
 //	      model.addAttribute("replyList", replyList);
-//	      
-//		return "boardjsp/readForm";
-//		}
-//	
+	      
+		return "reviewjsp/readReview";
+		}
+	
 //	/**
 //	 * 파일 다운로드
 //	 * @param boardnum 파일이 첨부된 글 번호

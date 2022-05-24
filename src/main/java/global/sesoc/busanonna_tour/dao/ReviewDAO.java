@@ -20,15 +20,16 @@ public class ReviewDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-//	//글쓰기
-//	public int write(Board board) {
-//	    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-//	    int result = 0; 
-//	    
-//	    result = mapper.write(board);
-//	    return result; 
-//		
-//	}
+	//리뷰 쓰기
+	public int writeReview(Review review) {
+		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
+		int result = 0;
+		
+		result = mapper.writeReview(review);
+		return result;
+	}
+	
+
 //	//글개수
 //	public int getTotal(String searchText) {
 //		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
@@ -37,13 +38,24 @@ public class ReviewDAO {
 //		result = mapper.getTotal(searchText);
 //	    return result;
 //	}
-	//글목록
+	
+	// 리뷰 목록
 	public ArrayList<Review> reviewList() {
 		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
 		ArrayList<Review> review = mapper.reviewList();
 		return review;
 
 	}
+	
+	// 리뷰 번호로 리뷰 검색
+	public Review readReview(int review_num) {
+		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
+		Review review = null;
+		review = mapper.readReview(review_num);
+		return review;
+	}
+
+	
 	
 //	//게시판 글읽기
 //	public Board readBoard(int boardnum) {
