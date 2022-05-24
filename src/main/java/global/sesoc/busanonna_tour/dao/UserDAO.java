@@ -36,4 +36,21 @@ public class UserDAO {
 		admin = mapper.selectAdmin(id);
 		return admin;
 	}
+
+	public int updateAdmin(String loginId) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		int result = 0;
+		result = mapper.updateAdmin(loginId);
+		return result;
+		
+	}
+	
+	public int updateUserinfo(String loginId) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		int result = 0;
+		result = mapper.updateUserinfo(loginId);
+		return result;
+		
+	}
+
 }
