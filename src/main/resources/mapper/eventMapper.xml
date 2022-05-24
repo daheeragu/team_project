@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="global.sesoc.busanonna_tour.dao.EventMapper">
+
+<!-- 이벤트 목록 불러오기 -->
+<select id="listEvent" parameterType="string" resultType="Event">
+    select 
+         event_num
+         , event_title
+         , to_char(event_startdate, 'YYYY-MM-DD') event_startdate
+         , to_char(event_enddate, 'YYYY-MM-DD') event_enddate
+         , event_state
+    from
+         event
+    <if test="_parameter != null">
+    where 
+       upper(event_title) like '%' || upper(#{searchText}) || '%'
+    </if>
+    order by 
+       event_num desc
+</select>
+
+<!-- 등록하기 전의 이벤트 번호 불러오기 -->
+<select id="getNextNum" resultType="int">
+select 
+        event_seq.nextval 
+    from
+        dual
+</select>
+
+<!-- 이벤트 등록 -->
+<insert id="writeEvent" parameterType="Event">
+  insert into 
+    event 
+     (
+       event_num
+       , admin_id
+       , event_title
+       , event_content
+       , event_startdate 
+       , event_enddate
+       , event_state  
+     )
+    values
+     (
+       #{event_num}
+       ,#{admin_id}
+       ,#{event_title}
+       ,#{event_content}
+       ,#{event_startdate}
+       ,#{event_enddate}
+       ,#{event_state}
+       
+     )
+  </insert>
+ <!-- 이벤트 파일 업로드 -->
+ <insert id="insertFile" parameterType="Event_pic">
+    insert into 
+      event_pic
+      (
+       eventpic_num
+       <if test="savedfile != null">
+       , savedfile
+       </if>
+       , event_num
+      )
+   values
+     (
+      event_pic_seq.nextval
+      <if test="savedfile != null">
+      ,#{savedfile}
+      </if>
+      ,#{event_num}
+     )
+ </insert>
+
+	<!-- 업로드한 파일 (이벤트 글 번호로 해서 불러오기 ) -->
+	<select id="fileList" parameterType="int" resultType="Event_pic">
+	select
+		eventpic_num
+		, savedfile
+		, event_num
+	from
+		event_pic
+	where
+		event_num = #{event_num}
+	</select>
+
+<!-- 업로드한 파일 하나씩 불러오기 -->
+	<select id="readFile" parameterType="int" resultType="Event_pic">
+	select
+		eventpic_num
+		,savedfile
+		,event_num
+	from
+		event_pic
+	where
+		eventpic_num = #{eventpic_num}
+	</select>
+
+<!-- 업로드 이미지 중 첫번째 사진만 빼서 오기 -->
+    <select id="selectFile" resultType="Event_pic">
+    select
+          event_num
+          , (select 
+                  min(eventpic_num)
+              from
+                  event_pic
+              where 
+                  event_pic.event_num = event.event_num) eventpic_num
+     from 
+         event  
+     
+    </select>
+	
+<!-- 이벤트 읽기 -->
+	<select id="readEvent" parameterType="int" resultType="event">
+	  select
+	        event_num
+	        , admin_id
+	        , event_title
+	        , event_content
+	        , event_startdate
+	        , event_enddate
+	        , event_state
+	 from 
+	       event 
+	 where 
+	       event_num = #{event_num}
+	</select>
+
+<!-- 이벤트 수정 -->
+  <update id="updateEvent" parameterType="Event">
+    update 
+         event
+     set
+         event_title = #{event_title}
+         ,event_content = #{event_content}
+         ,event_startdate = #{event_startdate}
+         ,event_enddate = #{event_enddate}
+         ,event_state = #{event_state}
+     where 
+          event_num = #{event_num}
+      and 
+          admin_id = #{admin_id}
+  </update>
+  
+ <!-- 이벤트 삭제 -->
+ <delete id="deleteEvent" parameterType="Event">
+   delete
+         from 
+             event
+         where 
+             event_num = #{event_num}
+         and
+             admin_id = #{admin_id}
+ </delete>
+ 
+ <!-- 업로드된 이벤스 총 수 -->
+ <select id="getTotal" parameterType="string" resultType="int">
+   select 
+         count(*)
+    from
+         event
+    <if test="_parameter != null">
+    where 
+     upper(event_title) like '%' || upper(#{searchText}) || '%'  
+    </if>
+ </select>
+ 
+ <!-- 수정 폼에 개별적으로 파일 삭제(ajax 활용) -->
+ <delete id="deleteFile" parameterType="int">
+   delete
+         from 
+              event_pic
+          where 
+              eventpic_num = #{eventpic_num}
+ 
+ </delete>
+ 
+</mapper>
