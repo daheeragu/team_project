@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!doctype html>
 <html lang="en">
   <head>
@@ -95,6 +96,9 @@ function formCheck(){
 <meta name="theme-color" content="#712cf9">
 
     <style>
+    .form-floating{
+    	
+    }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -152,7 +156,7 @@ function formCheck(){
       }
       body{
 		position : relative;
-		top : 150px;
+		
       	
       }
       
@@ -165,30 +169,53 @@ function formCheck(){
 <main class="form-signin w-100 m-auto">
   <form action = "join" method = "post" onsubmit = "return formCheck()">
     
-    <h1 class="h3 mb-3 fw-normal">회원가입</h1>
-
+    <h1 class="h3 mb-3 fw-normal">마이페이지</h1>
+	<c:if test = "${user != null}">
     <div class="form-floating">
-      <input type="text" class="form-control" name = "user_id" id="floatingId" placeholder="아이디">
-      <label for="floatingInput" >아이디</label> <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
+    	 <p style = "text-align: left;">아이디</p>
+      <input type="text" class="form-control" name = "user_id" id="floatingId" value = "${user.user_id}">
+       <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" name = "user_password" placeholder="비밀번호">
-      <label for="floatingPassword">비밀번호</label>
+     	 <p style = "text-align: left;">비밀번호</p>
+      <input type="password" class="form-control" id="floatingPassword" name = "user_password">
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword2" placeholder="비밀번호">
-      <label for="floatingPassword2">비밀번호 확인</label>
+     <p style = "text-align: left;">비밀번호 확인</p>
+      <input type="password" class="form-control" id="floatingPassword2" >
     </div>
      <div class="form-floating">
-      <input type="text" class="form-control" id="floatingName" name = "user_name" placeholder="이름">
-      <label for="floatingName">이름</label>
+    	 <p style = "text-align: left;">이름 </p>
+      <input type="text" class="form-control" id="floatingName" name = "user_name" value="${user.user_name}"> 
     </div>
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingEmail" name = "user_email" placeholder="이메일">
-      <label for="floatingEmail">이메일</label>
-       
-       
+      <p style = "text-align: left;">이메일</p>
+      <input type="email" class="form-control" id="floatingEmail" name = "user_email"  value = "${user.user_email}">
     </div>
+    </c:if>
+    <c:if test = "${admin != null}">
+     <p style = "text-align: left;">아이디</p>
+    <div class="form-floating">	
+      <input type="text" class="form-control" name = "admin_password" id="floatingId" value = "${admin.admin_id}">
+       <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
+    </div>
+    <div class="form-floating">
+       <p style = "text-align: left;">비밀번호</p>
+      <input type="password" class="form-control" id="floatingPassword" name = "admin_password" placeholder="비밀번호">
+    </div>
+    <div class="form-floating">
+     <p style = "text-align: left;">비밀번호 확인</p>
+      <input type="password" class="form-control" id="floatingPassword2" >
+    </div>
+     <div class="form-floating">
+      <p style = "text-align: left;">이름 </p>
+      <input type="text" class="form-control" id="floatingName" name = "admin_name"  value = "${admin.admin_name}"> 
+    </div>
+    <div class="form-floating">
+      <p style = "text-align: left;">이메일</p>
+      <input type="email" class="form-control" id="floatingEmail" name = "admin_email"  value = "${admin.admin_email}">
+    </div>
+    </c:if>
    <button type="submit" class="btn btn-primary" id = "submit">가입하기</button>
    <button type="reset" class="btn btn-secondary">다시 입력</button>
    <button type="button" class="btn btn-success" id = "back">홈 화면</button>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="global.sesoc.busanonna_tour.dao.NoticeMapper">
+
+<!-- 공지사항 목록 -->
+<select id="listNotice" parameterType="string" resultType="Notice">
+  select 
+       admin_id
+       , notice_num
+       , notice_title
+       , to_char(notice_inputdate, 'YYYY.MM.DD') notice_inputdate
+  from 
+       notice
+  <if test="_parameter != null">
+  where 
+       upper(notice_title) like '%' || upper(#{searchText}) || '%'
+  </if>
+  order by 
+        notice_num desc
+</select>
+
+<!-- 공지사항 개수 -->
+<select id="getTotal" parameterType="string" resultType="int">
+  select
+        count(*)
+   from
+        notice
+   <if test="_parameter !=null">
+   where
+        upper(notice_title) like '%' || upper(#{searchText}) || '%'
+   </if>       
+</select>
+
+<!-- 공지사항 읽기 -->
+<select id="readNotice" parameterType="int" resultType="Notice">
+    select 
+          admin_id
+          ,notice_num
+          ,notice_title
+          ,notice_content
+    from
+         notice
+    where
+        notice_num = #{notice_num}
+</select>
+
+<!-- 등록하기 전 공지사항 번호를 불러오기 -->
+<select id="getNextNum" resultType="int">
+  select 
+        notice_seq.nextval 
+    from
+        dual
+</select>
+
+<!-- 공지사항 등록 -->
+<insert id="writeNotice" parameterType="Notice">
+  insert into 
+    notice 
+    ( 
+       admin_id
+     , notice_num
+     , notice_title
+     , notice_content
+           
+     )
+    values
+     (
+       #{admin_id}
+       , #{notice_num}
+       , #{notice_title}
+       , #{notice_content}
+      )
+                   
+</insert>
+
+<!-- 공지사항 파일 업로드 -->
+<insert id="insertFile" parameterType="Notice_pic">
+ insert into 
+      notice_pic
+      (
+       noticepic_num
+       <if test="savedfile != null">
+       , savedfile
+       </if>
+       , notice_num
+      )
+   values
+     (
+      notice_pic_seq.nextval
+      <if test="savedfile != null">
+      ,#{savedfile}
+      </if>
+      , #{notice_num}
+     )
+</insert>
+<!-- 업로드한 파일 (공지사항 글 번호로 해서 불러오기)  -->
+<select id="fileList" parameterType="int" resultType="Notice_pic">
+  select 
+        noticepic_num
+        , savedfile
+        , notice_num
+   from 
+        notice_pic
+   where
+        notice_num = #{notice_num}
+</select>
+<!-- 업로드한 이미지 파일 하나씩 불러오기 -->
+<select id="readFile" parameterType="int" resultType="Notice_pic">
+ select
+      noticepic_num
+      ,savedfile
+      ,notice_num
+  from 
+      notice_pic
+  where 
+      noticepic_num = #{noticepic_num}
+</select>  
+
+<!-- 공지사항 내용 수정 -->
+<update id="updateNotice" parameterType="Notice">
+   update
+         notice
+     set
+         notice_title = #{notice_title}
+         , notice_content = #{notice_content}
+     where
+         notice_num = #{notice_num}
+     and
+         admin_id = #{admin_id}
+</update>
+
+<!-- 공지사항 이미지 파일 수정 -->
+<update id="updateFile" parameterType="int">
+   update
+        notice_pic
+    set
+        noticepic_num = #{noticepic_num}
+        , savedfile = #{savedfile}
+    where 
+        notice_num = #{notice_num}
+   
+</update>
+
+<!-- 공지사항 삭제 -->
+<delete id="deleteNotice" parameterType="Notice">
+ delete 
+      from 
+          Notice 
+      where
+          notice_num = #{notice_num} 
+      and 
+          admin_id = #{admin_id}
+</delete>
+</mapper>

@@ -10,7 +10,16 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.98.0">
     <title>로그인</title>
+    <script src="../resources/js/jquery-3.6.0.js"></script>    
+
 <script type = "text/javascript">
+$(document).ready(function(){
+	$('#back').on('click', backHome);
+});
+
+function backHome(){
+	location.href = "../"
+}
 function formCheck(){
 	let id = document.getElementById('floatingInput');
 	let pwd = document.getElementById('floatingPassword');
@@ -25,6 +34,9 @@ function formCheck(){
 		return false;
 	}
 	
+	if(remember){
+		
+	}
 	return true;
 }
 </script>
@@ -118,20 +130,22 @@ function formCheck(){
     <h1 class="h3 mb-3 fw-normal">정보이외의 컨텐츠를 이용하시려면 로그인을 해주세요</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" name = "id" id="floatingInput" placeholder="아이디">
+      <input type="text" class="form-control" value = "${id}" name = "id" id="floatingInput" placeholder="아이디">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" name = "password" placeholder="비밀번호">
       <label for="floatingPassword">비밀번호</label>
+      
     </div>
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="아이디 기억하기"> 아이디 기억하기
-      </label>
+        <input type="checkbox" value="remember" name = "remember" id = "remember" checked ="checked"> 아이디 기억하기
+      </label>      
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <button type="button" id = "back" class="btn btn-success">홈 화면</button>
   </form>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
