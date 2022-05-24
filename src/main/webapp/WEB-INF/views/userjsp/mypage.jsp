@@ -31,7 +31,7 @@ function doubleCheck(){
 	
 	//사용자가 입력한 내용을 서버로 전송.
 	$.ajax({
-		url: 'select',
+		url: 'update',
 		type: 'post',
 		data: {"user_id": id},
 		success: function(cnt) {
@@ -201,7 +201,7 @@ function formCheck(){
     </div>
     <div class="form-floating">
        <p style = "text-align: left;">비밀번호</p>
-      <input type="password" class="form-control" id="floatingPassword" name = "admin_password" placeholder="비밀번호">
+      <input type="password" class="form-control" id="floatingPassword" name = "admin_password" >
     </div>
     <div class="form-floating">
      <p style = "text-align: left;">비밀번호 확인</p>
@@ -216,7 +216,7 @@ function formCheck(){
       <input type="email" class="form-control" id="floatingEmail" name = "admin_email"  value = "${admin.admin_email}">
     </div>
     </c:if>
-   <button type="submit" class="btn btn-primary" id = "submit">가입하기</button>
+   <button type="button" class="btn btn-primary" id = "submit">수정하기</button>
    <button type="reset" class="btn btn-secondary">다시 입력</button>
    <button type="button" class="btn btn-success" id = "back">홈 화면</button>
   </form>
