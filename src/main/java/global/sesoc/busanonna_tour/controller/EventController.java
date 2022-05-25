@@ -45,8 +45,10 @@ public class EventController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model model
 			, @RequestParam(value="searchText", defaultValue="") String searchText
-			, @RequestParam(value="page", defaultValue="1") int page) {
-
+			, @RequestParam(value="page", defaultValue="1") int page
+			) {
+        
+		 
 		logger.debug("page: {}, searchText: {}", page, searchText);
 		
 		//전체 이벤트 갯수
@@ -58,16 +60,18 @@ public class EventController {
 	   
 		//카드 이미지 하나 불러오기
 		ArrayList<Event_pic> picList = dao.selectFile();
-		
+	
 		System.out.println(picList);
 	
+		
+		
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("navi", navi);
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("picList", picList);
-		
-      
 	
+		
+
 		return "eventjsp/listAll";
 	}
 
@@ -237,7 +241,8 @@ public class EventController {
 		logger.info("전달된 번호 : {}", eventpic_num);
 		
 		int result = dao.deleteFile(eventpic_num);
-
+        
+		
 		return result;
 		 
 	}
