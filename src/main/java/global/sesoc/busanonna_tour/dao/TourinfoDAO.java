@@ -46,13 +46,22 @@ public class TourinfoDAO {
 	    return result;
 	}
 	//레저 글개수
-		public int getTotalLeisure(String theme) {
-			TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-			int result = 0; 
-			    
-			result = mapper.getTotalLeisure(theme);
-		    return result;
-		}
+	public int getTotalLeisure(String theme) {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		int result = 0; 
+		    
+		result = mapper.getTotalLeisure(theme);
+	    return result;
+	}
+	
+	//레저 글개수
+	public int getTotalExp(String theme) {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		int result = 0; 
+		    
+		result = mapper.getTotalExp(theme);
+	    return result;
+	}
 	//명소 글목록
 	public ArrayList<Tourinfo> spotlist(int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -87,7 +96,19 @@ public class TourinfoDAO {
 			ArrayList<Tourinfo> result = mapper.leisurelist(rb);
 			return result;
 		}
-	
+		
+		//레저 글목록
+		public ArrayList<Tourinfo> explist(int startRecord, int countPerPage) {
+			TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+			
+			//전체 검색 결과 중 읽을 시작위치와 개수
+			RowBounds rb = new RowBounds(startRecord, countPerPage);
+			
+			//검색어와 읽을 범위를 전달
+			ArrayList<Tourinfo> result = mapper.explist(rb);
+			return result;
+		}
+
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num) {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
