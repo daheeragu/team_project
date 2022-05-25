@@ -27,7 +27,7 @@
 	
 	<!-- Admin update 하기 -->
 	<update id = "updateAdmin" parameterType = "admin">
-		update Admin set admin_password = #{admin_password}
-		, admin_name = #{admin_name}, admin_email = #{admin_eamil} where admin_id = #{admin_id}
+		update admin set admin_password = #{admin_password}
+		, admin_name = #{admin_name}, admin_email = #{admin_email} where admin_id = #{admin_id}
 	</update>
 </mapper>

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
- 	<typeAliases>
+  	<typeAliases>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Member" alias="Member" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Board" alias="Board" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Reply" alias="Reply"/>
