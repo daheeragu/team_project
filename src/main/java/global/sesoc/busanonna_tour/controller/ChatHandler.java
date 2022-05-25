@@ -9,8 +9,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 //클라이언트와 WebSocket을 이용한 메시지 송수신
 public class ChatHandler extends AbstractWebSocketHandler {
 	private static final Logger logger = LoggerFactory.getLogger(ChatHandler.class);
@@ -32,20 +30,13 @@ public class ChatHandler extends AbstractWebSocketHandler {
 		logger.info(list.toString());
 	}
 
-//	@Override
-//	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-//		logger.info("서버측 수신 : {}, ID: {}", message.getPayload(), session.getId());
-//		
-//		TextMessage msg = new TextMessage("익명" + session.getId() + ": " + message.getPayload());
-//		
-//		for(WebSocketSession ss: list) {
-//			ss.sendMessage(msg);
-//		}
-//	}
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		Map<String,Object> map = session.getAttributes();
-		String loginId = (String)map.get("loginId");
-		System.out.println("로그인 한 아이디 : " + loginId);
+		logger.info("서버측 수신 : {}, ID: {}", message.getPayload(), session.getId());
+		
+		TextMessage msg = new TextMessage("클라이언트" + session.getId() + ": " + message.getPayload());
+		for(WebSocketSession ss: list) {
+			ss.sendMessage(msg);
 		}
+	}
 }

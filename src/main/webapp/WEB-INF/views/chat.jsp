@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채팅방</title>
+<title>WebSocket Chatting</title>
 <style>
 #outputDiv {
 	width: 500px;
