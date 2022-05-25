@@ -167,24 +167,24 @@ public class ReviewController {
 		return "redirect:List";
 	
 	}
-//	
-//	//글 삭제 처리
-//	@RequestMapping(value = "delete", method = RequestMethod.GET)
-//	public String delete(int boardnum, HttpSession session) {
-//		
-//		String loginId = (String) session.getAttribute("loginId");
-//		
-//		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
-//		Board board = new Board();
-//		board.setBoardnum(boardnum);
-//		board.setId(loginId);
-//		
-//		logger.info("전달된 값: {}", board);
-//	    int result = dao.deleteBoard(board);
-//	    
-//		
-//		return "redirect:list";
-//	}
+	
+	//글 삭제 처리
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(int review_num, HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
+		
+		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
+		Review review = new Review();
+		review.setReview_num(review_num);
+		review.setUser_id(loginId);
+		
+		logger.info("전달된 값: {}", review);
+	    dao.deleteReview(review);
+	    
+		
+		return "redirect:List";
+	}
 //	
 //	//리플 저장	
 //	@RequestMapping(value = "replyWrite", method = RequestMethod.POST)

@@ -64,6 +64,15 @@ public class ReviewDAO {
 		
 	}
 
+	// 리뷰 삭제
+	public int deleteReview(Review review) {
+		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
+		int result = 0;
+		result = mapper.deleteReview(review);
+		return result;
+		
+	}
+
 	
 	
 //	//게시판 글읽기
@@ -81,15 +90,7 @@ public class ReviewDAO {
 
 //		
 //	}
-//	//글 삭제
-//	public int deleteBoard(Board board) {
-//	      BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-//	       int result = 0; 
-//	       
-//	       result = mapper.deleteBoard(board);
-//	       return result; 
-//	      
-//	   }
+
 //   //리플 추가
 //	public int insertReply(Reply reply) {
 //		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);

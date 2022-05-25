@@ -12,9 +12,9 @@
 
 <script type="text/javascript">
 //게시글 삭제
-function deleteBoard(num){
+function deleteReview(num){
 	if(confirm('정말 삭제하시겠습니까?')) {
-		location.href = 'delete?boardnum='+num;
+		location.href = 'delete?review_num='+num;
 	}
 }
 

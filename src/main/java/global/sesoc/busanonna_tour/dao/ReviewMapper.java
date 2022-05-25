@@ -14,4 +14,6 @@ public interface ReviewMapper {
 
 	int updateReview(Review review);
 
+	int deleteReview(Review review);
+
 }
