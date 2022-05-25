@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.busanonna_tour.dao.TourinfoMapper">
+
+	<!-- 명소 글 개수 -->
+	<select id="getTotalSpot" parameterType="string" resultType="int">
+		select
+			count(*)
+		from 
+			tourinfo
+		where
+			info_theme = 'spot'
+	</select>
+	
+		<!-- 먹거리 글 개수 -->
+	<select id="getTotalFood" parameterType="string" resultType="int">
+		select
+			count(*)
+		from 
+			tourinfo
+		where
+			info_theme = 'food'
+	</select>
+	
+		<!-- 레저 글 개수 -->
+	<select id="getTotalReisure" parameterType="string" resultType="int">
+		select
+			count(*)
+		from 
+			tourinfo
+		where
+			info_theme = 'leisure'
+	</select>
+
+	<!-- 명소 글 목록 -->
+	<select id="spotlist" parameterType="string" resultType="Tourinfo">
+		select
+			info_num
+			, info_title
+			, info_subtitle
+			, to_char(info_inputdate, 'MM/DD') info_inputdate
+			, info_hits
+			, info_like
+			, info_gu
+		from
+			tourinfo
+		where
+			info_theme = 'spot'
+		order by
+			info_num desc
+	</select>
+	
+		<!-- 먹거리 글 목록 -->
+	<select id="foodlist" parameterType="string" resultType="Tourinfo">
+		select
+			info_num
+			, info_title
+			, info_subtitle
+			, to_char(info_inputdate, 'MM/DD') info_inputdate
+			, info_hits
+			, info_like
+			, info_gu
+		from
+			tourinfo
+		where
+			info_theme = 'food'
+		order by
+			info_num desc
+	</select>
+	
+		<!-- 레저 글 목록 -->
+	<select id="reisurelist" parameterType="string" resultType="Tourinfo">
+		select
+			info_num
+			, info_title
+			, info_subtitle
+			, to_char(info_inputdate, 'MM/DD') info_inputdate
+			, info_hits
+			, info_like
+			, info_gu
+		from
+			tourinfo
+		where
+			info_theme = 'reisure'
+		order by
+			info_num desc
+	</select>
+
+</mapper>
