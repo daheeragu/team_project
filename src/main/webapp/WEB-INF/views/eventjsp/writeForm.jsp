@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>꿀팁 | 이벤트 | BUSANONNA</title>
 
-<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
 	//추가 버튼 이벤트 처리

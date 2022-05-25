@@ -106,8 +106,8 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								꿀팁 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">공지</a></li>
-								<li><a class="dropdown-item" href="#">이벤트</a></li>
+								<li><a class="dropdown-item" href="notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="event/list">이벤트</a></li>
 							</ul>
 						</li>
 				
