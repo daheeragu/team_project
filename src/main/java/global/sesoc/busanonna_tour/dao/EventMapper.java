@@ -36,4 +36,6 @@ public interface EventMapper {
     public ArrayList<Event_pic> selectFile();
     //수정 폼 기존 파일 삭제
     public int deleteFile(int eventpic_num);
+  
+   
 }

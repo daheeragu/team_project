@@ -149,7 +149,7 @@
 <delete id="deleteNotice" parameterType="Notice">
  delete 
       from 
-          Notice 
+          notice 
       where
           notice_num = #{notice_num} 
       and 
