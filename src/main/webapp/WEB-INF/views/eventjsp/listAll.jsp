@@ -160,6 +160,7 @@ function pagingFormSubmit(currentPage) {
 		<div class="row">
 		<c:forEach var="event" items="${eventList}">
 		  <c:forEach var="pic" items="${picList}">
+		  <c:if test="${event.event_num == pic.event_num}">
 			<div class="col-lg-3" style="padding-top:20px;">
 			      <a href="read?event_num=${event.event_num}">
 			    	  <div class="card" style="width: 18rem;">			
@@ -174,6 +175,7 @@ function pagingFormSubmit(currentPage) {
 					  </div>
 				    </a>
 			     </div>
+			     </c:if>
 			    </c:forEach>
 			</c:forEach>
 		</div>

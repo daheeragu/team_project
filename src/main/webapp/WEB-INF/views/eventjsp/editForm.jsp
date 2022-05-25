@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>꿀팁 | 이벤트 | BUSANONNA</title>
 
-<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -108,14 +108,15 @@ td {
 					<th>기존의 이미지</th>
 					<td>
 					  <c:forEach var="pic" items="${picList}">
-					    <img style="width:100px; height:100px;" 
-					          src="download?eventpic_num=${pic.eventpic_num}">
-					    <a href="download?eventpic_num=${pic.eventpic_num}">
-					    ${pic.savedfile} 
-					    </a>
-					    <input type="button" id="deletebtn" data-num="${pic.eventpic_num}" value="X">     
-					  </c:forEach>
-					</td>
+								<img style="width: 100px; height: 100px;"
+									src="download?eventpic_num=${pic.eventpic_num}">
+								<a href="download?eventpic_num=${pic.eventpic_num}">
+									${pic.savedfile} </a>
+								<input type="button" id="deletebtn"
+									data-num="${pic.eventpic_num}" value="X">
+						</c:forEach>
+						
+						</td>
 				</tr>
 				
 				<tr>

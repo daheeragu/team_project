@@ -85,10 +85,10 @@
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">명소</a></li>
-								<li><a class="dropdown-item" href="#">먹거리</a></li>
-								<li><a class="dropdown-item" href="#">레저</a></li>
-								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><a class="dropdown-item" href="tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="tourinfo/experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="#">내주변</a></li>
 							</ul>
@@ -106,8 +106,8 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								꿀팁 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">공지</a></li>
-								<li><a class="dropdown-item" href="#">이벤트</a></li>
+								<li><a class="dropdown-item" href="notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="event/list">이벤트</a></li>
 							</ul>
 						</li>
 				

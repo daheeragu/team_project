@@ -55,6 +55,15 @@ public class ReviewDAO {
 		return review;
 	}
 
+	// 리뷰 수정
+	public int updateReview(Review review) {
+		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
+		int result = 0;
+		result = mapper.updateReview(review);
+		return result;
+		
+	}
+
 	
 	
 //	//게시판 글읽기
@@ -69,13 +78,7 @@ public class ReviewDAO {
 //		 
 //		 return board; 
 //	}
-//    //글 수정
-//	public int updateBoard(Board board) {
-//	    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-//	    int result = 0; 
-//	    
-//	    result = mapper.updateBoard(board);
-//	    return result; 
+
 //		
 //	}
 //	//글 삭제

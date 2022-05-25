@@ -37,4 +37,17 @@
 				review_num = #{review_num} 
 	</select>
 	
+	<!-- 리뷰 수정 -->
+	<update id="updateReview" parameterType="review">
+		update
+			review
+		set
+			review_title=#{review_title},	
+			review_content=#{review_content}
+		where
+			review_num = #{review_num}
+		and
+			user_id = #{user_id}			
+	</update>
+	
 </mapper>

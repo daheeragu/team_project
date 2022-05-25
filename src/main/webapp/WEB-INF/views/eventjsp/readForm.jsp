@@ -36,13 +36,13 @@
     <!-- Custom styles for this template -->
     <link href="../resources/css/carousel.css" rel="stylesheet">
     
-<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
     $('#gobtn').on('click', returnList);
     $('#editbtn').on('click', updateEvent);
-    $('deletebtn').on('click', deleteEvent);
+    $('#deletebtn').on('click', deleteEvent);
   }); 
   
   function returnList(){
