@@ -165,7 +165,7 @@ function replyDelete(replynum, boardnum) {
 </c:if>
 
 <!-- 목록보기 -->
-<a href="list">목록보기</a>
+<a href="List">목록보기</a>
 
 
 <!-- 리플 작성 폼 (로그인 한 사람에게만 보이게)-->
