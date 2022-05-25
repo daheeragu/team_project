@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="global.sesoc.busanonna_tour.dao.ReviewMapper">
+	
+	<!-- 리뷰 목록 출력 -->
+	<select id="reviewList" resultType="review">
+	select * from review order by review_num desc
+	</select>
+	
+	<!-- 글 등록 -->
+	<insert id="writeReview" parameterType="review">
+	insert into review
+		(
+		user_id             
+		, info_num                  
+		, review_num                
+		, review_title      
+		, review_content        
+		)
+		values
+		(
+		#{user_id}
+		,#{info_num}
+		,review_seq.nextval
+		,#{review_title}
+		,#{review_content}
+		)
+		
+	</insert>	
+	
+	<!-- 리뷰 번호로 검색 -->
+	<select id="readReview" parameterType="int" resultType="review">
+		select * from review 
+			where
+				review_num = #{review_num} 
+	</select>
+	
+</mapper>

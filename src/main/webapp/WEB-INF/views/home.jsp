@@ -97,7 +97,7 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -115,7 +115,7 @@
 					   
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
-                          <c:if test = "${loginId == null && loginAdmin == null}">
+                         <c:if test = "${loginId == null && loginAdmin == null}">
                            <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="user/loginForm">로그인</a>
                            </li>
@@ -129,6 +129,9 @@
                            </li>
                            <li class="nav-item">
                             <a class="nav-link" href="user/logout">로그아웃</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="user/mypage">마이페이지</a>
                            </li>
                           </c:if>
                           <c:if test = "${loginAdmin != null}">
@@ -235,7 +238,7 @@
         <h2 style="font-family:'Black Han Sans', sans-serif; margin-top: 10px;">리뷰</h2>
         <p style="font-family:'Black Han Sans', sans-serif;">
                   다녀온 사람들의 리뷰가<br>한눈에 쏙쏙</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="review/List">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
     </div><!-- /.row -->
