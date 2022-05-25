@@ -26,7 +26,7 @@
 	</select>
 	
 		<!-- 레저 글 개수 -->
-	<select id="getTotalReisure" parameterType="string" resultType="int">
+	<select id="getTotalLeisure" parameterType="string" resultType="int">
 		select
 			count(*)
 		from 
@@ -45,6 +45,10 @@
 			, info_hits
 			, info_like
 			, info_gu
+			, info_state
+			, info_address
+			, info_name
+			, info_theme
 		from
 			tourinfo
 		where
@@ -63,6 +67,10 @@
 			, info_hits
 			, info_like
 			, info_gu
+			, info_state
+			, info_address
+			, info_name
+			, info_theme
 		from
 			tourinfo
 		where
@@ -72,7 +80,7 @@
 	</select>
 	
 		<!-- 레저 글 목록 -->
-	<select id="reisurelist" parameterType="string" resultType="Tourinfo">
+	<select id="leisurelist" parameterType="string" resultType="Tourinfo">
 		select
 			info_num
 			, info_title
@@ -81,10 +89,14 @@
 			, info_hits
 			, info_like
 			, info_gu
+			, info_state
+			, info_address
+			, info_name
+			, info_theme
 		from
 			tourinfo
 		where
-			info_theme = 'reisure'
+			info_theme = 'leisure'
 		order by
 			info_num desc
 	</select>
