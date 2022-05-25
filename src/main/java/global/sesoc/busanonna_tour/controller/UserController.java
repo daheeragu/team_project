@@ -70,6 +70,29 @@ public class UserController {
 		return "userjsp/loginForm";
 	}
 	
+	// 로그인 아이디 비번이 일치하지 않을 시 띄울 문구
+	@ResponseBody
+	@RequestMapping(value = "select", method = RequestMethod.POST)
+	public int loginCheck(String id, String pwd) {
+		logger.info("전달받은 값 : {}, {}", id, pwd);
+		Userinfo user = null;
+		user = dao.selectUserinfo(id);		
+		System.out.println(user);
+		int result = 0;
+		Admin admin = null;
+		admin = dao.selectAdmin(id);
+		if(user != null && user.getUser_password().equals(pwd)) {
+			result = 1;
+			return result;
+			
+		} else if(admin != null && admin.getAdmin_password().equals(pwd)) {
+			result = 2;
+			return result;
+		}
+		
+		return result;
+	}
+	
 	// 로그인 폼에서 입력한 정보 가져오기
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String id, String password,String remember, 
@@ -98,9 +121,7 @@ public class UserController {
 			
 			return "redirect:/";
 			
-		}
-		
-		if(admin != null && admin.getAdmin_password().equals(password)) {
+		} else if(admin != null && admin.getAdmin_password().equals(password)) {
 			session.setAttribute("loginAdmin", admin.getAdmin_id());
 			session.setAttribute("loginName", admin.getAdmin_name());
 			return "redirect:/";
