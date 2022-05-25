@@ -15,14 +15,42 @@
 <script type = "text/javascript">
 $(document).ready(function(){
 	$('#back').on('click', backHome);
+	$('#submit').on('click', submit);
 });
 
 function backHome(){
 	location.href = "../"
 }
+
+function submit() {
+	var submit = $('submit').val();
+	
+	//서버로 삭제할 글번호를 전달.
+ 	
+}
+
 function formCheck(){
-	let id = document.getElementById('floatingInput');
-	let pwd = document.getElementById('floatingPassword');
+	let id = document.getElementById('#floatingInput');
+	let pwd = document.getElementById('#floatingPassword');
+	let id1 = $('#floatingInput').val();
+	let pwd1 = $('#floatingPassword').val();	
+	$.ajax({
+		url: 'select',
+		type: 'POST',
+		data: { "id" : id1, "pwd": pwd1},
+		success: function(cnt) {
+			if (cnt == 1) {
+				alert(id1 + '님 어서오세요');
+			} else if (cnt == 2){
+				alert('관리자님 어서오세요');
+			}
+			else {
+				alert('아이디나 비밀번호가 일치하지 않습니다');
+				init();
+			}
+		}
+	});
+
 	
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');
@@ -34,9 +62,6 @@ function formCheck(){
 		return false;
 	}
 	
-	if(remember){
-		
-	}
 	return true;
 }
 </script>
@@ -144,7 +169,7 @@ function formCheck(){
         <input type="checkbox" value="remember" name = "remember" id = "remember" checked ="checked"> 아이디 기억하기
       </label>      
     </div>
-    <button type="submit" class="btn btn-primary">로그인</button>
+    <button type="submit" class="btn btn-primary" id = "submit">로그인</button>
     <button type="button" id = "back" class="btn btn-success">홈 화면</button>
   </form>
 </main>

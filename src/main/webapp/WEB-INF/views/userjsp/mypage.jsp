@@ -14,39 +14,27 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>    
 <script type = "text/javascript">
 $(document).ready(function(){
-	$('#bt').on('click', doubleCheck);
-	$('#submit').on('click', welcome);
 	$('#back').on('click', backHome);
+	$('#updateForm').on('click', updateForm);
+	
 });
 
-function welcome(){
-	alert('가입을 환영합니다');
+function update(){
+	alert('수정이 완료 되었습니다.');
+	$('#update').prop('type', 'submit');
+}
+function updateForm(){
+	$('.readonly').attr('readonly', false);
+	$('#updateForm').attr('id', 'update');
+	$('#update').html('수정하기');
+	$('#update').on('click', update);
+//   $('#update').attr('type', 'submit');	
+	
 }
 
 function backHome(){
 	location.href = "../"
-}
-function doubleCheck(){
-	var id = $('#floatingId').val();
-	
-	//사용자가 입력한 내용을 서버로 전송.
-	$.ajax({
-		url: 'select',
-		type: 'post',
-		data: {"user_id": id},
-		success: function(cnt) {
-			
-			if(cnt == 1){
-				alert(id + '는 이미 있는 아이디 입니다');
-				$('#floatingId').val('');
-			} else {
-				alert(id + '는 사용 가능한 아이디 입니다');
-			}
-		},
-		error: function(e) {
-			alert(JSON.stringify(e));
-		}
-	});
+
 }
 function formCheck(){
 	let id = document.getElementById('floatingId');
@@ -55,7 +43,6 @@ function formCheck(){
 	let name = document.getElementById('floatingName');
 	let email = document.getElementById('floatingEmail');
 	
-	alert(email.value);
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');
 		return false;
@@ -167,56 +154,60 @@ function formCheck(){
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form action = "join" method = "post" onsubmit = "return formCheck()">
+  <form action = "update" method = "post" onsubmit = "return formCheck()">
     
     <h1 class="h3 mb-3 fw-normal">마이페이지</h1>
 	<c:if test = "${user != null}">
     <div class="form-floating">
     	 <p style = "text-align: left;">아이디</p>
-      <input type="text" class="form-control" name = "user_id" id="floatingId" value = "${user.user_id}">
-       <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
+      <input type="text" class="form-control" name = "user_id" id="floatingId" 
+      value = "${user.user_id}" readonly="readonly">
     </div>
     <div class="form-floating">
      	 <p style = "text-align: left;">비밀번호</p>
-      <input type="password" class="form-control" id="floatingPassword" name = "user_password">
+      <input type="password" class="form-control readonly" id="floatingPassword" name = "user_password" readonly="readonly">
     </div>
     <div class="form-floating">
      <p style = "text-align: left;">비밀번호 확인</p>
-      <input type="password" class="form-control" id="floatingPassword2" >
+      <input type="password" class="form-control readonly" id="floatingPassword2" readonly="readonly">
     </div>
      <div class="form-floating">
     	 <p style = "text-align: left;">이름 </p>
-      <input type="text" class="form-control" id="floatingName" name = "user_name" value="${user.user_name}"> 
+      <input type="text" class="form-control readonly" id="floatingName" name = "user_name" 
+      value="${user.user_name}" readonly="readonly"> 
     </div>
     <div class="form-floating">
       <p style = "text-align: left;">이메일</p>
-      <input type="email" class="form-control" id="floatingEmail" name = "user_email"  value = "${user.user_email}">
+      <input type="email" class="form-control readonly" id="floatingEmail" name = "user_email"  
+      value = "${user.user_email}" readonly="readonly">
     </div>
     </c:if>
     <c:if test = "${admin != null}">
      <p style = "text-align: left;">아이디</p>
     <div class="form-floating">	
-      <input type="text" class="form-control" name = "admin_password" id="floatingId" value = "${admin.admin_id}">
-       <button type="button" id = "bt" class="btn btn-secondary">중복 체크</button>
+      <input type="text" class="form-control readonly" name = "admin_password" id="floatingId"
+       value = "${admin.admin_id}" readonly="readonly">
     </div>
     <div class="form-floating">
        <p style = "text-align: left;">비밀번호</p>
-      <input type="password" class="form-control" id="floatingPassword" name = "admin_password" placeholder="비밀번호">
+      <input type="password" class="form-control readonly" id="floatingPassword" name = "admin_password" readonly="readonly">
     </div>
     <div class="form-floating">
      <p style = "text-align: left;">비밀번호 확인</p>
-      <input type="password" class="form-control" id="floatingPassword2" >
+      <input type="password" class="form-control readonly" id="floatingPassword2" readonly="readonly">
     </div>
      <div class="form-floating">
       <p style = "text-align: left;">이름 </p>
-      <input type="text" class="form-control" id="floatingName" name = "admin_name"  value = "${admin.admin_name}"> 
+      <input type="text" class="form-control readonly" id="floatingName" name = "admin_name" 
+       value = "${admin.admin_name}" readonly="readonly"> 
     </div>
     <div class="form-floating">
       <p style = "text-align: left;">이메일</p>
-      <input type="email" class="form-control" id="floatingEmail" name = "admin_email"  value = "${admin.admin_email}">
+      <input type="email" class="form-control readonly" id="floatingEmail" name = "admin_email"  
+      value = "${admin.admin_email}" readonly="readonly">
     </div>
     </c:if>
-   <button type="submit" class="btn btn-primary" id = "submit">가입하기</button>
+   <button type="button" class="btn btn-primary" id = "updateForm">정보 수정</button>
    <button type="reset" class="btn btn-secondary">다시 입력</button>
    <button type="button" class="btn btn-success" id = "back">홈 화면</button>
   </form>
