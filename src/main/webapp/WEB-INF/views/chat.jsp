@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>채팅방</title>
+<title>물어보러온나 채팅방</title>
 <style>
 #outputDiv {
 	width: 500px;
@@ -16,8 +17,17 @@
 #text {
 	width: 300px;
 }
+
+.swal-title {
+  margin: 0px;
+  font-size: 16px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+  margin-bottom: 28px;
+}
 </style>
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 var url;
 var sock;
@@ -33,10 +43,10 @@ function openSession() {
 	url = 'ws://localhost:8888/busanonna_tour/chat';
 	sock = new WebSocket(url);
 	sock.onopen = function() {
-		alert('Open');
-	}
-	sock.onclose = function() {
-		alert('Close');
+		swal({
+		    title: "어서오세요!",
+		    text: "즐거운 시간 되세요!",
+		});
 	}
 	sock.onmessage = receiveMessage;
 }
@@ -64,7 +74,9 @@ function receiveMessage(msg) {
 <div id="outputDiv"></div>
 
 <input type="text" id="text">
-<input type="button" id="sendBt" value="전송">
+<input type="button" id="sendBt" value="전송"><br>
+<input type="button" value="나가기" onclick="self.close()">
+
 
 </body>
 </html>
