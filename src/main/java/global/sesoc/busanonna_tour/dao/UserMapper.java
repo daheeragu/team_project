@@ -18,5 +18,5 @@ public interface UserMapper {
 	public int updateUserinfo(Userinfo user);
 	
 	// ID로 관리자 업데이트
-		public int updateAdmin(Admin admin);
+	public int updateAdmin(Admin admin);
 }
