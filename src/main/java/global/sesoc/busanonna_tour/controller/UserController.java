@@ -36,7 +36,7 @@ public class UserController {
 	
 	// ID 중복 체크
 	@ResponseBody
-	@RequestMapping(value = "select", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "select1", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public int doubleCheck(String user_id) {
 		logger.info("전달받은 값 : {}", user_id);
 		Userinfo user = null;

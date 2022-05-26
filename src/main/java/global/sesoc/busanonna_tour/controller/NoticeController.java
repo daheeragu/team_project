@@ -41,7 +41,12 @@ public class NoticeController {
 
 	@Autowired
 	NoticeDAO dao;
-	
+	//네이버 지도 테스트 
+	@RequestMapping(value = "recommend", method = RequestMethod.GET)
+	public String recommend() {
+		
+		return "noticejsp/map";
+	}
 	//공지사항 목록으로 이동
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model model

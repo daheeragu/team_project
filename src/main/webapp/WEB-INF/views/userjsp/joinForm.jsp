@@ -30,7 +30,7 @@ function doubleCheck(){
 	
 	//사용자가 입력한 내용을 서버로 전송.
 	$.ajax({
-		url: 'select',
+		url: 'select1',
 		type: 'post',
 		data: {"user_id": id},
 		success: function(cnt) {
