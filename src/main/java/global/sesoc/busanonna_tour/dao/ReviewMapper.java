@@ -12,4 +12,6 @@ public interface ReviewMapper {
 
 	Review readReview(int review_num);
 
+	int updateReview(Review review);
+
 }

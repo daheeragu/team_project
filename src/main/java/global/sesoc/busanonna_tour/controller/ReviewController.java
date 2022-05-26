@@ -139,34 +139,34 @@ public class ReviewController {
 //	}
 //	
 //	
-//	//본인 글 수정 폼으로 이동
-//	@RequestMapping(value = "edit", method = RequestMethod.GET)
-//	public String edit(int boardnum, Model model) {
-//	 //전달받은 글 번호로 글 정보 검색해서 모델에 저장
-//		Board board =dao.readBoard(boardnum);
-//		if(board == null) {
-//			return "redirect:list";
-//		}
-//		model.addAttribute("board", board);
-//     //글 수정 폼으로 포워딩
-//		return "boardjsp/editForm";
-//	}
-//	
-//	//글 수정 처리
-//	@RequestMapping(value = "edit", method = RequestMethod.POST)
-//	 public String edit(Board board, HttpSession session) {
-//		//전달받은 수정내용에 세션의 로그인아이디를 추가해서 DB 업데이트
-//		String loginId = (String) session.getAttribute("loginId");
-//		board.setId(loginId);
-//		
-//		//DB에 업데이트(update구문의 where 조건은 글번호와 작성자 아이디)
-//		logger.info("전달된 값: {}", board);
-//		dao.updateBoard(board);
-//		
-//		//글 목록 리다이렉트 
-//		return "redirect:list";
-//	
-//	}
+	//본인 글 수정 폼으로 이동
+	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	public String edit(int review_num, Model model) {
+	 //전달받은 리뷰 번호로 리뷰 정보 검색해서 모델에 저장
+		Review review =dao.readReview(review_num);
+		if(review == null) {
+			return "redirect:List";
+		}
+		model.addAttribute("review", review);
+     //리뷰 수정 폼으로 포워딩
+		return "reviewjsp/editReview";
+	}
+	
+	//글 수정 처리
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	 public String edit(Review review, HttpSession session) {
+		//전달받은 수정내용에 세션의 로그인아이디를 추가해서 DB 업데이트
+		String loginId = (String) session.getAttribute("loginId");
+		review.setUser_id(loginId);
+		
+		//DB에 업데이트(update구문의 where 조건은 글번호와 작성자 아이디)
+		logger.info("전달된 값: {}", review);
+		dao.updateReview(review);
+		
+		//리뷰 목록 리다이렉트 
+		return "redirect:List";
+	
+	}
 //	
 //	//글 삭제 처리
 //	@RequestMapping(value = "delete", method = RequestMethod.GET)

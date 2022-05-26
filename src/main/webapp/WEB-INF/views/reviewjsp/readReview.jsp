@@ -150,12 +150,12 @@ function replyDelete(replynum, boardnum) {
 <td>${review.review_content}</td>
 </tr>
 
-<tr>
+<%-- <tr>
 <th>파일첨부</th>
 <td>
 	<a href = "download"?boardnum=${board.boardnum}">${board.originalfile}</a>
 </td><!-- 글번호가 컨트롤러의 파일 다운로드 메소드로 전달됨 -->
-</tr>
+</tr> --%>
 </table>
 
 <!-- 본인 글 수정/삭제 출력하고 있는 ID와 세션에 저장된 ID가 같을 때만 보임-->
@@ -165,7 +165,7 @@ function replyDelete(replynum, boardnum) {
 </c:if>
 
 <!-- 목록보기 -->
-<a href="list">목록보기</a>
+<a href="List">목록보기</a>
 
 
 <!-- 리플 작성 폼 (로그인 한 사람에게만 보이게)-->

@@ -3,20 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
- 	<typeAliases>
+  	<typeAliases>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Member" alias="Member" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Board" alias="Board" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Reply" alias="Reply"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.user.Userinfo" alias="user"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.user.Admin" alias="admin"/>
-
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.review.Review" alias="review"/>
-
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Notice" alias="Notice"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Notice_pic" alias="Notice_pic"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Event" alias="Event"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Event_pic" alias="Event_pic"/>
-	 
+	 <typeAlias type="global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo" alias="Tourinfo"/>
+	 <typeAlias type="global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo_pic" alias="Tourinfo_pic"/>
 
 	 
  	</typeAliases> 
@@ -25,11 +24,10 @@
 	 <mapper resource="mapper/memberMapper.xml" /> 
 	 <mapper resource="mapper/boardMapper.xml" />
 	 <mapper resource="mapper/UserMapper.xml" />
-
 	 <mapper resource="mapper/ReviewMapper.xml" />
-
 	 <mapper resource="mapper/noticeMapper.xml" />
 	 <mapper resource="mapper/eventMapper.xml" />
+	 <mapper resource="mapper/tourinfoMapper.xml" />
 
 	</mappers>
 </configuration>

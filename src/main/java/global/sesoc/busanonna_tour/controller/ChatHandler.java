@@ -40,7 +40,6 @@ public class ChatHandler extends AbstractWebSocketHandler {
 		Map<String, Object> map = session.getAttributes();
 		String loginName = (String)map.get("loginName");
 		String loginId = (String)map.get("loginId");
-		
 		if (loginName == null && loginId == null) {
 			loginName = "익명";
 			loginId = session.getId();
