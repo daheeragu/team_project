@@ -83,24 +83,44 @@ public class TourinfoController {
 	}
 	
 	//먹거리 글목록 이동
-		@RequestMapping(value = "leisure", method = RequestMethod.GET)
-		public String leisureList(Model model
-				, @RequestParam(value="page", defaultValue="1") int page){
-			
-			//전체 글 개수 
-			int total = dao.getTotalLeisure("leisure");
-			//페이지 계산을 위한 객체 생성 
-			PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
-			//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
-			ArrayList<Tourinfo> infolist = dao.leisurelist(navi.getStartRecord(), navi.getCountPerPage());	
-			
-			//페이지 정보 객체와 글목록, 검색어를 모델에 저장
-			model.addAttribute("infolist", infolist);
-			model.addAttribute("navi", navi);
-			model.addAttribute("theme", "leisure");
-			
-			return "tourinfojsp/allList";
-		}
+	@RequestMapping(value = "leisure", method = RequestMethod.GET)
+	public String leisureList(Model model
+			, @RequestParam(value="page", defaultValue="1") int page){
+		
+		//전체 글 개수 
+		int total = dao.getTotalLeisure("leisure");
+		//페이지 계산을 위한 객체 생성 
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
+		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
+		ArrayList<Tourinfo> infolist = dao.leisurelist(navi.getStartRecord(), navi.getCountPerPage());	
+		
+		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
+		model.addAttribute("infolist", infolist);
+		model.addAttribute("navi", navi);
+		model.addAttribute("theme", "leisure");
+		
+		return "tourinfojsp/allList";
+	}
+		
+	//먹거리 글목록 이동
+	@RequestMapping(value = "experience", method = RequestMethod.GET)
+	public String expList(Model model
+			, @RequestParam(value="page", defaultValue="1") int page){
+		
+		//전체 글 개수 
+		int total = dao.getTotalLeisure("experience");
+		//페이지 계산을 위한 객체 생성 
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
+		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
+		ArrayList<Tourinfo> infolist = dao.explist(navi.getStartRecord(), navi.getCountPerPage());	
+		
+		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
+		model.addAttribute("infolist", infolist);
+		model.addAttribute("navi", navi);
+		model.addAttribute("theme", "exp");
+		
+		return "tourinfojsp/allList";
+	}
 
 	
 	//글쓰기 폼으로 이동

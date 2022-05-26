@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>여행지 | BUSANONNA</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <!-- 페이지 이동 스크립트  -->
@@ -20,63 +21,152 @@ function pagingFormSubmit(currentPage) {
 
 
 <style>
- * { 
-   margin: auto; 
- }
-   
-  h1 {
-   text-align: center; 
-  } 
-  
-  .firstLine{
-    margin-left: 34%;
-  }
-  th, td{
-    border: 1px solid; 
-    border-color: white;
+   .container{
+     margin-top: 10px; 
    }
-  #upper{
-    font-weight: bold; 
-    background-color: #BDBDBD;
-    text-align: center;
-  } 
+   
+   .subvis {
+	width: 100%;
+	height: 370px;
+	background-image: url('../resources/image/sunset.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+     }
+
+ /* h1 {
+	text-align: center;
+	color: black;
+	margin: auto;
+	top: 100px;
+	position: relative;
+	top: 45%
+   } */
+   
+   .firstLine{
+    margin-top: 150px;
+    margin-left: 50px;
+   }
+   
+   .pagingForm{
+    margin-left: 1030px;
+   }
   
-  #bottom{
-    background-color: #EAEAEA;
-    text-align: center;
-  }
-  
-  #pagingForm{
-     text-align: center; 
-  }
-  
-  #navigator{
-     text-align: center;
+   .bottom-line{
+      padding-top: 10px;
+      position: absolute; 
+      right: 8%; 
+   }
+   
+   #navigator{
+      padding-top: 10px;
+      position:absolute;
+      left:43%
   }
 </style>
 <body>
-<h1>
-<c:if test="${theme == 'spot'}">
-	[여행지 - 명소]
-</c:if>
-<c:if test="${theme == 'food'}">
-	[여행지 - 먹거리]
-</c:if>
-<c:if test='theme.equals("leisure")'>
-	[여행지 - 레저]
-</c:if>
-<c:if test='theme.equals("experience")'>
-	[여행지 - 체험]
-</c:if>
-</h1>
+<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">BUSAN</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+					aria-controls="navbarCollapse" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								여행지 </a>
+								
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="tourinfo/experience">체험</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">내주변</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								회원마당 </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
+							</ul>
+						</li>
+						
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								꿀팁 </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="../notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="../event/list">이벤트</a></li>
+							</ul>
+						</li>
+				
+						</ul>
+					   
+					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
+                         <ul class="navbar-nav text-center">
+                           <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
+                           </li>
+                           <li class="nav-item">
+                             <a class="nav-link" href="#">회원가입</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="#">Language</a>
+                           </li>
+                          </ul>
+				    
+					<form class="d-flex">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
+
 <br>
 <div class="firstLine"> 
+<h1>
+	<c:if test="${theme == 'spot'}">
+		여행지 - 명소
+	</c:if>
+	<c:if test="${theme == 'food'}">
+		여행지 - 먹거리
+	</c:if>
+	<c:if test="${theme == 'leisure'}">
+		여행지 - 레저
+	</c:if>
+	<c:if test="${theme == 'experinece'}">
+		여행지 - 체험
+	</c:if>
+</h1>
 전체 : ${navi.totalRecordsCount} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
       <input type="button" value="글쓰기" onclick="location.href='write'">
 </div>
+
+ <!-- 업로드된 총이벤트 수 / 검색폼-->
+  <div class="firstLine"> 
+    <b>총(전체)  ${navi.totalRecordsCount}건</b>
+      <div class="pagingForm"> 
+         <form id="pagingForm" method="get" action="list">
+         <input type="hidden" name="page" id="page">
+                  검색어 : <input type="text" name="searchText" value="${searchText}">
+         <input type="button" onclick="pagingFormSubmit(1)" value="검색">
+         </form>
+      </div>
+  </div>
 
 <br>
 <!-- 글 목록 출력 -->
@@ -129,5 +219,7 @@ function pagingFormSubmit(currentPage) {
 <br><br>
 </div>
 <!-- /검색폼 --> 
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

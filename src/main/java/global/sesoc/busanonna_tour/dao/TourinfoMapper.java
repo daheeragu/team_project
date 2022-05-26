@@ -15,10 +15,13 @@ public interface TourinfoMapper {
 	public int getTotalSpot(String theme);
 	public int getTotalFood(String theme);
 	public int getTotalLeisure(String theme);
+	public int getTotalExp(String theme);
     //글목록
 	public ArrayList<Tourinfo> spotlist(RowBounds rb);
 	public ArrayList<Tourinfo> foodlist(RowBounds rb);
 	public ArrayList<Tourinfo> leisurelist(RowBounds rb);
+	public ArrayList<Tourinfo> explist(RowBounds rb);
+
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num);
 	//조회수 1증가
