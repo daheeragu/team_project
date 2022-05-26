@@ -90,7 +90,7 @@
 								<li><a class="dropdown-item" href="#">레저</a></li>
 								<li><a class="dropdown-item" href="#">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="notice/recommend">내주변</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
