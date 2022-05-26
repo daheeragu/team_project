@@ -113,12 +113,36 @@ function pagingFormSubmit(currentPage) {
 					   
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
+                         <c:if test = "${loginId == null && loginAdmin == null}">
                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
+                            <a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a>
                            </li>
                            <li class="nav-item">
-                             <a class="nav-link" href="#">회원가입</a>
+                             <a class="nav-link" href="../user/joinForm">회원가입</a>
                            </li>
+                          </c:if>
+                          <c:if test = "${loginId != null}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/logout">로그아웃</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/mypage">마이페이지</a>
+                           </li>
+                          </c:if>
+                          <c:if test = "${loginAdmin != null}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/logout">로그아웃</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/mypage">마이페이지</a>
+                           </li>
+                          </c:if>
                           </ul>
 				    
 					<form class="d-flex">

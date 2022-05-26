@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//로그인되지 않은 경우 로그인 페이지로 이동
 		if (loginId == null) {
 			//request.getContextPath()로 루트 경로를 구하여 절대 경로로 처리
-			response.sendRedirect(request.getContextPath() + "/member/login");
+			response.sendRedirect(request.getContextPath() + "/user/loginForm");
 			return false;
 		}
 		//로그인 된 경우 요청한 경로로 진행
