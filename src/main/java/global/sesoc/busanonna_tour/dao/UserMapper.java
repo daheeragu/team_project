@@ -14,9 +14,9 @@ public interface UserMapper {
 	// ID로 관리자 select
 	public Admin selectAdmin(String id);
 
-	// ID로 유저 업데이트
+	// 유저 업데이트
 	public int updateUserinfo(Userinfo user);
 	
-	// ID로 관리자 업데이트
+	// 관리자 업데이트
 	public int updateAdmin(Admin admin);
 }

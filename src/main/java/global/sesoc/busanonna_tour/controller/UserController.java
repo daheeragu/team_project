@@ -146,15 +146,13 @@ public class UserController {
 	public String mypage(HttpSession session, Model m) {
 		//세션에서 ID를 읽기 (주소창에 주소 치면 개인정보수정에 들어갈 수 있음)
 		String loginId = (String) session.getAttribute("loginId");
-		
-		Userinfo user = dao.selectUserinfo(loginId);
-		System.out.println(user);
-		if (user == null) {
-			Admin admin = dao.selectAdmin(loginId);
-			System.out.println(admin);
-			m.addAttribute("admin", admin);
-		} else {
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		if(loginId != null) {
+			Userinfo user = dao.selectUserinfo(loginId);
 			m.addAttribute("user", user);
+		} else {
+			Admin admin = dao.selectAdmin(loginAdmin);
+			m.addAttribute("admin", admin);
 		}
 		return "userjsp/mypage";
 	}
@@ -174,9 +172,7 @@ public class UserController {
 			result = dao.updateUserinfo(user);
 			session.setAttribute("loginName", user.getUser_name());
 			session.setAttribute("user", user);
-		} 
-		
-		if (admin2 != null){
+		} else if (admin2 != null){
 			admin.setAdmin_id(loginId);
 			result = dao.updateAdmin(admin);
 			session.setAttribute("loginName", admin.getAdmin_name());
