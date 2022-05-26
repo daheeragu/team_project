@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
  	<typeAliases>
-	 <typeAlias type="global.sesoc.busanonna_tour.vo.Member" alias="Member" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Board" alias="Board" />
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.Reply" alias="Reply"/>
 	 <typeAlias type="global.sesoc.busanonna_tour.vo.user.Userinfo" alias="user"/>
@@ -21,7 +20,6 @@
  	</typeAliases> 
 	
 	<mappers>
-	 <mapper resource="mapper/memberMapper.xml" /> 
 	 <mapper resource="mapper/boardMapper.xml" />
 	 <mapper resource="mapper/UserMapper.xml" />
 	 <mapper resource="mapper/ReviewMapper.xml" />

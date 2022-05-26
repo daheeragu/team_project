@@ -95,7 +95,7 @@ function pagingFormSubmit(currentPage) {
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="../review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -118,9 +118,6 @@ function pagingFormSubmit(currentPage) {
                            </li>
                            <li class="nav-item">
                              <a class="nav-link" href="#">회원가입</a>
-                           </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
                            </li>
                           </ul>
 				    
@@ -151,7 +148,7 @@ function pagingFormSubmit(currentPage) {
 </h1>
 </div>
 
- <!-- 글 개수 / 검색폼-->
+ <!-- 글 개수 / 검색폼 / 글쓰기버튼-->
   <div class="firstLine"> 
     <b>총(전체)  ${navi.totalRecordsCount}건</b>
       <div class="pagingForm"> 
@@ -159,7 +156,9 @@ function pagingFormSubmit(currentPage) {
          <input type="hidden" name="page" id="page">
                   검색어 : <input type="text" name="searchText" value="${searchText}">
          <input type="button" onclick="pagingFormSubmit(1)" value="검색">
-         <input type="button" value="글쓰기" onclick="location.href='write'">
+         <c:if test="${sessionScope.loginAdmin != null}">
+         	<input type="button" value="글쓰기" onclick="location.href='write'">
+         </c:if>
          </form>
       </div>
   </div>
