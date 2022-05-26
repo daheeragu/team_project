@@ -28,6 +28,9 @@ function backHome(){
 function doubleCheck(){
 	var id = $('#floatingId').val();
 	
+	if(id.length < 3 || id.length > 10){
+		alert('3 ~ 10 자리 로 만들어 주세요');
+	} else {
 	//사용자가 입력한 내용을 서버로 전송.
 	$.ajax({
 		url: 'select1',
@@ -46,6 +49,7 @@ function doubleCheck(){
 			alert(JSON.stringify(e));
 		}
 	});
+	}
 }
 function formCheck(){
 	let id = document.getElementById('floatingId');
