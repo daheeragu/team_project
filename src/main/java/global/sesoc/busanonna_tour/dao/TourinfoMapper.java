@@ -25,7 +25,7 @@ public interface TourinfoMapper {
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num);
 	//조회수 1증가
-	public void addHits(int tourinfo_num);
+	public void addHits(int info_num);
 	//글 수정
 	public int updateInfo(Tourinfo info);
 	//글 삭제

@@ -25,6 +25,11 @@ function pagingFormSubmit(currentPage) {
      margin-top: 10px; 
    }
    
+   a {
+   	text-decoration-line : none;
+	color: black;
+   }
+   
    .subvis {
 	width: 100%;
 	height: 370px;
@@ -195,15 +200,16 @@ function pagingFormSubmit(currentPage) {
 	<div class="row">
 	<c:forEach var="list" items="${infolist}">
 		<div class="col-lg-3" style="padding-top:20px;">
+	    	<a href="read?info_num=${list.info_num}">
 	    	  <div class="card" style="width: 18rem;">
 				  <div class="card-body">
 				    <h5 class="card-title">${list.info_title}</h5>
 				    <p class="card-text">${list.info_subtitle}</p>
 				    <p class="card-subinfo">조회수: ${list.info_hits}
-				    	땡기네: ${list.info_like}
-				    </p>
-				  </div>
+				    	땡기네: ${list.info_like}</p>
+				  	</div>
 				</div>
+				</a>
 		     </div>
 		    </c:forEach>
 	
