@@ -43,6 +43,7 @@ $(document).ready(function(){
     $('#gobtn').on('click', returnList);
     $('#editbtn').on('click', updateInfo);
     $('#deletebtn').on('click', deleteInfo);
+    $('#likebtn').on('click', like);
   }); 
   
   function returnList(){
@@ -55,8 +56,15 @@ $(document).ready(function(){
   
   function deleteInfo(){
 	  if(confirm('정말 삭제하시겠습니까?')){
-	  location.href = 'delete?info_num=${info.info_num}';
+	 	 location.href = 'delete?info_num=${info.info_num}';
 	  }
+  }
+  
+  function like(){
+	 alert('땡기네 클릭');
+	 /*  if(confirm('여행지에 "땡기네" 표시를 하시겠습니까?')){
+		  location.href = 'like?info_num=${info.info_num}';
+	  } */
   }
 
 </script>
@@ -93,6 +101,7 @@ $(document).ready(function(){
 	position: relative;
 	top: 40%
   }
+  
 </style>
 
 
@@ -216,8 +225,8 @@ $(document).ready(function(){
     </tr>
     
     <tr>
-      <th scope="row">땡기네</th>
-      <td>${info.info_like}</td>
+      <th scope="row">땡기네  <button id="likebtn" type="button" class="btn btn-outline-dark">내도 땡기네!</button></th>
+      <td>${info.info_like} </td>
     </tr>
     
     <tr>
@@ -233,9 +242,9 @@ $(document).ready(function(){
     </tr>
      
     <tr>
-      <th scope="row" colspan="2">
+      <td class="contnet" scope="row" colspan="2">
           ${info.info_content}
-      </th>
+      </td>
     </tr>
     
     <tr>

@@ -171,7 +171,7 @@ function pagingFormSubmit(currentPage) {
 	<c:if test="${theme == 'leisure'}">
 		여행지 - 레저
 	</c:if>
-	<c:if test="${theme == 'experinece'}">
+	<c:if test="${theme == 'exp'}">
 		여행지 - 체험
 	</c:if>
 </h1>

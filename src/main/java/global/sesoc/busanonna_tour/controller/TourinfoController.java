@@ -215,4 +215,5 @@ public class TourinfoController {
 		return "redirect:list";
 	}
 	
+	
 }
