@@ -11,7 +11,11 @@
     <meta name="generator" content="Hugo 0.88.1">
    
     <title>부산온나</title>
-
+<script>
+	function new_window(){
+		w = window.open('http://localhost:8888/busanonna_tour/chatView', 'top=100, left=500, width=300, height=300');
+	}
+</script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
     <!-- Bootstrap core CSS -->
@@ -242,11 +246,17 @@
       </div><!-- /.col-lg-4 -->
       
     </div><!-- /.row -->
-
+	
+	<!-- 새 창 열기 -->
+	<!-- 
     <div id="fixed_layer">
+     <p><a href="javascript:new_window()"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
+    </div>
+	 -->
+	 
+	<div id="fixed_layer">
      <p><a href="./chatView" target="_blank"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
     </div>
-
 
     <!-- START THE FEATURETTES -->
 
