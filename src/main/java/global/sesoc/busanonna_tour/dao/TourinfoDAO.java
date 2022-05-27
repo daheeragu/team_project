@@ -139,5 +139,11 @@ public class TourinfoDAO {
 	       return result; 
 	      
 	}
+	
+	//땡기네 1 증가
+	public void addLike(int info_num) {
+		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		 mapper.addLike(info_num);
+	}
 
 }

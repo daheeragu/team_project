@@ -215,5 +215,19 @@ public class TourinfoController {
 		return "redirect:list";
 	}
 	
+	//땡기네 처리
+	@RequestMapping(value = "like", method = RequestMethod.GET)
+	public String like(int info_num, HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
+		
+		//로그인 한 상태에만 땡기네 처리
+		if(loginId != null) {
+			dao.addLike(info_num);
+		}
+		
+		return "tourinfojsp/readForm";
+	}
+	
 	
 }

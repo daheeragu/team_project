@@ -144,4 +144,14 @@
 			info_num = #{info_num}
 	</select>
 
+	<!-- 조회수 1 증가 -->
+	<update id="addLike" parameterType="int">
+		update
+			tourinfo
+		set
+			info_like = info_like + 1
+		where
+			info_num = #{info_num}
+	</update>
+	
 </mapper>
