@@ -25,6 +25,11 @@ function pagingFormSubmit(currentPage) {
      margin-top: 10px; 
    }
    
+   a {
+   	text-decoration-line : none;
+	color: black;
+   }
+   
    .subvis {
 	width: 100%;
 	height: 370px;
@@ -34,14 +39,14 @@ function pagingFormSubmit(currentPage) {
 	background-attachment: scroll;
      }
 
- /* h1 {
+	h1 {
 	text-align: center;
 	color: black;
 	margin: auto;
 	top: 100px;
 	position: relative;
 	top: 45%
-   } */
+   }
    
    .firstLine{
     margin-top: 150px;
@@ -68,7 +73,7 @@ function pagingFormSubmit(currentPage) {
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">BUSAN</a>
+				<a class="navbar-brand" href="../">BUSAN</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -83,10 +88,10 @@ function pagingFormSubmit(currentPage) {
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="tourinfo/spot">명소</a></li>
-								<li><a class="dropdown-item" href="tourinfo/food">먹거리</a></li>
-								<li><a class="dropdown-item" href="tourinfo/leisure">레저</a></li>
-								<li><a class="dropdown-item" href="tourinfo/experience">체험</a></li>
+								<li><a class="dropdown-item" href="spot">명소</a></li>
+								<li><a class="dropdown-item" href="food">먹거리</a></li>
+								<li><a class="dropdown-item" href="leisure">레저</a></li>
+								<li><a class="dropdown-item" href="experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="#">내주변</a></li>
 							</ul>
@@ -95,7 +100,7 @@ function pagingFormSubmit(currentPage) {
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="../review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -113,15 +118,36 @@ function pagingFormSubmit(currentPage) {
 					   
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
+                         <c:if test = "${loginId == null && loginAdmin == null}">
                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
+                            <a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a>
                            </li>
                            <li class="nav-item">
-                             <a class="nav-link" href="#">회원가입</a>
+                             <a class="nav-link" href="../user/joinForm">회원가입</a>
+                           </li>
+                          </c:if>
+                          <c:if test = "${loginId != null}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
                            </li>
                            <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
+                            <a class="nav-link" href="../user/logout">로그아웃</a>
                            </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/mypage">마이페이지</a>
+                           </li>
+                          </c:if>
+                          <c:if test = "${loginAdmin != null}">
+                          <li class="nav-item">
+                             <a class="nav-link">${loginName}님</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/logout">로그아웃</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="../user/mypage">마이페이지</a>
+                           </li>
+                          </c:if>
                           </ul>
 				    
 					<form class="d-flex">
@@ -149,14 +175,9 @@ function pagingFormSubmit(currentPage) {
 		여행지 - 체험
 	</c:if>
 </h1>
-전체 : ${navi.totalRecordsCount} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-      <input type="button" value="글쓰기" onclick="location.href='write'">
 </div>
 
- <!-- 업로드된 총이벤트 수 / 검색폼-->
+ <!-- 글 개수 / 검색폼 / 글쓰기버튼-->
   <div class="firstLine"> 
     <b>총(전체)  ${navi.totalRecordsCount}건</b>
       <div class="pagingForm"> 
@@ -164,33 +185,37 @@ function pagingFormSubmit(currentPage) {
          <input type="hidden" name="page" id="page">
                   검색어 : <input type="text" name="searchText" value="${searchText}">
          <input type="button" onclick="pagingFormSubmit(1)" value="검색">
+         <c:if test="${sessionScope.loginAdmin != null}">
+         	<input type="button" value="글쓰기" onclick="location.href='write'">
+         </c:if>
          </form>
       </div>
   </div>
 
 <br>
-<!-- 글 목록 출력 -->
 
-<table>
- <tr id="upper">
-  <td style="width:250px">제목</td>
-  <td style="width:70px">소제목</td>
-  <td>조회수</td>
-  <td>땡기네</td>
-  <td style="width:60px">지역</td>
- </tr> 
- 
-<c:forEach var="info" items="${infolist}">
- <tr id="bottom">
-  <td><a href="read?boardnum=${info.info_num}">${info.info_title}</a></td>
-  <td>${info.info_subtitle}</td>
-  <td>${info.info_hits}</td>
-  <td>${info.info_like}</td>
-  <td>${info.info_gu}</td>
- </tr>
-</c:forEach>
-</table>
-<br>
+<!-- 글 목록을 카드 형식으로 출력 -->
+
+<div class="container">
+	<div class="row">
+	<c:forEach var="list" items="${infolist}">
+		<div class="col-lg-3" style="padding-top:20px;">
+	    	<a href="read?info_num=${list.info_num}">
+	    	  <div class="card" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="card-title">${list.info_title}</h5>
+				    <p class="card-text">${list.info_subtitle}</p>
+				    <p class="card-subinfo">조회수: ${list.info_hits}
+				    	땡기네: ${list.info_like}</p>
+				  	</div>
+				</div>
+				</a>
+		     </div>
+		    </c:forEach>
+	
+	</div>
+</div>
+
 
 <!-- 페이지 이동 부분 -->
 <div id="navigator">
@@ -209,15 +234,7 @@ function pagingFormSubmit(currentPage) {
 </div>
 <!-- /페이지 이동 끝 -->                      
 
-<!-- 검색 폼 -->
-<div class="pagingForm">
-<form id="pagingForm" method="get" action="list">
-	<input type="hidden" name="page" id="page" />
-	제목 : <input type="text"  name="searchText" value="${searchText}" />
-	<input type="button" onclick="pagingFormSubmit(1)" value="검색">
-</form>
-<br><br>
-</div>
+
 <!-- /검색폼 --> 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

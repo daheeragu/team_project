@@ -54,11 +54,6 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
-			, info_gu
-			, info_state
-			, info_address
-			, info_name
-			, info_theme
 		from
 			tourinfo
 		where
@@ -76,11 +71,6 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
-			, info_gu
-			, info_state
-			, info_address
-			, info_name
-			, info_theme
 		from
 			tourinfo
 		where
@@ -98,11 +88,6 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
-			, info_gu
-			, info_state
-			, info_address
-			, info_name
-			, info_theme
 		from
 			tourinfo
 		where
@@ -111,12 +96,40 @@
 			info_num desc
 	</select>
 	
-		<!-- 레저 글 목록 -->
+		<!-- 체험 글 목록 -->
 	<select id="explist" parameterType="string" resultType="Tourinfo">
 		select
 			info_num
 			, info_title
 			, info_subtitle
+			, to_char(info_inputdate, 'MM/DD') info_inputdate
+			, info_hits
+			, info_like
+		from
+			tourinfo
+		where
+			info_theme = 'experience'
+		order by
+			info_num desc
+	</select>
+
+	<!-- 조회수 1 증가 -->
+	<update id="addHits" parameterType="int">
+		update
+			tourinfo
+		set
+			info_hits = info_hits + 1
+		where
+			info_num = #{info_num}
+	</update>
+
+	<!-- 글번호로 글 읽기 -->
+	<select id="readInfo" parameterType="int" resultType="Tourinfo">
+		select
+			info_num
+			, info_title
+			, info_subtitle
+			, info_content
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
@@ -128,9 +141,7 @@
 		from
 			tourinfo
 		where
-			info_theme = 'experience'
-		order by
-			info_num desc
+			info_num = #{info_num}
 	</select>
 
 </mapper>

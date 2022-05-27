@@ -227,7 +227,7 @@
         <h2 style="font-family:'Black Han Sans', sans-serif; margin-top: 10px;">명소를 찾아서</h2>
         <p style="font-family:'Black Han Sans', sans-serif;">
                  부산의 대표 명소부터 숨은 명소까지 <br>샅샅이 소개해줄게</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="tourinfo/spot">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
      
