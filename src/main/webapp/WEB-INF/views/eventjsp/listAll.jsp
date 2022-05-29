@@ -10,7 +10,7 @@
 <title>꿀팁 | 이벤트 | BUSANONNA</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 </head>
 
@@ -31,7 +31,7 @@ function pagingFormSubmit(currentPage) {
    .subvis {
 	width: 100%;
 	height: 370px;
-	background-image: url('../resources/image/sunset.jpg');
+	background-image: url('../resources/image/flower_park.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
@@ -39,6 +39,7 @@ function pagingFormSubmit(currentPage) {
 
  h1 {
 	text-align: center;
+	font-family:'Black Han Sans', sans-serif;
 	color: white;
 	margin: auto;
 	top: 100px;
@@ -87,19 +88,19 @@ function pagingFormSubmit(currentPage) {
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">명소</a></li>
-								<li><a class="dropdown-item" href="#">먹거리</a></li>
-								<li><a class="dropdown-item" href="#">레저</a></li>
-								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="../notice/recommend">내주변</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="../review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -114,26 +115,39 @@ function pagingFormSubmit(currentPage) {
 						</li>
 				
 						</ul>
-					   
-					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
-                         <ul class="navbar-nav text-center">
-                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
-                           </li>
-                           <li class="nav-item">
-                             <a class="nav-link" href="#">회원가입</a>
-                           </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
-                           </li>
-                          </ul>
-				    
-					<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navbarNav-menu">
+						<ul class="navbar-nav text-center">
+							<c:if test="${loginId == null && loginAdmin == null}">
+								<li class="nav-item"><a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="../user/joinForm">회원가입</a></li>
+							</c:if>
+							<c:if test="${loginId != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+							<c:if test="${loginAdmin != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+						</ul>
+
+						<form class="d-flex">
+							<input class="form-control me-2" type="search"
+								placeholder="Search" aria-label="Search">
 							<button class="btn btn-outline-success" type="submit">Search</button>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
 		</nav>
 	</header>
   

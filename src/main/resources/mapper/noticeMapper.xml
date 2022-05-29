@@ -23,6 +23,17 @@
         notice_num desc
 </select>
 
+<!-- 홈화면 용 공지사항 목록 -->
+<select id="listNoticeForHome" resultType="Notice">
+   select 
+        notice_num
+        , notice_title
+        , to_char(notice_inputdate, 'YYYY-MM-DD') notice_inputdate
+   from
+        notice
+   order by 
+        notice_inputdate desc
+</select>
 <!-- 공지사항 개수 -->
 <select id="getTotal" parameterType="string" resultType="int">
   select
