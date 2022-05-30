@@ -124,6 +124,7 @@ public class UserController {
 		} else if(admin != null && admin.getAdmin_password().equals(password)) {
 			session.setAttribute("loginAdmin", admin.getAdmin_id());
 			session.setAttribute("loginName", admin.getAdmin_name());
+			logger.info("아이디와 비밀번호:{},{}", admin.getAdmin_id(), admin.getAdmin_name());
 			return "redirect:/";
 		}
 		
