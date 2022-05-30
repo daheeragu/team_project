@@ -2,8 +2,6 @@
  * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
-
-<<<<<<< HEAD
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
@@ -36,13 +34,6 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-=======
-CKEDITOR.plugins.addExternal( 'imagebase', '/ckeditor/plugins/imagebase', 'plugin.js' );
-CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
-	
 	config.extraPlugins='image2','easyimage','imagebase';
->>>>>>> a2d4740217288c5c2042a53f3af1266594ac3656
+
 };
