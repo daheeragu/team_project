@@ -124,9 +124,7 @@ public class TourinfoDAO {
     //글 수정
 	public int updateInfo(Tourinfo info) {
 	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-	    int result = 0; 
-	    
-	    result = mapper.updateInfo(info);
+	    int result = mapper.updateInfo(info);
 	    return result; 
 		
 	}
