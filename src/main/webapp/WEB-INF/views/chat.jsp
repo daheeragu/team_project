@@ -19,6 +19,7 @@
 	width: 500px;
 	min-width: 500px;
 	height: 450px;
+	
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: ivory;
@@ -34,7 +35,7 @@
 	border-radius: 5px;
 	max-width: 350px;
 	background-color: white;
-	position: absolute;
+	position: relative;
 	left: 10px;
 }
 .swal-title {
@@ -84,9 +85,7 @@ function sendMessage() {
 }
 // 메시지를 받으면 화면에 출력
 function receiveMessage(msg) {
-	
 	$('#outputDiv').append("<div id='chat'>" + msg.data + "</div><br>");
-	
 }
 window.setInterval(function() {
     var elem = document.getElementById('outputDiv');
@@ -98,6 +97,7 @@ window.setInterval(function() {
 <body>
 <div id="main">
 	<div id="outputDiv">
+		
 	</div>
 	<div>
 		<input type="text" id="text" placeholder="채팅 입력">
