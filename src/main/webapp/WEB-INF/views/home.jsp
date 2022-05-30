@@ -42,6 +42,33 @@ $(document).ready(function(){
     
   }); 
   
+$.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
+	// data로 할 일...
+//	alert(data.list[0].main.temp_min);
+	var $cTemp = data.main.temp;
+	var $minTemp = data.main.temp_min;
+	var $maxTemp = data.main.temp_max;
+	var $cIcon = data.weather[0].icon;
+	var $now = new Date($.now());
+	var $cDate = $now.getFullYear() + '/' + ($now.getMonth() + 1) + '/' + $now.getDate() + '/' + $now.getHours() + ':' + $now.getMinutes()
+	// A.appendTo(B) B요소의 내용의 뒤에 A를 추가
+	// A.append(B) A요소의 내용의 뒤에 B를 추가
+	// A.prependTo(B) B요소의 내용의 앞에 A를 추가
+	// A.prepend(B) A요소의 내용의 앞에 B를 추가
+	// Date.now();, == $.now : 현재시간 출력
+	// new Date(Date.now());
+	// alert(new Date(Date.now()));
+	// .getFullYear() : 년도
+	// .getHours() : 시간
+	// .getMinutes() : 분
+	// .getMonth() : 월 - 0이 1월
+	// .getDate() : 일
+	
+	$('.ctemp').append($cTemp);
+	$('h2').prepend($cDate);
+	$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
+});
+
   function goList(){
 	  location.href = 'notice/list';
   }
@@ -152,9 +179,10 @@ $(document).ready(function(){
 								<li><a class="dropdown-item" href="event/list">이벤트</a></li>
 							</ul>
 						</li>
-				
+							
 						</ul>
-					   
+					   <div style = "text-align: center;"><a href = "https://www.weather.go.kr/w/weather/forecast/short-term.do#" style = "text-decoration : none"><span class= "ctemp" style = "color : white;">현재 온도 : </span>
+								<span class= "cicon" style = "width : 25px;height : 25px;"></span></a></div>
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
                          <c:if test = "${loginId == null && loginAdmin == null}">
