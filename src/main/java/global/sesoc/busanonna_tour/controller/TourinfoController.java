@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -184,16 +185,15 @@ public class TourinfoController {
 	//글 수정 처리
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	 public String edit(Tourinfo info, HttpSession session) {
-		//전달받은 수정내용에 세션의 로그인아이디를 추가해서 DB 업데이트
-		String loginId = (String) session.getAttribute("loginId");
-		info.setAdmin_id(loginId);
-		
+
 		//DB에 업데이트(update구문의 where 조건은 글번호와 작성자 아이디)
 		logger.info("전달된 값: {}", info);
-		dao.updateInfo(info);
-		
-		//글 목록 리다이렉트 
-		return "redirect:list";
+		int result = dao.updateInfo(info);
+		if(result == 0) {
+			logger.info("글 수정 실패");
+		}
+
+		return "redirect:read?info_num="+info.getInfo_num();
 	
 	}
 	
@@ -213,6 +213,20 @@ public class TourinfoController {
 	    
 		
 		return "redirect:list";
+	}
+	
+	//땡기네 처리
+	@RequestMapping(value = "like", method = RequestMethod.GET)
+	public String like(int info_num, HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
+		
+		//로그인 한 상태에만 땡기네 처리
+		if(loginId != null) {
+			dao.addLike(info_num);
+		}
+		
+		return "tourinfojsp/readForm";
 	}
 	
 	

@@ -11,6 +11,8 @@ public interface NoticeMapper {
 
 	//공지사항 목록
 	public ArrayList<Notice> listNotice(String searchText, RowBounds rb);
+	//홈화면용 공지사항 목록
+	public ArrayList<Notice> listNoticeForHome();
 	//공지사항 갯수
 	public int getTotal(String searchText);
 	//공지사항 읽기

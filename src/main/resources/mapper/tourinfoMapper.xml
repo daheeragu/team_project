@@ -127,6 +127,7 @@
 	<select id="readInfo" parameterType="int" resultType="Tourinfo">
 		select
 			info_num
+			, admin_id
 			, info_title
 			, info_subtitle
 			, info_content
@@ -144,4 +145,30 @@
 			info_num = #{info_num}
 	</select>
 
+	<!-- 조회수 1 증가 -->
+	<update id="addLike" parameterType="int">
+		update
+			tourinfo
+		set
+			info_like = info_like + 1
+		where
+			info_num = #{info_num}
+	</update>
+	
+	<!-- 글 수정 -->
+	<update id="updateInfo" parameterType="Tourinfo" >
+		update
+			tourinfo
+		set
+			admin_id = #{admin_id}
+			, info_title = #{info_title}
+			, info_subtitle = #{info_subtitle}
+			, info_name = #{info_name}
+			, info_gu = #{info_gu}
+			, info_address = #{info_address}
+			, info_content = #{info_content}
+			, info_state = #{info_state}
+		where
+			info_num = #{info_num}
+	</update>
 </mapper>

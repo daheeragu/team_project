@@ -41,7 +41,7 @@ public class NoticeController {
 
 	@Autowired
 	NoticeDAO dao;
-	//네이버 지도 테스트 
+	//네이버 지도 API (내주변) 
 	@RequestMapping(value = "recommend", method = RequestMethod.GET)
 	public String recommend() {
 		

@@ -124,9 +124,7 @@ public class TourinfoDAO {
     //글 수정
 	public int updateInfo(Tourinfo info) {
 	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-	    int result = 0; 
-	    
-	    result = mapper.updateInfo(info);
+	    int result = mapper.updateInfo(info);
 	    return result; 
 		
 	}
@@ -138,6 +136,12 @@ public class TourinfoDAO {
 	       result = mapper.deleteInfo(info);
 	       return result; 
 	      
+	}
+	
+	//땡기네 1 증가
+	public void addLike(int info_num) {
+		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		 mapper.addLike(info_num);
 	}
 
 }

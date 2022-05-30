@@ -47,7 +47,7 @@ $(document).ready(function(){
   }); 
   
   function returnList(){
-	  location.href = 'list';
+	  location.href = '../tourinfo/${info.info_theme}';
   }
   
   function updateInfo(){
@@ -61,10 +61,14 @@ $(document).ready(function(){
   }
   
   function like(){
-	 alert('땡기네 클릭');
-	 /*  if(confirm('여행지에 "땡기네" 표시를 하시겠습니까?')){
-		  location.href = 'like?info_num=${info.info_num}';
-	  } */
+	 let loginId = '<%=(String)session.getAttribute("loginId")%>';
+	 
+	 if(loginId != "null") {
+		 location.href = 'like?info_num=${info.info_num}';
+	 } else {
+		 alert('로그인 후 이용할 수 있습니다.');
+		 location.href = '../user/loginForm';
+	 }
   }
 
 </script>

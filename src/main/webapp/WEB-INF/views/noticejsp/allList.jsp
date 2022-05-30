@@ -71,12 +71,26 @@
      border: white; 
    }
    
-   h1 {
-     font-size: 60px; 
-     color: black; 
-     text-align: center;
-     margin-top: 100px; 
+    .subvis {
+	width: 100%;
+	height: 300px;
+	background-image: url('../resources/image/sunset.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+     }
+
+ h1 {
+	text-align: center;
+	font-family:'Black Han Sans', sans-serif;
+	color: white;
+	margin: auto;
+	top: 100px;
+	position: relative;
+	top: 45%
    }
+   
+   
    
    .firstLine{
      padding-left: 260px;
@@ -115,19 +129,19 @@
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">명소</a></li>
-								<li><a class="dropdown-item" href="#">먹거리</a></li>
-								<li><a class="dropdown-item" href="#">레저</a></li>
-								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="../notice/recommend">내주변</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="../review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -136,38 +150,54 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								꿀팁 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="../notice/list">공지</a></li>
 								<li><a class="dropdown-item" href="../event/list">이벤트</a></li>
 							</ul>
 						</li>
 				
 						</ul>
-					   
-					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
-                         <ul class="navbar-nav text-center">
-                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
-                           </li>
-                           <li class="nav-item">
-                             <a class="nav-link" href="#">회원가입</a>
-                           </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
-                           </li>
-                          </ul>
-				    
-					<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navbarNav-menu">
+						<ul class="navbar-nav text-center">
+							<c:if test="${loginId == null && loginAdmin == null}">
+								<li class="nav-item"><a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="../user/joinForm">회원가입</a></li>
+							</c:if>
+							<c:if test="${loginId != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+							<c:if test="${loginAdmin != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+						</ul>
+
+						<form class="d-flex">
+							<input class="form-control me-2" type="search"
+								placeholder="Search" aria-label="Search">
 							<button class="btn btn-outline-success" type="submit">Search</button>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
 		</nav>
 	</header>
+  
 
 <main>
 
- <h1>[공지사항]</h1>
+ <div class="subvis">
+    <h1>공지사항</h1>
+ </div>
 
 <br><br>
 
@@ -178,7 +208,7 @@
 <table style="margin: auto;">
 
  <tr id="top-bt">
-  <td colspan="4">
+  <td colspan="4" style="padding-bottom:10px;">
   <input type="button" value="등록" onclick="location.href='write'">
   </td>
  </tr>

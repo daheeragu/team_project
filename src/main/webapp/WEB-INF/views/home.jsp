@@ -11,7 +11,11 @@
     <meta name="generator" content="Hugo 0.88.1">
    
     <title>부산온나</title>
-
+<script>
+	function new_window(){
+		w = window.open('http://localhost:8888/busanonna_tour/chatView', 'top=100, left=500, width=300, height=300');
+	}
+</script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
     <!-- Bootstrap core CSS -->
@@ -30,7 +34,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
+<script type="text/javascript" src="resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
 
+$(document).ready(function(){
+    $('#goNoticeBtn').on('click', goList);
+    
+  }); 
+  
+  function goList(){
+	  location.href = 'notice/list';
+  }
+  
+
+</script>
     <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -44,6 +61,31 @@
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;
 	}
+}
+
+.intro_notice{
+  width: 400px;
+  height: 160px;
+
+} 
+.noticeListForHome{
+   width: 900px;
+   height: 300px;
+   margin-left: 400px;
+   text-decoration: none;
+   position: relative;
+   bottom: 160px;
+
+   
+}
+
+ td{
+ width: 200px;
+ }
+
+.goNotice{
+  text-decoration: none;
+  color: #5D5D5D;
 }
 
 .nav-item1 {
@@ -242,11 +284,17 @@
       </div><!-- /.col-lg-4 -->
       
     </div><!-- /.row -->
-
+	
+	<!-- 새 창 열기 -->
+	<!-- 
     <div id="fixed_layer">
+     <p><a href="javascript:new_window()"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
+    </div>
+	 -->
+	 
+	<div id="fixed_layer">
      <p><a href="./chatView" target="_blank"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
     </div>
-
 
     <!-- START THE FEATURETTES -->
 
@@ -277,18 +325,30 @@
     </div>
 
     <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+    
+    <div class="intro_notice">
+      <h3 style="font-weight: bold; font-family:'Black Han Sans', sans-serif;">공지사항<h3>
+      <p style="font-size: 24px; font-family:'Black Han Sans', sans-serif;">부산온나의 이슈와 <br>
+                 새로운 소식을 전해드립니다</p>
+      <button type="button" id="goNoticeBtn" class="btn btn-outline-secondary">더보기</button>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-      </div>
-    </div>
-
+    
+    <div class="noticeListForHome">
+       <table class="table table-striped table-hover">
+          
+          <c:forEach var="notice" items="${noticeList}" begin="1" end="5">
+             <tr>
+               <th scope="row">
+               <a class="goNotice" href="notice/read?notice_num=${notice.notice_num}"> 
+               ${notice.notice_title}</a></th>
+             
+                <td style="text-align: center;">${notice.notice_inputdate}</td>
+              </tr>
+          </c:forEach>
+      
+      </table>
+       </div>
+ 
     <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->
