@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.busanonna_tour.dao.TourinfoDAO;
+import global.sesoc.busanonna_tour.dao.UserDAO;
 import global.sesoc.busanonna_tour.util.FileService;
 import global.sesoc.busanonna_tour.util.PageNavigator;
 import global.sesoc.busanonna_tour.vo.Board;
@@ -41,10 +42,12 @@ public class TourinfoController {
 	 
 	@Autowired
 	TourinfoDAO dao;
+	@Autowired
+	UserDAO udao;
 	
 	//명소 글목록 이동
 	@RequestMapping(value = "spot", method = RequestMethod.GET)
-	public String spotList(Model model
+	public String spotList(Model model, HttpSession session
 			, @RequestParam(value="page", defaultValue="1") int page){
 		
 		//전체 글 개수 
@@ -53,6 +56,9 @@ public class TourinfoController {
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
 		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
 		ArrayList<Tourinfo> infolist = dao.spotlist(navi.getStartRecord(), navi.getCountPerPage());	
+		
+		//세션에서 관리자 아이디 받아오기 
+		session.getAttribute("loginAdmin");
 		
 		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
 		model.addAttribute("infolist", infolist);
@@ -82,7 +88,7 @@ public class TourinfoController {
 		return "tourinfojsp/allList";
 	}
 	
-	//먹거리 글목록 이동
+	//레저 글목록 이동
 	@RequestMapping(value = "leisure", method = RequestMethod.GET)
 	public String leisureList(Model model
 			, @RequestParam(value="page", defaultValue="1") int page){
@@ -102,7 +108,7 @@ public class TourinfoController {
 		return "tourinfojsp/allList";
 	}
 		
-	//먹거리 글목록 이동
+	//체험 글목록 이동
 	@RequestMapping(value = "experience", method = RequestMethod.GET)
 	public String expList(Model model
 			, @RequestParam(value="page", defaultValue="1") int page){
@@ -208,5 +214,20 @@ public class TourinfoController {
 		
 		return "redirect:list";
 	}
+	
+	//땡기네 처리
+	@RequestMapping(value = "like", method = RequestMethod.GET)
+	public String like(int info_num, HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
+		
+		//로그인 한 상태에만 땡기네 처리
+		if(loginId != null) {
+			dao.addLike(info_num);
+		}
+		
+		return "tourinfojsp/readForm";
+	}
+	
 	
 }

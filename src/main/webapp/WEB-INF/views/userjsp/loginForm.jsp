@@ -31,6 +31,7 @@ function submit() {
  	
 }
 
+
 function formCheck(){
 	let id = document.getElementById('#floatingInput');
 	let pwd = document.getElementById('#floatingPassword');
@@ -44,15 +45,18 @@ function formCheck(){
 		success: function(cnt) {
 			if (cnt == 1) {
 				alert(id1 + '님, 로그인에 성공하였습니다');
+				//로그인 후 이전페이지로 돌아가는 코드
+				window.location = document.referrer;
 			} else if (cnt == 2){
 				alert('관리자님, 로그인에 성공하였습니다');
+				window.location = document.referrer;
 			}else {
 				alert('아이디나 비밀번호가 일치하지 않습니다');
 			}
 		}
 	});
-
 	return true;
+	
 }
 </script>
 <link rel="canonical"

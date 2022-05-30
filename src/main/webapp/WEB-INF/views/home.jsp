@@ -11,7 +11,11 @@
     <meta name="generator" content="Hugo 0.88.1">
    
     <title>부산온나</title>
-
+<script>
+	function new_window(){
+		w = window.open('http://localhost:8888/busanonna_tour/chatView', 'top=100, left=500, width=300, height=300');
+	}
+</script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
     <!-- Bootstrap core CSS -->
@@ -265,7 +269,7 @@ $(document).ready(function(){
         <h2 style="font-family:'Black Han Sans', sans-serif; margin-top: 10px;">명소를 찾아서</h2>
         <p style="font-family:'Black Han Sans', sans-serif;">
                  부산의 대표 명소부터 숨은 명소까지 <br>샅샅이 소개해줄게</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="tourinfo/spot">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
      
@@ -280,11 +284,17 @@ $(document).ready(function(){
       </div><!-- /.col-lg-4 -->
       
     </div><!-- /.row -->
-
+	
+	<!-- 새 창 열기 -->
+	<!-- 
     <div id="fixed_layer">
+     <p><a href="javascript:new_window()"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
+    </div>
+	 -->
+	 
+	<div id="fixed_layer">
      <p><a href="./chatView" target="_blank"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
     </div>
-
 
     <!-- START THE FEATURETTES -->
 

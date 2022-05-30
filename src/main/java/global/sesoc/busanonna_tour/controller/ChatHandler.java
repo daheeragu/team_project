@@ -50,7 +50,9 @@ public class ChatHandler extends AbstractWebSocketHandler {
 		TextMessage msg = new TextMessage(loginName + "(" + loginId + ")" + " : " + message.getPayload());
 		
 		for(WebSocketSession ss: list) {
-			ss.sendMessage(msg);
+			if (message.getPayloadLength() > 1) {
+				ss.sendMessage(msg);
+			}
 		}
 	}
 }
