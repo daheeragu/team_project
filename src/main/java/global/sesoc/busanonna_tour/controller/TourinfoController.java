@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -191,7 +192,8 @@ public class TourinfoController {
 		if(result == 0) {
 			logger.info("글 수정 실패");
 		}
-		return "redirect:../";
+
+		return "redirect:read?info_num="+info.getInfo_num();
 	
 	}
 	

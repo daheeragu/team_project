@@ -3,6 +3,20 @@ create sequence tourinfo_seq;
 
 select * from tourinfo;
 select * from admin;
+rollback;
+update
+        tourinfo
+    set
+        admin_id = 'admin'
+        , info_title = '해운대대대'
+        , info_subtitle = '해운대대대'
+        , info_name = '해운대대대'
+        , info_gu = '해운대대대'
+        , info_address = '해운대대대'
+        , info_content = '해운대대대'
+        , info_state = '해운대대대'
+    where
+        info_num = 7;
 
 -- 명소 글 예시
 insert into tourinfo (

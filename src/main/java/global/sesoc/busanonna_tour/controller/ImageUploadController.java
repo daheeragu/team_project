@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -35,9 +37,41 @@ public class ImageUploadController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ImageUploadController.class);
 	
+	@RequestMapping("tourinfo/imageUpload.do")
 	@ResponseBody
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
+
+	  response.setCharacterEncoding("utf-8");
+	  response.setContentType("text/html;charset=utf-8");
+	  
+	  String fileName=upload.getOriginalFilename();
+	  
+
+	    Date date = new Date();
+	    SimpleDateFormat imsi = new SimpleDateFormat("yyMMddHHmmssZ");
+	    fileName = imsi.format(date)+"_"+fileName;
+	    byte[] bytes = upload.getBytes();
+		  
 	
-	@RequestMapping(value = "tourinfo/imageUpload.do")
+		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"/resources/image/ckImage";
+	    OutputStream outStr = new FileOutputStream(new File(uploadPath + fileName));
+	
+	    outStr.write(bytes);
+	    
+	    //String callback=request.getParameter("CKEditorFuncNum");
+	    PrintWriter out=response.getWriter();
+	    String fileUrl=request.getContextPath()+"/resources/image/ckImage"+fileName;
+	
+	    //out.println("<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'"+fileUrl+"','이미지가 업로드되었습니다.')"+"</script>");
+	    out.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+	    
+	    out.flush();
+	    outStr.close();
+		}
+	
+	/*
+	@ResponseBody
+	@RequestMapping(value = "imageUpload.do")
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
 		JsonObject jsonObject = new JsonObject();
 		PrintWriter printWriter = null;
@@ -92,6 +126,8 @@ public class ImageUploadController {
 		
 	}
 	}
+	
+	*/
 	
 	/*
 	//방법1 - https://dlgkstjq623.tistory.com/288

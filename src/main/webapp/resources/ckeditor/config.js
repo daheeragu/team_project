@@ -3,8 +3,11 @@
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
+CKEDITOR.plugins.addExternal( 'imagebase', '/ckeditor/plugins/imagebase', 'plugin.js' );
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+	
+	config.extraPlugins='image2','easyimage','imagebase';
 };
