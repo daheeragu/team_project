@@ -199,8 +199,8 @@ td {
 					<div style="text-align: center;">
 						<a href="https://www.kma.go.kr/busan/html/main/index.jsp"
 							style="text-decoration: none"> <span class="ctemp"
-							style="color: white;">현재 온도 : </span> <span class="cicon"
-							style="width: 25px; height: 25px;"></span>
+							style="color: white;">현재 온도 : </span> 
+							<span class="cicon" style = "width: 25px; height: 25px;"></span>
 						</a>
 					</div>
 					<div class="collapse navbar-collapse justify-content-end"
@@ -268,7 +268,7 @@ td {
 					<img src="resources/image/forest.jpg" class="d-block w-100"
 						alt="대숲길">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Second slide label</h5>
+						<h5>니들이 게맛을 알어!?</h5>
 						<p>Some representative placeholder content for the second
 							slide.</p>
 						<p>
