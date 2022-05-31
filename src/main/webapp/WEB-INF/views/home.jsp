@@ -18,8 +18,7 @@
 	}
 	
 	function backpage(){
-		window.location = "user/logout";
-		
+		window.location = "user/logout";		
 	}
 </script>
 <link rel="canonical"
