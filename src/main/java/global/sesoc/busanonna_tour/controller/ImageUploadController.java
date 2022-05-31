@@ -69,6 +69,74 @@ public class ImageUploadController {
 	    outStr.close();
 		}
 	
+	//이벤트 이미지 업로드
+	@RequestMapping("event/imageUpload.do")
+	@ResponseBody
+	public void eventImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
+
+	  response.setCharacterEncoding("utf-8");
+	  response.setContentType("text/html;charset=utf-8");
+	  
+	  String fileName=upload.getOriginalFilename();
+	  
+
+	    Date date = new Date();
+	    SimpleDateFormat imsi = new SimpleDateFormat("yyMMddHHmmssZ");
+	    fileName = imsi.format(date)+"_"+fileName;
+	    byte[] bytes = upload.getBytes();
+		  
+	
+		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"/resources/image/ckImage";
+	    OutputStream outStr = new FileOutputStream(new File(uploadPath + fileName));
+	
+	    outStr.write(bytes);
+	    
+	    //String callback=request.getParameter("CKEditorFuncNum");
+	    PrintWriter out=response.getWriter();
+	    String fileUrl=request.getContextPath()+"/resources/image/ckImage"+fileName;
+	
+	    //out.println("<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'"+fileUrl+"','이미지가 업로드되었습니다.')"+"</script>");
+	    out.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+	    
+	    out.flush();
+	    outStr.close();
+		}
+	
+
+	//공지사항 이미지 업로드
+	@RequestMapping("notice/imageUpload.do")
+	@ResponseBody
+	public void noticeImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
+
+	  response.setCharacterEncoding("utf-8");
+	  response.setContentType("text/html;charset=utf-8");
+	  
+	  String fileName=upload.getOriginalFilename();
+	  
+
+	    Date date = new Date();
+	    SimpleDateFormat imsi = new SimpleDateFormat("yyMMddHHmmssZ");
+	    fileName = imsi.format(date)+"_"+fileName;
+	    byte[] bytes = upload.getBytes();
+		  
+	
+		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"/resources/image/ckImage";
+	    OutputStream outStr = new FileOutputStream(new File(uploadPath + fileName));
+	
+	    outStr.write(bytes);
+	    
+	    //String callback=request.getParameter("CKEditorFuncNum");
+	    PrintWriter out=response.getWriter();
+	    String fileUrl=request.getContextPath()+"/resources/image/ckImage"+fileName;
+	
+	    //out.println("<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'"+fileUrl+"','이미지가 업로드되었습니다.')"+"</script>");
+	    out.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+	    
+	    out.flush();
+	    outStr.close();
+		}
+	
+	
 	/*
 	@ResponseBody
 	@RequestMapping(value = "imageUpload.do")

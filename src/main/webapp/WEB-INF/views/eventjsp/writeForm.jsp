@@ -7,14 +7,16 @@
 <title>꿀팁 | 이벤트 | BUSANONNA</title>
 
 <script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
+<script src = "../resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
+ 
+$(document).ready(function(){
 	//추가 버튼 이벤트 처리
 	 $('#addbtn').on('click', function(){
 		  $('#group').append('<input type="file" class="file_group" name="upload" size="30"><br>'); 
 	  });
-	  
   });
+
 </script>
  <style>
   * {
@@ -72,15 +74,24 @@
    
   <tr>
     <th>내용</th>
-    <td><textarea rows="15" cols="70" name="event_content" 
-                  id="event_content" style="resize:none;"></textarea> 
+    <td>
+    <textarea name="event_content" id="event_content"></textarea>  
+    
+     <script>
+	                CKEDITOR.replace('event_content'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                	//	, extraPlugins:'imagebase'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	  </script>
+    </td>
   </tr>
   
   <tr>
    <th>파일첨부</th> 
 	<td>
-	    <button id="addbtn" type="button">파일 추가</button>
-		
+	    <button id="addbtn" type="button">파일 추가</button>	
 		<div id="group">
 		</div>
 	</td>

@@ -178,13 +178,21 @@ public class NoticeController {
 	 //공지사항 수정 폼
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String edit(int notice_num, Model model) {
-	 //전달받은 글 번호로 글 정보 검색해서 모델에 저장
+	 
+		//전달받은 글 번호로 글 정보 검색해서 모델에 저장
 		Notice notice = dao.readNotice(notice_num);
 		if(notice == null) {
 			return "redirect:list";
 		}
 		
+		ArrayList<Notice_pic> picList = dao.fileList(notice_num);
+		
+		//관리자 아이디 임시 설정
+		String admin_id = "hong";
+		notice.setAdmin_id(admin_id);
+		
 		model.addAttribute("notice", notice);
+		model.addAttribute("picList", picList);
 		
 		return "noticejsp/editForm";
 		

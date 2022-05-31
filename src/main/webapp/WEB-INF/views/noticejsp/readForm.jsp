@@ -204,12 +204,18 @@
     
     <tr>
      <td scope="row" colspan="2">
-        ${notice.notice_content}
+        ${notice.notice_content}</td>
+    </tr>
+    
+    <tr>
+     <th scope="row" style="width:100px; text-align:center;">첨부된 파일</th>
+     <td style="width:800px">
      <c:forEach var="pic" items="${picList}">
-        <img src = "download?noticepic_num=${pic.noticepic_num}"> 
+        <a href = "download?noticepic_num=${pic.noticepic_num}">
+          ${pic.savedfile}</a> 
       </c:forEach></td>
     </tr>
-
+    
 				<tr id="return" style="border: white; text-align: right;">
 					<td colspan="2">
 						<button type="button" class="btn btn-outline-secondary"

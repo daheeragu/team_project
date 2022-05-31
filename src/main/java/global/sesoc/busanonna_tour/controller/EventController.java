@@ -175,13 +175,11 @@ public class EventController {
 				if(event == null) {
 					 return "redirect:list";
 				}
-		
-	  //파일로 업로드 된 이미지 불러오기
-		ArrayList<Event_pic> picList = dao.fileList(event_num);
+
 	
 	  //결과 있으면 모델에 저장
 		model.addAttribute("event", event);
-		model.addAttribute("picList", picList);
+	
 		
 		return "eventjsp/readForm";
 	}
