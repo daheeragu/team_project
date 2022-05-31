@@ -38,8 +38,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('#goNoticeBtn').on('click', goList);
-    
+    $('#goNoticeBtn').on('click', goList);    
   }); 
   
 $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
@@ -65,7 +64,6 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 	// .getDate() : 일
 	
 	$('.ctemp').append($cTemp);
-	$('h2').prepend($cDate);
 	$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
 });
 
