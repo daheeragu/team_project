@@ -1,8 +1,6 @@
 CKEditor 4 Changelog
 ====================
 
-<<<<<<< HEAD
-=======
 ## CKEditor 4.19.0
 
 New features:
@@ -29,7 +27,6 @@ API changes:
 * [#5095](https://github.com/ckeditor/ckeditor4/issues/5095): Added the [CKEDITOR.plugins.clipboard.addFileMatcher](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_plugins_clipboard.html#method-addFileMatcher) function allowing to define file formats supported by the [clipboard](https://ckeditor.com/cke4/addon/clipboard) plugin. Trying to paste unsupported files will result in a notification that a file cannot be dropped or pasted into the editor.
 * [#2445](https://github.com/ckeditor/ckeditor4/issues/2445): Added [`config.applicationTitle`](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-applicationTitle) alongside [`CKEDITOR.editor#applicationTitle`](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#property-applicationTitle) to allow customizing editor's application region label.
 
->>>>>>> a2d4740217288c5c2042a53f3af1266594ac3656
 ## CKEditor 4.18.0
 
 **Security Updates:**

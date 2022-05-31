@@ -83,12 +83,13 @@ $(document).ready(function(){
  .titleback {
 	width: 100%;
 	height: 335px;
- /*	background-image: url('../resources/image/sunset.jpg');*/
+ 	background-image: url('');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
      }
      
+ 
 
  h1 {
 	text-align: center;
@@ -203,7 +204,11 @@ $(document).ready(function(){
 		</div>
 	</nav>
 </header>
+
+<div class="thumbnail">
 	
+</div>
+
 <div class="titleback">
    <h1>${info.info_title}</h1>
    <p></p>
@@ -213,6 +218,10 @@ $(document).ready(function(){
 <div class = "container">
  <table class="table">
   <tbody>
+  
+  	<tr>
+  		<td scope="row" colspan="2">${info.savedfile }</td>
+  	</tr>
   
     
     <tr>

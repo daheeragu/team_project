@@ -54,6 +54,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, savedfile
 		from
 			tourinfo
 		where
@@ -71,6 +72,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, savedfile
 		from
 			tourinfo
 		where
@@ -88,6 +90,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, savedfile
 		from
 			tourinfo
 		where
@@ -105,6 +108,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, savedfile
 		from
 			tourinfo
 		where
@@ -139,6 +143,7 @@
 			, info_address
 			, info_name
 			, info_theme
+			, savedfile
 		from
 			tourinfo
 		where
@@ -155,20 +160,50 @@
 			info_num = #{info_num}
 	</update>
 	
+	<!-- 글쓰기 -->
+	<insert id="writeInfo" parameterType="Tourinfo" >
+		insert into
+			tourinfo
+			(info_num
+			, admin_id
+			, info_title
+			, info_subtitle
+			, info_name
+			, info_gu
+			, info_address
+			, info_content
+			, info_state
+			, savedfile
+			)
+		values
+			(tourinfo_seq.nextval
+			, #{admin_id}
+			, #{info_title}
+			, #{info_subtitle}
+			, #{info_name}
+			, #{info_gu}
+			, #{info_address}
+			, #{info_content}
+			, #{info_state}
+			, #{savedfile}
+			)
+	</insert>
+	
 	<!-- 글 수정 -->
 	<update id="updateInfo" parameterType="Tourinfo" >
 		update
 			tourinfo
 		set
-			admin_id = #{admin_id}
-			, info_title = #{info_title}
+			info_title = #{info_title}
 			, info_subtitle = #{info_subtitle}
 			, info_name = #{info_name}
 			, info_gu = #{info_gu}
 			, info_address = #{info_address}
 			, info_content = #{info_content}
 			, info_state = #{info_state}
+			, savedfile = #{savedfile}
 		where
 			info_num = #{info_num}
+			and admin_id = #{admin_id}
 	</update>
 </mapper>
