@@ -179,8 +179,12 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 						</li>
 							
 						</ul>
-					   <div style = "text-align: center;"><a href = "https://www.kma.go.kr/busan/html/main/index.jsp" style = "text-decoration : none"><span class= "ctemp" style = "color : white;">현재 온도 : </span>
-								<span class= "cicon" style = "width : 25px;height : 25px;"></span></a></div>
+					   <div style = "text-align: center;">
+					    <a href = "https://www.kma.go.kr/busan/html/main/index.jsp" style = "text-decoration : none">
+					     <span class= "ctemp" style = "color : white;">현재 온도 : </span>
+						 <span class= "cicon" style = "width : 25px;height : 25px;"></span>
+						</a>
+					   </div>
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
                          <c:if test = "${loginId == null && loginAdmin == null}">
