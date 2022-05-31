@@ -82,6 +82,11 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 	$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
 });
 
+function backpage(){
+	window.location = "../user/logout";
+	location.href = "../notice/list";
+}
+
 	function pagingFormSubmit(currentPage) {
 		var form = document.getElementById('pagingForm');
 		var page = document.getElementById('page');
@@ -216,15 +221,15 @@ h1 {
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
-									href="../user/logout">로그아웃</a></li>
+									href="#" onclick = "backpage()">로그아웃</a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="../user/mypage">마이페이지</a></li>
+									href="../user/mypage" ">마이페이지</a></li>
 							</c:if>
 							<c:if test="${loginAdmin != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
-									href="../user/logout">로그아웃</a></li>
+									href="#" onclick = "backpage()">로그아웃</a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="../user/mypage">마이페이지</a></li>
 							</c:if>

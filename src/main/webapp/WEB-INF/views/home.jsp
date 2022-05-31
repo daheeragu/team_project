@@ -16,6 +16,11 @@
 	function new_window(){
 		w = window.open('http://localhost:8888/busanonna_tour/chatView', 'top=100, left=500, width=300, height=300');
 	}
+	
+	function backpage(){
+		window.location = "user/logout";
+		
+	}
 </script>
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.1/examples/carousel/">
@@ -211,7 +216,7 @@ td {
 							<c:if test="${loginId != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="user/logout">로그아웃</a>
+								<li class="nav-item"><a class="nav-link" href="#" onclick="backpage()">로그아웃</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="user/mypage">마이페이지</a>
 								</li>
@@ -219,7 +224,7 @@ td {
 							<c:if test="${loginAdmin != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="user/logout">로그아웃</a>
+								<li class="nav-item"><a class="nav-link" href="#" onclick="backpage()">로그아웃</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="user/mypage">마이페이지</a>
 								</li>
