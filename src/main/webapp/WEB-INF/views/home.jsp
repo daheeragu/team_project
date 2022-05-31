@@ -38,8 +38,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('#goNoticeBtn').on('click', goList);
-    
+    $('#goNoticeBtn').on('click', goList);    
   }); 
   
 $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
@@ -65,7 +64,6 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 	// .getDate() : 일
 	
 	$('.ctemp').append($cTemp);
-	$('h2').prepend($cDate);
 	$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
 });
 
@@ -181,7 +179,7 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 						</li>
 							
 						</ul>
-					   <div style = "text-align: center;"><a href = "https://www.weather.go.kr/w/weather/forecast/short-term.do#" style = "text-decoration : none"><span class= "ctemp" style = "color : white;">현재 온도 : </span>
+					   <div style = "text-align: center;"><a href = "https://www.kma.go.kr/busan/html/main/index.jsp" style = "text-decoration : none"><span class= "ctemp" style = "color : white;">현재 온도 : </span>
 								<span class= "cicon" style = "width : 25px;height : 25px;"></span></a></div>
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
