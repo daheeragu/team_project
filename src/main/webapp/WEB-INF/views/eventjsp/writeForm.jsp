@@ -8,6 +8,7 @@
 
 <script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+
   $(document).ready(function(){
 	//추가 버튼 이벤트 처리
 	 $('#addbtn').on('click', function(){
@@ -36,6 +37,7 @@
    }
    
    </style>
+   <script src = "../resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
