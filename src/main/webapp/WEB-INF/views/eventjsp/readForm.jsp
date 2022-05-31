@@ -203,9 +203,6 @@ $(document).ready(function(){
      
     <tr>
       <th scope="row" colspan="2">
-         <c:forEach var="pic" items="${picList}">
-         <img src = "download?eventpic_num=${pic.eventpic_num}">
-         </c:forEach>
           ${event.event_content}
       </th>
     </tr>
