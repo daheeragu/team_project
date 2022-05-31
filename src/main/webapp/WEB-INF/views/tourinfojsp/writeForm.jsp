@@ -4,8 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행정보 글쓰기</title>
-<script src="../resources/js/ckeditor/ckeditor.js"></script>
+<title>여행정보 글 등록</title>
+<script src = "../resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+	//추가 버튼 이벤트 처리
+	 $('#addbtn').on('click', function(){
+		  $('#group').append('<input type="file" class="file_group" name="upload" size="30"><br>'); 
+	  });
+	  
+  });
+</script>
 </head>
 <style>
    * {
@@ -30,64 +40,84 @@
 
 
 <body>
-<h1>[여행정보 글쓰기]</h1>
+<h1>[여행정보 글 등록]</h1>
                                                    <!-- 파일 보낼 때 꼭 필요 -->
 <form id="writeForm" action = "write" method ="post" enctype="multipart/form-data"
       onsubmit="return formCheck();">
-<table style="width:70%">
+<table style="width:90%">
     <colgroup>
       <col style="background-color:#BDBDBD;">
       <col style="background-color:#EAEAEA;">
     </colgroup>
-  <tr>
-    <th>제목</th>
-    <td><input style="width:500px" type="text" name="info_title" id="title"></td> 
-  </tr>
-  
-  <tr>
-    <th>부제목</th>
-    <td><input style="width:500px" type="text" name="info_subtitle" id="subtitle"></td> 
-  </tr>
-  
-   <tr>
- 	 <th>이름</th>
- 	 <td><input style="width:200px" type="text" name="info_name" id="name"></td>
-	</tr>
-	<tr>
-     <th>구역(구)</th>
-   	 <td><input style="width:200px" type="text" name="info_gu" id="gu"></td>
-  </tr>
-  
-   <tr>
-    <th>상세주소</th>
-    <td><input style="width:300px" type="text" name="info_address" id="address"></td> 
-  </tr>
-  <tr>
-  	<th>운영현황</th>
-  	<td>
-  		<input type="radio" name="state" value="avaliable" checked> 이용가능
-  		<input type="radio" name="state" value="unavaliable"> 이용불가
-  	</td>
-  </tr>
-  
-  <tr>
- 	 <th>글쓰기</th>
-	  <td>
-	 <textarea id="description"></textarea>
-            <script>
-                CKEDITOR.replace( 'description');
-            </script>
-	  </td>
-  </tr>
-
-  
- 	
-  
-  <tr id="save">
-    <td colspan ="2">
-      <input type="submit" value="저장">
-    </td>
-  </tr>
+    <tr>
+	    <th>글번호</th>
+	    <td><input style="width:200px" type="number" name="info_num" id="num" value="${info.info_num}" readonly></td> 
+	  </tr>
+    
+	  <tr>
+	    <th>제목</th>
+	    <td><input style="width:500px" type="text" name="info_title" id="title" value="${info.info_title}"></td> 
+	  </tr>
+	  
+	   <tr>
+	    <th>작성자</th>
+	    <td><input type="text" name="admin_id" value="${info.admin_id}" readonly></td> 
+	  </tr>
+	  
+	  <tr>
+	    <th>부제목</th>
+	    <td><input style="width:500px" type="text" name="info_subtitle" id="subtitle" value="${info.info_subtitle}"></td> 
+	  </tr>
+	  
+	   <tr>
+	 	 <th>이름</th>
+	 	 <td><input style="width:200px" type="text" name="info_name" id="name"></td>
+		</tr>
+		<tr>
+	     <th>구역(구)</th>
+	   	 <td><input style="width:200px" type="text" name="info_gu" id="gu""></td>
+	  </tr>
+	  
+	   <tr>
+	    <th>상세주소</th>
+	    <td><input style="width:300px" type="text" name="info_address" id="address"></td> 
+	  </tr>
+	  <tr>
+	  	<th>운영현황</th>
+	  	<td>
+	  		<input type="radio" name="info_state" value="available" checked> 이용가능
+	  		<input type="radio" name="info_state" value="unavailable"> 이용불가
+	  	</td>
+	  </tr>
+	  
+	  <tr>
+	 	 <th>글쓰기</th>
+		  <td>
+		 <textarea id="editor" name="info_content"></textarea>
+	            <script>
+	                CKEDITOR.replace('editor'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	            </script>
+		  </td>
+	  </tr>
+	  
+	  <tr>
+	  	<th>썸네일 이미지 첨부></th>
+	  	<td>
+	  		<button id="addbtn" type="button">파일 추가</button>
+	  		<div id="group"></div>
+	  	</td>
+	  		
+	  </tr>
+	
+	  <tr id="save">
+	    <td colspan ="2">
+	      <input type="submit" value="등록">
+	    </td>
+	  </tr>
 </table>
 
 </form>

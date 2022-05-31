@@ -133,9 +133,10 @@ public class TourinfoController {
 	//글쓰기 폼으로 이동
 	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String write() {
-		
+
 		return "tourinfojsp/writeForm";
 	}
+	
 	//글쓰기 기능 처리 
 	@RequestMapping(value = "write", method = RequestMethod.POST)
 	 public String write(Tourinfo info, HttpSession session, MultipartFile upload) {

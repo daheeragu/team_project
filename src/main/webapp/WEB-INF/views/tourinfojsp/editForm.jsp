@@ -87,7 +87,6 @@
 	            <script>
 	                CKEDITOR.replace('editor'
 	                		, {filebrowserUploadUrl:'imageUpload.do'
-	                	//	, extraPlugins:'imagebase'
 	                		, extraPlugins:'image2'
 	                		, height:'600px'
 	                				});
