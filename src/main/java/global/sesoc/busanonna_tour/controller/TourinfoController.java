@@ -193,8 +193,12 @@ public class TourinfoController {
 	
 	//글 수정 처리
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	 public String edit(Tourinfo info, HttpSession session) {
-
+	 public String edit(Tourinfo info, HttpSession session, MultipartFile upload) {
+		if (!upload.isEmpty()) {
+			String savedfile = FileService.saveFile(upload, uploadPath);
+			info.setSavedfile(savedfile);
+		}
+		
 		//DB에 업데이트(update구문의 where 조건은 글번호와 작성자 아이디)
 		logger.info("전달된 값: {}", info);
 		int result = dao.updateInfo(info);

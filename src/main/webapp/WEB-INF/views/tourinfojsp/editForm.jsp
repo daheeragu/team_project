@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행정보 글 수정</title>
-<script src = "../resources/ckeditor/ckeditor.js"></script>
+<script src = "../ckeditor/ckeditor.js"></script>
 </head>
 <style>
    * {
@@ -89,9 +89,17 @@
 	                		, {filebrowserUploadUrl:'imageUpload.do'
 	                		, extraPlugins:'image2'
 	                		, height:'600px'
-	                				});
+	                		});
 	            </script>
 		  </td>
+	  </tr>
+	  
+	  <tr>
+	  	<th>썸네일 이미지 첨부</th>
+	  	<td>
+	  		<input type="file" name="upload" size="30" value="이미지 업로드">
+	  		<div id="group"></div>
+	  	</td>	
 	  </tr>
 	
 	  <tr id="save">

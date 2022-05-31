@@ -13,17 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
-<<<<<<< HEAD
- * (2) https://ckeditor.com/cke4/builder/2956688318a2c2e4ebed7a0bfde2348b
+ * (2) https://ckeditor.com/cke4/builder/3fc9675bf01cf8b772bed0ec3fafad8c
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/2956688318a2c2e4ebed7a0bfde2348b
-=======
- * (2) https://ckeditor.com/cke4/builder/be4a7405175c28d417fb178b1b0b5478
- *     Visit online builder to build CKEditor, starting with the same setup as before.
- *
- * (3) https://ckeditor.com/cke4/builder/download/be4a7405175c28d417fb178b1b0b5478
->>>>>>> a2d4740217288c5c2042a53f3af1266594ac3656
+ * (3) https://ckeditor.com/cke4/builder/download/3fc9675bf01cf8b772bed0ec3fafad8c
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -73,7 +66,6 @@ var CKBUILDER_CONFIG = {
 		'copyformatting' : 1,
 		'dialogadvtab' : 1,
 		'div' : 1,
-		'easyimage' : 1,
 		'editorplaceholder' : 1,
 		'elementspath' : 1,
 		'enterkey' : 1,
@@ -89,6 +81,7 @@ var CKBUILDER_CONFIG = {
 		'htmlwriter' : 1,
 		'iframe' : 1,
 		'image' : 1,
+		'image2' : 1,
 		'indentblock' : 1,
 		'indentlist' : 1,
 		'justify' : 1,
