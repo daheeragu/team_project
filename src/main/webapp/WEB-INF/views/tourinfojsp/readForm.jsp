@@ -77,20 +77,25 @@ $(document).ready(function(){
   
  <style>
  .container {
-	margin-top: 200px;
+	margin-top: 50px;
         }
 
- .titleback {
+ .title {
 	width: 100%;
-	height: 335px;
+	height: 300px;
  	background-image: url('');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
      }
-     
  
-
+ .mainImg {
+ 	width: 60%;
+ 	height: 60%; 
+ 	display: block;
+ 	margin: 0px auto;
+ }    
+ 
  h1 {
 	text-align: center;
 	color: black;
@@ -209,21 +214,18 @@ $(document).ready(function(){
 	
 </div>
 
-<div class="titleback">
+<div class="title">
    <h1>${info.info_title}</h1>
    <p></p>
    <h3>${info.info_subtitle}</h3>
 </div>
 
+<img class="mainImg" src = "download?info_num=${info.info_num}">
+
 <div class = "container">
  <table class="table">
   <tbody>
-  
-  	<tr>
-  		<td scope="row" colspan="2">${info.savedfile }</td>
-  	</tr>
-  
-    
+
     <tr>
       <th scope="row">제목</th>
       <td>${info.info_title}</td>

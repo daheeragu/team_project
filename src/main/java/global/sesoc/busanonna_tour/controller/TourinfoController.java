@@ -162,6 +162,44 @@ public class TourinfoController {
 		
 	}
 	
+	//업로드 파일 이미지 다운로드 
+		@RequestMapping(value = "download", method = RequestMethod.GET)
+		public void fileDownload(int info_num, Model model, HttpServletResponse response) {
+			
+			Tourinfo info = dao.readInfo(info_num);
+			
+			//파일명
+			String savedfile = new String(info.getSavedfile());
+			
+			try {
+				response.setHeader("Content-Disposition", " attachment;filename="+ URLEncoder.encode(savedfile, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			//저장된 파일 경로
+			String fullPath = uploadPath + "/" + info.getSavedfile();
+			
+	 	 	
+				//서버의 파일을 읽을 입력 스트림과 클라이언트에게 전달할 출력스트림
+				FileInputStream filein = null;
+				ServletOutputStream fileout = null;
+				
+				try {
+					filein = new FileInputStream(fullPath);
+					fileout = response.getOutputStream();
+					
+					//Spring의 파일 관련 유틸 이용하여 출력
+					FileCopyUtils.copy(filein, fileout);
+					
+					filein.close();
+					fileout.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		}
+	
 	//글 읽기로 이동
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public String read(int info_num, Model model) {
