@@ -55,6 +55,10 @@
     	location.href = 'list';
     }  
   
+  function backpage(){
+		window.location = "../user/logout";
+		location.href = "../notice/readForm";
+	}
   </script>
  
   <style>
@@ -105,7 +109,7 @@
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">BUSAN</a>
+				<a class="navbar-brand" href="../">BUSAN</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -158,7 +162,8 @@
 							<c:if test="${loginId != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								<li class="nav-item"><a class="nav-link" 
+								href="#" onclick = "backpage()">로그아웃</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
 								</li>
@@ -166,7 +171,8 @@
 							<c:if test="${loginAdmin != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								<li class="nav-item"><a class="nav-link" 
+								href="#" onclick = "backpage()">로그아웃</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
 								</li>
