@@ -14,16 +14,11 @@
 <script type = "text/javascript">
 $(document).ready(function(){
 	$('#bt').on('click', doubleCheck);
-	$('#submit').on('click', welcome);
 	$('#back').on('click', backHome);
 });
 
-function welcome(){
-	alert('가입을 환영합니다');
-}
-
 function backHome(){
-	location.href = "../"
+	window.location = document.referrer;
 }
 function doubleCheck(){
 	var id = $('#floatingId').val();
@@ -36,8 +31,7 @@ function doubleCheck(){
 		url: 'select1',
 		type: 'post',
 		data: {"user_id": id},
-		success: function(cnt) {
-			
+		success: function(cnt) {			
 			if(cnt == 1){
 				alert(id + '는 이미 있는 아이디 입니다');
 				$('#floatingId').val('');
@@ -58,7 +52,6 @@ function formCheck(){
 	let name = document.getElementById('floatingName');
 	let email = document.getElementById('floatingEmail');
 	
-	alert(email.value);
 	if(id.value.length < 3 || id.value.length > 10){
 		alert('아이디는 3자리 이상 10자리 이하로 입력해 주세요');
 		return false;
@@ -82,6 +75,8 @@ function formCheck(){
 	if(email.value.length < 1){
 		alert('email을 입력해 주세요');
 		return false;
+	} else{
+		alert('가입을 환영합니다.');
 	}
 	return true;
 }

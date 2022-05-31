@@ -19,6 +19,7 @@
 	width: 500px;
 	min-width: 500px;
 	height: 450px;
+	
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: ivory;
@@ -32,9 +33,9 @@
 #chat {
 	border: 1px solid black;
 	border-radius: 5px;
-	width: 350px;
+	max-width: 350px;
 	background-color: white;
-	position: absolute;
+	position: relative;
 	left: 10px;
 }
 .swal-title {
@@ -43,7 +44,6 @@
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
 	margin-bottom: 28px;
 }
-
 </style>
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -67,6 +67,7 @@ function openSession() {
 		    title: "어서오세요!",
 		    text: "즐거운 시간 되세요!"
 		});
+		
 	}
 	sock.onmessage = receiveMessage;
 }
@@ -84,16 +85,19 @@ function sendMessage() {
 }
 // 메시지를 받으면 화면에 출력
 function receiveMessage(msg) {
-	$('#chat').append(msg.data + '<br>');
+	$('#outputDiv').append("<div id='chat'>" + msg.data + "</div><br>");
 }
-
+window.setInterval(function() {
+    var elem = document.getElementById('outputDiv');
+    elem.scrollTop = elem.scrollHeight;
+}
+);
 </script>
 </head>
 <body>
 <div id="main">
 	<div id="outputDiv">
-		<div id="chat">
-		</div>
+		
 	</div>
 	<div>
 		<input type="text" id="text" placeholder="채팅 입력">

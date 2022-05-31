@@ -47,6 +47,14 @@ insert into tourinfo (
     , '남구', 'experience'
 );
 
+--Tourinfo_pic 테이블 드랍
+drop ;
+
+--Tourinfo savedfile(썸네일 저장용) 컬럼 추가
+alter table tourinfo add savedfile varchar2(200) default '' not null;
+
+commit;
+
 update tourinfo set info_state = 'available'
 where info_state = 'avaliable';
 

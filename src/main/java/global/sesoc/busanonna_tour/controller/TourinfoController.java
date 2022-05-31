@@ -27,6 +27,7 @@ import global.sesoc.busanonna_tour.dao.UserDAO;
 import global.sesoc.busanonna_tour.util.FileService;
 import global.sesoc.busanonna_tour.util.PageNavigator;
 import global.sesoc.busanonna_tour.vo.Board;
+import global.sesoc.busanonna_tour.vo.Event_pic;
 import global.sesoc.busanonna_tour.vo.Reply;
 import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
 
@@ -39,7 +40,7 @@ public class TourinfoController {
 	//게시판 관련 상수값들
 	 final int countPerPage = 10; //페이지당 글 수 
 	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
-	 final String uploadPath = "/tourinfofile"; // 파일 업로드 경로 
+	 final String uploadPath = "/tourinfoThumb"; // 파일 업로드 경로 
 	 
 	@Autowired
 	TourinfoDAO dao;
@@ -133,23 +134,31 @@ public class TourinfoController {
 	//글쓰기 폼으로 이동
 	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String write() {
-		
+
 		return "tourinfojsp/writeForm";
 	}
+	
 	//글쓰기 기능 처리 
 	@RequestMapping(value = "write", method = RequestMethod.POST)
 	 public String write(Tourinfo info, HttpSession session, MultipartFile upload) {
-	    
+	    //upload에 저장된 파일의 정보 출력
+		logger.info("파일정보:{}", upload.getContentType());
+		logger.info("파일정보:{}", upload.getName());
+		logger.info("파일정보:{}", upload.getOriginalFilename());
+
 		//세션에서 아이디 받아오기 
 		String loginId = (String) session.getAttribute("loginId");
 		info.setAdmin_id(loginId);
-	
-       
+		
+		//info 객체에 썸네일 이미지 세팅
+		String savedfile = FileService.saveFile(upload, uploadPath);
+		info.setSavedfile(savedfile);
+		
 	    //Board객체를 DAO로 보내서 글쓰기
 		logger.info("저장할 글정보 : {}", info);
 		dao.write(info);
 		
-		return "redirect:list";
+		return "redirect:/" + info.getInfo_theme();
 		
 	}
 	
@@ -161,7 +170,7 @@ public class TourinfoController {
 	      Tourinfo info = dao.readInfo(info_num);
 	     //결과가 없으면 글 목록으로 이동 
 	      if(info == null) {
-	    	  return "redirect:list";
+	    	  return "redirect:/";
 	      }
 	      //결과가 있으면 모델에 글 정보 저장하고 JSP로 포워딩
 	    model.addAttribute("info", info);
@@ -184,8 +193,12 @@ public class TourinfoController {
 	
 	//글 수정 처리
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	 public String edit(Tourinfo info, HttpSession session) {
-
+	 public String edit(Tourinfo info, HttpSession session, MultipartFile upload) {
+		if (!upload.isEmpty()) {
+			String savedfile = FileService.saveFile(upload, uploadPath);
+			info.setSavedfile(savedfile);
+		}
+		
 		//DB에 업데이트(update구문의 where 조건은 글번호와 작성자 아이디)
 		logger.info("전달된 값: {}", info);
 		int result = dao.updateInfo(info);
