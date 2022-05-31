@@ -14,6 +14,7 @@ public class Tourinfo {
 	private String info_state;	//여행지 이용상태(이용가능/이용불가)
 	private String info_gu;	//여행지 행정구역
 	private String info_theme;	//여행지 테마
+	private String savedfile;	//썸네일 저장된 이름
 	
 	
 	public Tourinfo() {
@@ -21,7 +22,7 @@ public class Tourinfo {
 
 	public Tourinfo(int info_num, String admin_id, String info_title, String info_subtitle, String info_content,
 			String info_inputdate, int info_hits, int info_like, String info_address, String info_name,
-			String info_state, String info_gu, String info_theme) {
+			String info_state, String info_gu, String info_theme, String savedfile) {
 		super();
 		this.info_num = info_num;
 		this.admin_id = admin_id;
@@ -36,6 +37,7 @@ public class Tourinfo {
 		this.info_state = info_state;
 		this.info_gu = info_gu;
 		this.info_theme = info_theme;
+		this.savedfile = savedfile;
 	}
 
 	public int getInfo_num() {
@@ -142,13 +144,21 @@ public class Tourinfo {
 		this.info_theme = info_theme;
 	}
 
+	public String getSavedfile() {
+		return savedfile;
+	}
+
+	public void setSavedfile(String savedfile) {
+		this.savedfile = savedfile;
+	}
+
 	@Override
 	public String toString() {
 		return "Tourinfo [info_num=" + info_num + ", admin_id=" + admin_id + ", info_title=" + info_title
 				+ ", info_subtitle=" + info_subtitle + ", info_content=" + info_content + ", info_inputdate="
 				+ info_inputdate + ", info_hits=" + info_hits + ", info_like=" + info_like + ", info_address="
 				+ info_address + ", info_name=" + info_name + ", info_state=" + info_state + ", info_gu=" + info_gu
-				+ ", info_theme=" + info_theme + "]";
+				+ ", info_theme=" + info_theme + ", savedfile=" + savedfile +"]";
 	}
 	
 }

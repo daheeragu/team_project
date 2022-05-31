@@ -107,7 +107,7 @@
 	  <tr>
 	  	<th>썸네일 이미지 첨부></th>
 	  	<td>
-	  		<button id="addbtn" type="button">파일 추가</button>
+	  		<input type="file" name="upload" size="30" value="이미지 업로드">
 	  		<div id="group"></div>
 	  	</td>
 	  		
