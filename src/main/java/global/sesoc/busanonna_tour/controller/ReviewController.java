@@ -251,7 +251,7 @@ public class ReviewController {
 		ArrayList<Tourinfo> tourinfo = dao.getTourinfo(spotName);
 		
 		model.addAttribute("tourinfo", tourinfo);
-		
+		model.addAttribute("spotName",spotName);
 		
 		return "reviewjsp/spotSearch";
 	}	
