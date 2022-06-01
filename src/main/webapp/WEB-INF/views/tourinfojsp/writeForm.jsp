@@ -75,7 +75,7 @@
 		</tr>
 		<tr>
 	     <th>구역(구)</th>
-	   	 <td><input style="width:200px" type="text" name="info_gu" id="gu""></td>
+	   	 <td><input style="width:200px" type="text" name="info_gu" id="gu"></td>
 	  </tr>
 	  
 	   <tr>
