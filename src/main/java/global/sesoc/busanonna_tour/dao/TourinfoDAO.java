@@ -143,5 +143,12 @@ public class TourinfoDAO {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		 mapper.addLike(info_num);
 	}
+	
+	//기존에 등록된 썸네일 삭제
+	public int deleteFile(int info_num) {
+		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		 int result = mapper.deleteFile(info_num);
+		 return result;
+	}
 
 }

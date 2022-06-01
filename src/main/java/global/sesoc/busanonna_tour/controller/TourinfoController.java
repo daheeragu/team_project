@@ -20,6 +20,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.busanonna_tour.dao.TourinfoDAO;
@@ -246,6 +247,15 @@ public class TourinfoController {
 
 		return "redirect:read?info_num="+info.getInfo_num();
 	
+	}
+	
+	 //수정 폼에 개별적으로 파일 삭제
+	@ResponseBody
+	@RequestMapping (value="deleteFile", method=RequestMethod.POST)
+	public int deleteFile(int info_num) {
+		logger.info("전달된 번호 : {}", info_num);
+		int result = dao.deleteFile(info_num);
+		return result;
 	}
 	
 	//글 삭제 처리

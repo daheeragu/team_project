@@ -32,5 +32,7 @@ public interface TourinfoMapper {
 	public int updateInfo(Tourinfo info);
 	//글 삭제
 	public int deleteInfo(Tourinfo info);
+	//기존에 등록된 썸네일 삭제
+	public int deleteFile(int info_num);
 	
 }
