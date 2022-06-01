@@ -29,6 +29,8 @@ import global.sesoc.busanonna_tour.util.PageNavigator;
 import global.sesoc.busanonna_tour.vo.Board;
 import global.sesoc.busanonna_tour.vo.Reply;
 import global.sesoc.busanonna_tour.vo.review.Review;
+import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
+import global.sesoc.web5.vo.Member;
 
 @Controller
 @RequestMapping("review") 
@@ -233,5 +235,25 @@ public class ReviewController {
 		
 		return "redirect:readReview?review_num=" + reply.getReview_num(); 
 	}
+	
+	//관광지 검색 페이지로 이동
+		@RequestMapping(value = "spotSearch", method = RequestMethod.GET)
+		public String idcheck() {
+			return "reviewjsp/spotSearch";
+		}
+	
+	
+	//관광지 검색
+	@RequestMapping(value = "spotSearch", method = RequestMethod.POST)
+	public String idcheck(String spotName, Model model) {
+		logger.info("검색할 관광지 : {}", spotName);
+		ArrayList<String> nameList = dao.getTourinfo(spotName);
+		
+		model.addAttribute("nameList", nameList);
+		
+		
+		return "reviewjsp/spotSearch";
+	}	
+	
 	
 }

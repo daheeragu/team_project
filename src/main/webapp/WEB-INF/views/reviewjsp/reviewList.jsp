@@ -10,9 +10,6 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-
-</head>
-
 <!-- 페이지 이동 스크립트  -->
 <script>
 function pagingFormSubmit(currentPage) {
@@ -22,6 +19,10 @@ function pagingFormSubmit(currentPage) {
 	form.submit();
 }
 </script>
+
+</head>
+
+
 
 <body>
 
@@ -143,29 +144,45 @@ function pagingFormSubmit(currentPage) {
 </table>
 
 <!-- 페이지 이동 부분 -->
-<div id="navigator">
-<a href="javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})">◁◁ </a> &nbsp;&nbsp;
-	<a href="javascript:pagingFormSubmit(${navi.currentPage - 1})">◀</a> &nbsp;&nbsp;
+		<div id="navigator">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link"
+					href="javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})">Previous</a></li>
 
-	<c:forEach var="counter" begin="${navi.startPageGroup}" end="${navi.endPageGroup}"> 
-		<c:if test="${counter == navi.currentPage}"><b></c:if>
-			<a href="javascript:pagingFormSubmit(${counter})">${counter}</a>&nbsp;
-		<c:if test="${counter == navi.currentPage}"></b></c:if>
-	</c:forEach>
-	&nbsp;&nbsp;
-	<a href="javascript:pagingFormSubmit(${navi.currentPage + 1})">▶</a> &nbsp;&nbsp;
-	<a href="javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})">▷▷</a>
-<br/><br/>
-</div>
-<!-- /페이지 이동 끝 -->  
+				<c:forEach var="counter" begin="${navi.startPageGroup}"
+					end="${navi.endPageGroup}">
+					<c:if test="${counter == navi.currentPage}"></c:if>
+					<li class="page-item"><a class="page-link"
+						href="javascript:pagingFormSubmit(${counter})">${counter}</a></li>
+					<c:if test="${counter == navi.currentPage}"></c:if>
+				</c:forEach>
 
-
+				<li class="page-item"><a class="page-link"
+					href="javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})">Next</a></li>
+			</ul>
+			<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
+		</div>
+		
+		<!-- /페이지 이동 끝 -->
+		
 <!-- 검색 폼 -->
+		<div class="pagingForm">
+			<form id="pagingForm" method="get" action="List">
+				<input type="hidden" name="page" id="page"> 검색어 : <input
+					type="text" name="searchText" value="${searchText}"> <input
+					type="button" onclick="pagingFormSubmit(1)" value="검색">
+			</form>
+		</div>
+		<!-- /검색폼 -->
+
+
+
+<%-- <!-- 검색 폼 -->
 <form action="List" method="get">
 제목 : <input type="text" name="searchText" value="${searchText}">
 	 <input type="submit" value="검색">
-</form>
-<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
+</form>--%>
 
+ 
 </body>
 </html>
