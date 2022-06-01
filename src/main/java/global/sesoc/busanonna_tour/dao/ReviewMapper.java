@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import global.sesoc.busanonna_tour.vo.Reply;
 import global.sesoc.busanonna_tour.vo.review.Review;
+import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
 
 public interface ReviewMapper {
 	
@@ -38,6 +39,9 @@ public interface ReviewMapper {
 
 	//조회수 1 증가
 	void addHits(int review_num);
+
+	//관광정보 검색	
+	ArrayList<String> getTourinfo(String spotName);
 
 	
 
