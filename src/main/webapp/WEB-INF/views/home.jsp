@@ -57,9 +57,14 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('#goNoticeBtn').on('click', goList);    
+    $('#goNoticeBtn').on('click', goList);   
+    $('#search').on('click', search);
   }); 
-  
+
+function search(){
+	
+}
+
 $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
 	// data로 할 일...
 //	alert(data.list[0].main.temp_min);
@@ -231,9 +236,9 @@ td {
 						</ul>
 
 						<form class="d-flex">
-							<input class="form-control me-2" type="search"
+							<input class="form-control me-2" id = "search" type="search"
 								placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
+							<button class="btn btn-outline-success" type="button">Search</button>
 						</form>
 					</div>
 				</div>

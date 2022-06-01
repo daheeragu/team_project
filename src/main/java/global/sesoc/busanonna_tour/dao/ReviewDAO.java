@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import global.sesoc.busanonna_tour.vo.Board;
 import global.sesoc.busanonna_tour.vo.Reply;
 import global.sesoc.busanonna_tour.vo.review.Review;
+import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
 
 @Repository
 public class ReviewDAO {
@@ -107,6 +108,14 @@ public class ReviewDAO {
 		int result = 0;
 		result = mapper.deleteReply(reply);
 		return result;
+	}
+
+	//관광지 정보 검색
+	public ArrayList<String> getTourinfo(String spotName) {
+		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
+		ArrayList<String> t = null;
+		t = mapper.getTourinfo(spotName);
+		return t;
 	}
 
 
