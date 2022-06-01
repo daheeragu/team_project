@@ -136,7 +136,7 @@
 	
 	  <tr id="save">
 	    <td colspan ="2">
-	      <input type="submit" value="저장">
+	      <input type="submit" value="저장"> <button type="button" onClick="location.href='${info.info_theme}'">취소</button>
 	    </td>
 	  </tr>
 </table>
