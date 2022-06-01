@@ -142,6 +142,8 @@ function backpage(){
                            <li class="nav-item">
                             <a class="nav-link" href="#" onclick = "backpage()">로그아웃</a>
                            </li>
+                           <li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+							</li>
                           </c:if>
                            <li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
 							</li>
