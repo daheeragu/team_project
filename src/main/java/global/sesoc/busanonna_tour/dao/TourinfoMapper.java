@@ -9,8 +9,6 @@ import global.sesoc.busanonna_tour.vo.Reply;
 import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
 
 public interface TourinfoMapper {
-    //글쓰기
-	public int write(Tourinfo info);
 	//글개수
 	public int getTotalSpot(String theme);
 	public int getTotalFood(String theme);
@@ -28,6 +26,8 @@ public interface TourinfoMapper {
 	public void addHits(int info_num);
 	//땡기네 1증가
 	public void addLike(int info_num);
+	//글쓰기
+	public int writeInfo(Tourinfo info);
 	//글 수정
 	public int updateInfo(Tourinfo info);
 	//글 삭제

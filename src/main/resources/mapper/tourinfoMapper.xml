@@ -173,6 +173,7 @@
 			, info_address
 			, info_content
 			, info_state
+			, info_theme
 			, savedfile
 			)
 		values
@@ -185,6 +186,7 @@
 			, #{info_address}
 			, #{info_content}
 			, #{info_state}
+			, #{info_theme}
 			, #{savedfile}
 			)
 	</insert>
@@ -212,9 +214,8 @@
 	   update
             tourinfo
 	   set 
-			savedfile = ''	   
+			savedfile = ' '	   
        where
             info_num = #{info_num}
-	 
 	 </update>
 </mapper>

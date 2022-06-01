@@ -120,15 +120,17 @@
 		  </td>
 	  </tr>
 	  
+	  <!-- 기존에 업로드한 이미지 파일 불러오기 -->
 	  <tr>
 	  	<th>썸네일 이미지 첨부</th>
 	  	<td>
-	  		<img style="width: 100px; height: 100px;"
+	  		<a href="download?info_num=${info.info_num}">
+	  			<img style="width: 100px; height: 100px;"
 				src="download?info_num=${info.info_num}">
-	  		<input type="file" name="upload" size="30" value="이미지 업로드">
+	  		</a>
 			<input type="button" id="deletebtn"
 				data-num="${info.info_num}" value="X">
-	  		<div id="group"></div>
+	  		<button id="addbtn" type="button">파일 추가</button>
 	  	</td>	
 	  </tr>
 	

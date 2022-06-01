@@ -39,7 +39,7 @@ public class TourinfoController {
 	private static final Logger logger = LoggerFactory.getLogger(TourinfoController.class);
 	
 	//게시판 관련 상수값들
-	 final int countPerPage = 10; //페이지당 글 수 
+	 final int countPerPage = 12; //페이지당 글 수 
 	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
 	 final String uploadPath = "/tourinfoThumb"; // 파일 업로드 경로 
 	 
@@ -148,8 +148,9 @@ public class TourinfoController {
 		logger.info("파일정보:{}", upload.getOriginalFilename());
 
 		//세션에서 아이디 받아오기 
-		String loginId = (String) session.getAttribute("loginId");
-		info.setAdmin_id(loginId);
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		logger.info("세팅될 아이디:{}", loginAdmin);
+		info.setAdmin_id(loginAdmin);
 		
 		//info 객체에 썸네일 이미지 세팅
 		String savedfile = FileService.saveFile(upload, uploadPath);
@@ -157,9 +158,9 @@ public class TourinfoController {
 		
 	    //Board객체를 DAO로 보내서 글쓰기
 		logger.info("저장할 글정보 : {}", info);
-		dao.write(info);
+		dao.writeInfo(info);
 		
-		return "redirect:/" + info.getInfo_theme();
+		return "redirect:/tourinfo/" + info.getInfo_theme();
 		
 	}
 	
@@ -249,7 +250,7 @@ public class TourinfoController {
 	
 	}
 	
-	 //수정 폼에 개별적으로 파일 삭제
+	//수정 폼에 개별적으로 파일 삭제
 	@ResponseBody
 	@RequestMapping (value="deleteFile", method=RequestMethod.POST)
 	public int deleteFile(int info_num) {
@@ -262,12 +263,12 @@ public class TourinfoController {
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(int info_num, HttpSession session) {
 		
-		String loginId = (String) session.getAttribute("loginId");
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
 		
 		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
 		Tourinfo info = new Tourinfo();
 		info.setInfo_num(info_num);
-		info.setAdmin_id(loginId);
+		info.setAdmin_id(loginAdmin);
 		
 		logger.info("전달된 값: {}", info);
 	    int result = dao.deleteInfo(info);
