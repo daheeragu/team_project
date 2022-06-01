@@ -124,4 +124,15 @@ admin_id, notice_num, notice_title, notice_content, notice_inputdate
 'admin', notice_seq.nextval, '공지사항', '공지입니다', sysdate
 );
 
+
+--review 글번호 시퀀스 생성
+create sequence review_seq;
+--review 더미데이터
+insert into review (
+    user_id, info_num, review_num, review_title, review_content
+    , review_inputdate
+) values (
+    'user1', 7, review_seq.nextval, '해운대감', '좋았어요', sysdate
+);
+
 commit;
