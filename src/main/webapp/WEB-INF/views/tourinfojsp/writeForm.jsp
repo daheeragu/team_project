@@ -49,29 +49,29 @@
       <col style="background-color:#BDBDBD;">
       <col style="background-color:#EAEAEA;">
     </colgroup>
-    <tr>
-	    <th>글번호</th>
-	    <td><input style="width:200px" type="number" name="info_num" id="num" value="${info.info_num}" readonly></td> 
-	  </tr>
     
 	  <tr>
 	    <th>제목</th>
 	    <td><input style="width:500px" type="text" name="info_title" id="title" value="${info.info_title}"></td> 
 	  </tr>
 	  
-	   <tr>
-	    <th>작성자</th>
-	    <td><input type="text" name="admin_id" value="${info.admin_id}" readonly></td> 
-	  </tr>
-	  
 	  <tr>
-	    <th>부제목</th>
+	    <th>부제</th>
 	    <td><input style="width:500px" type="text" name="info_subtitle" id="subtitle" value="${info.info_subtitle}"></td> 
 	  </tr>
 	  
 	   <tr>
 	 	 <th>이름</th>
 	 	 <td><input style="width:200px" type="text" name="info_name" id="name"></td>
+		</tr>
+		<tr>
+			<th>여행 테마</th>
+			<td>
+				<input type="radio" name="info_theme" value="spot" checked> 명소
+	  			<input type="radio" name="info_theme" value="food"> 먹거리
+	  			<input type="radio" name="info_theme" value="leisure"> 레저
+	  			<input type="radio" name="info_theme" value="experience"> 체험
+	  		</td>
 		</tr>
 		<tr>
 	     <th>구역(구)</th>

@@ -20,15 +20,6 @@ public class TourinfoDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	//글쓰기
-	public int write(Tourinfo info) {
-	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-	    int result = 0; 
-	    
-	    result = mapper.write(info);
-	    return result; 
-		
-	}
 	//명소 글개수
 	public int getTotalSpot(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -37,6 +28,7 @@ public class TourinfoDAO {
 		result = mapper.getTotalSpot(theme);
 	    return result;
 	}
+	
 	//먹거리 글개수
 	public int getTotalFood(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -45,6 +37,7 @@ public class TourinfoDAO {
 		result = mapper.getTotalFood(theme);
 	    return result;
 	}
+	
 	//레저 글개수
 	public int getTotalLeisure(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -54,7 +47,7 @@ public class TourinfoDAO {
 	    return result;
 	}
 	
-	//레저 글개수
+	//체험 글개수
 	public int getTotalExp(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		int result = 0; 
@@ -62,6 +55,7 @@ public class TourinfoDAO {
 		result = mapper.getTotalExp(theme);
 	    return result;
 	}
+	
 	//명소 글목록
 	public ArrayList<Tourinfo> spotlist(int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -73,6 +67,7 @@ public class TourinfoDAO {
 		ArrayList<Tourinfo> result = mapper.spotlist(rb);
 		return result;
 	}
+	
 	//먹거리 글목록
 	public ArrayList<Tourinfo> foodlist(int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -97,7 +92,7 @@ public class TourinfoDAO {
 			return result;
 		}
 		
-		//레저 글목록
+		//체험 글목록
 		public ArrayList<Tourinfo> explist(int startRecord, int countPerPage) {
 			TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 			
@@ -121,13 +116,28 @@ public class TourinfoDAO {
 		 
 		 return info; 
 	}
+	
+	//글쓰기
+	public int writeInfo(Tourinfo info) {
+	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+	    int result = mapper.writeInfo(info);
+	    return result; 
+	}
+	
     //글 수정
 	public int updateInfo(Tourinfo info) {
 	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 	    int result = mapper.updateInfo(info);
 	    return result; 
-		
 	}
+	
+	//글 수정 페이지에서 기존에 등록된 썸네일 삭제
+	public int deleteFile(int info_num) {
+		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		 int result = mapper.deleteFile(info_num);
+		 return result;
+	}
+	
 	//글 삭제
 	public int deleteInfo(Tourinfo info) {
 	      TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -143,5 +153,7 @@ public class TourinfoDAO {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		 mapper.addLike(info_num);
 	}
+	
+
 
 }

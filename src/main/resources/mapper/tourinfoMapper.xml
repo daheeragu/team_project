@@ -173,6 +173,7 @@
 			, info_address
 			, info_content
 			, info_state
+			, info_theme
 			, savedfile
 			)
 		values
@@ -185,6 +186,7 @@
 			, #{info_address}
 			, #{info_content}
 			, #{info_state}
+			, #{info_theme}
 			, #{savedfile}
 			)
 	</insert>
@@ -206,4 +208,14 @@
 			info_num = #{info_num}
 			and admin_id = #{admin_id}
 	</update>
+	
+	<!-- 수정 폼에 개별적으로 파일 삭제(공백을 넣어서 업데이트) -->
+	 <update id="deleteFile" parameterType="int">
+	   update
+            tourinfo
+	   set 
+			savedfile = ' '	   
+       where
+            info_num = #{info_num}
+	 </update>
 </mapper>
