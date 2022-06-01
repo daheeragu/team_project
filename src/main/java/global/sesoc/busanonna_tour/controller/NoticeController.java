@@ -41,7 +41,12 @@ public class NoticeController {
 
 	@Autowired
 	NoticeDAO dao;
-	
+	//네이버 지도 API (내주변) 
+	@RequestMapping(value = "recommend", method = RequestMethod.GET)
+	public String recommend() {
+		
+		return "noticejsp/map";
+	}
 	//공지사항 목록으로 이동
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model model
@@ -173,13 +178,21 @@ public class NoticeController {
 	 //공지사항 수정 폼
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String edit(int notice_num, Model model) {
-	 //전달받은 글 번호로 글 정보 검색해서 모델에 저장
+	 
+		//전달받은 글 번호로 글 정보 검색해서 모델에 저장
 		Notice notice = dao.readNotice(notice_num);
 		if(notice == null) {
 			return "redirect:list";
 		}
 		
+		ArrayList<Notice_pic> picList = dao.fileList(notice_num);
+		
+		//관리자 아이디 임시 설정
+		String admin_id = "hong";
+		notice.setAdmin_id(admin_id);
+		
 		model.addAttribute("notice", notice);
+		model.addAttribute("picList", picList);
 		
 		return "noticejsp/editForm";
 		

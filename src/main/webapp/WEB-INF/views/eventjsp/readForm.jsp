@@ -10,7 +10,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
    
-    <title>꿀팁 | 공지 | BUSANONNA </title>
+    <title>꿀팁 | 이벤트 | BUSANONNA </title>
    
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
@@ -64,12 +64,13 @@ $(document).ready(function(){
  <style>
  .container {
 	margin-top: 200px;
+	width:80%;
         }
 
  .subvis {
 	width: 100%;
-	height: 335px;
-	background-image: url('../resources/image/sunset.jpg');
+	height: 370px;
+	background-image: url('../resources/image/flower_park.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
@@ -77,11 +78,12 @@ $(document).ready(function(){
 
  h1 {
 	text-align: center;
+	font-family:'Black Han Sans', sans-serif;
 	color: white;
 	margin: auto;
 	top: 100px;
 	position: relative;
-	top: 40%
+	top: 45%
    }
 </style>
 
@@ -108,19 +110,19 @@ $(document).ready(function(){
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">명소</a></li>
-								<li><a class="dropdown-item" href="#">먹거리</a></li>
-								<li><a class="dropdown-item" href="#">레저</a></li>
-								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="../notice/recommend">내주변</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">리뷰</a></li>
+								<li><a class="dropdown-item" href="../review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -129,32 +131,45 @@ $(document).ready(function(){
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								꿀팁 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="notice/list">공지</a></li>
-								<li><a class="dropdown-item" href="event/list">이벤트</a></li>
+								<li><a class="dropdown-item" href="../notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="../event/list">이벤트</a></li>
 							</ul>
 						</li>
 				
 						</ul>
-					   
-					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
-                         <ul class="navbar-nav text-center">
-                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
-                           </li>
-                           <li class="nav-item">
-                             <a class="nav-link" href="#">회원가입</a>
-                           </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
-                           </li>
-                          </ul>
-				    
-					<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navbarNav-menu">
+						<ul class="navbar-nav text-center">
+							<c:if test="${loginId == null && loginAdmin == null}">
+								<li class="nav-item"><a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="../user/joinForm">회원가입</a></li>
+							</c:if>
+							<c:if test="${loginId != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+							<c:if test="${loginAdmin != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+						</ul>
+
+						<form class="d-flex">
+							<input class="form-control me-2" type="search"
+								placeholder="Search" aria-label="Search">
 							<button class="btn btn-outline-success" type="submit">Search</button>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
 		</nav>
 	</header>
 	
@@ -163,7 +178,7 @@ $(document).ready(function(){
 </div>
 
 
-<div class = "container">
+<div class ="container">
  <table class="table">
   <tbody>
   
@@ -188,9 +203,6 @@ $(document).ready(function(){
      
     <tr>
       <th scope="row" colspan="2">
-         <c:forEach var="pic" items="${picList}">
-         <img src = "download?eventpic_num=${pic.eventpic_num}">
-         </c:forEach>
           ${event.event_content}
       </th>
     </tr>

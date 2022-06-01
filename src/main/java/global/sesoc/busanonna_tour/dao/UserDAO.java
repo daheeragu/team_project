@@ -16,6 +16,7 @@ public class UserDAO {
 	@Autowired
 	SqlSession sqlSession;
 
+	// 유저 검색
 	public Userinfo selectUserinfo(String id) {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		Userinfo user = null;
@@ -23,6 +24,7 @@ public class UserDAO {
 		return user;
 	}
 
+	// 유저 등록
 	public int insertUserinfo(Userinfo user) {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		int result = 0;
@@ -30,6 +32,7 @@ public class UserDAO {
 		return result;
 	}
 
+	// 관리자 검색
 	public Admin selectAdmin(String id) {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		Admin admin = null;
@@ -37,18 +40,19 @@ public class UserDAO {
 		return admin;
 	}
 
-	public int updateAdmin(String loginId) {
+	// 유저 정보 수정
+	public int updateUserinfo(Userinfo user) {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		int result = 0;
-		result = mapper.updateAdmin(loginId);
+		result = mapper.updateUserinfo(user);
 		return result;
-		
 	}
 	
-	public int updateUserinfo(String loginId) {
+	// 관리자 정보 수정
+	public int updateAdmin(Admin admin) {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		int result = 0;
-		result = mapper.updateUserinfo(loginId);
+		result = mapper.updateAdmin(admin);
 		return result;
 		
 	}

@@ -8,6 +8,7 @@
 <title>꿀팁 | 이벤트 | BUSANONNA</title>
 
 <script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
+<script src = "../resources/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -99,8 +100,18 @@ td {
 
 				<tr>
 					<th>내용</th>
-					<td><textarea rows="15" cols="70" id="event_content"
-							name="event_content">${event.event_content}</textarea></td>
+					<td>
+					 <textarea id="event_content" name="event_content">${event.event_content}</textarea>
+					     <script>
+	                        CKEDITOR.replace('event_content'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                	//	, extraPlugins:'imagebase'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	            </script>
+					
+					</td>
 				</tr>
                 
                   <!-- 기존에 업로드된 파일과 이미지 불러오기 -->

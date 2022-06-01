@@ -1,6 +1,9 @@
 package global.sesoc.busanonna_tour.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,9 +37,22 @@ public class ChatHandler extends AbstractWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		logger.info("서버측 수신 : {}, ID: {}", message.getPayload(), session.getId());
 		
-		TextMessage msg = new TextMessage("클라이언트" + session.getId() + ": " + message.getPayload());
+		Map<String, Object> map = session.getAttributes();
+		String loginName = (String)map.get("loginName");
+		String loginId = (String)map.get("loginId");
+		if (loginName == null && loginId == null) {
+			loginName = "익명";
+			loginId = session.getId();
+		}
+		if (loginId == null) {
+			loginId = "관리자";
+		}
+		TextMessage msg = new TextMessage(loginName + "(" + loginId + ")" + " : " + message.getPayload());
+		
 		for(WebSocketSession ss: list) {
-			ss.sendMessage(msg);
+			if (message.getPayloadLength() > 0) {
+				ss.sendMessage(msg);
+			}
 		}
 	}
 }

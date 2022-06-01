@@ -34,6 +34,16 @@
 		where
 			info_theme = 'leisure'
 	</select>
+	
+		<!-- 체험 글 개수 -->
+	<select id="getTotalExp" parameterType="string" resultType="int">
+		select
+			count(*)
+		from 
+			tourinfo
+		where
+			info_theme = 'experience'
+	</select>
 
 	<!-- 명소 글 목록 -->
 	<select id="spotlist" parameterType="string" resultType="Tourinfo">
@@ -44,11 +54,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
-			, info_gu
-			, info_state
-			, info_address
-			, info_name
-			, info_theme
+			, savedfile
 		from
 			tourinfo
 		where
@@ -66,11 +72,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
-			, info_gu
-			, info_state
-			, info_address
-			, info_name
-			, info_theme
+			, savedfile
 		from
 			tourinfo
 		where
@@ -88,11 +90,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
-			, info_gu
-			, info_state
-			, info_address
-			, info_name
-			, info_theme
+			, savedfile
 		from
 			tourinfo
 		where
@@ -100,5 +98,112 @@
 		order by
 			info_num desc
 	</select>
+	
+		<!-- 체험 글 목록 -->
+	<select id="explist" parameterType="string" resultType="Tourinfo">
+		select
+			info_num
+			, info_title
+			, info_subtitle
+			, to_char(info_inputdate, 'MM/DD') info_inputdate
+			, info_hits
+			, info_like
+			, savedfile
+		from
+			tourinfo
+		where
+			info_theme = 'experience'
+		order by
+			info_num desc
+	</select>
 
+	<!-- 조회수 1 증가 -->
+	<update id="addHits" parameterType="int">
+		update
+			tourinfo
+		set
+			info_hits = info_hits + 1
+		where
+			info_num = #{info_num}
+	</update>
+
+	<!-- 글번호로 글 읽기 -->
+	<select id="readInfo" parameterType="int" resultType="Tourinfo">
+		select
+			info_num
+			, admin_id
+			, info_title
+			, info_subtitle
+			, info_content
+			, to_char(info_inputdate, 'MM/DD') info_inputdate
+			, info_hits
+			, info_like
+			, info_gu
+			, info_state
+			, info_address
+			, info_name
+			, info_theme
+			, savedfile
+		from
+			tourinfo
+		where
+			info_num = #{info_num}
+	</select>
+
+	<!-- 조회수 1 증가 -->
+	<update id="addLike" parameterType="int">
+		update
+			tourinfo
+		set
+			info_like = info_like + 1
+		where
+			info_num = #{info_num}
+	</update>
+	
+	<!-- 글쓰기 -->
+	<insert id="writeInfo" parameterType="Tourinfo" >
+		insert into
+			tourinfo
+			(info_num
+			, admin_id
+			, info_title
+			, info_subtitle
+			, info_name
+			, info_gu
+			, info_address
+			, info_content
+			, info_state
+			, savedfile
+			)
+		values
+			(tourinfo_seq.nextval
+			, #{admin_id}
+			, #{info_title}
+			, #{info_subtitle}
+			, #{info_name}
+			, #{info_gu}
+			, #{info_address}
+			, #{info_content}
+			, #{info_state}
+			, #{savedfile}
+			)
+	</insert>
+	
+	<!-- 글 수정 -->
+	<update id="updateInfo" parameterType="Tourinfo" >
+		update
+			tourinfo
+		set
+			info_title = #{info_title}
+			, info_subtitle = #{info_subtitle}
+			, info_name = #{info_name}
+			, info_gu = #{info_gu}
+			, info_address = #{info_address}
+			, info_content = #{info_content}
+			, info_state = #{info_state}
+			, savedfile = #{savedfile}
+		where
+			info_num = #{info_num}
+			and admin_id = #{admin_id}
+	</update>
 </mapper>

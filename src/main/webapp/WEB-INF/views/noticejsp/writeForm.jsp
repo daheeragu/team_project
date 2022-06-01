@@ -5,6 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>꿀팁 | 공지 | BUSANONNA </title>
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
+<script src = "../resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+ 
+$(document).ready(function(){
+	//추가 버튼 이벤트 처리
+	 $('#addbtn').on('click', function(){
+		  $('#group').append('<input type="file" class="file_group" name="upload" size="30"><br>'); 
+	  });
+  });
+
+</script>
 </head>
 
 <style>
@@ -45,15 +57,25 @@
   
   <tr>
     <th>내용</th>
-    <td><textarea rows="15" cols="70" name="notice_content" 
-                  id="notice_content" style="resize:none;"></textarea> 
+    <td>
+    <textarea name="notice_content" id="notice_content"></textarea> 
+     <script>
+	                CKEDITOR.replace('notice_content'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                	//	, extraPlugins:'imagebase'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	  </script>
+    </td>
   </tr>
   
   <tr>
    <th>파일첨부</th> 
 	<td>
-		<input type="file" name="upload" size="30">
-		<input type="file" name="upload" size="30">
+		<button id="addbtn" type="button">파일 추가</button>
+		<div id="group">
+		</div>
 	</td>
   </tr>
   

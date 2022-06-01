@@ -28,6 +28,14 @@ public class NoticeDAO {
 		
 		return result; 
 	}
+	//홈화면용 공지사항
+	public ArrayList<Notice> listNoticeForHome(){
+		
+		NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
+		ArrayList<Notice> result = mapper.listNoticeForHome();
+		
+		return result; 
+	}
 	// 공지사항 갯수
 	public int getTotal(String searchText) {
 		

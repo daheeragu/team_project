@@ -127,9 +127,11 @@ select
 	        , admin_id
 	        , event_title
 	        , event_content
-	        , event_startdate
-	        , event_enddate
-	        , event_state
+	        , to_char(event_startdate, 'YYYY-MM-DD') event_startdate
+            , to_char(event_enddate, 'YYYY-MM-DD') event_enddate
+        <![CDATA[ 
+             , case when event_enddate < sysdate then '(종료)' else '(진행중)' end event_state
+        ]]>
 	 from 
 	       event 
 	 where 

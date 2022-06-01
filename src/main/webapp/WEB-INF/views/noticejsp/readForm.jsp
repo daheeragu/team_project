@@ -32,9 +32,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
-
-  <script>
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
+<script>
   
+  $(document).ready(function(){
+	    $('#updatebtn').on('click', updateNotice);
+	    $('#deletebtn').on('click', deleteNotice);
+	    $('#golistbtn').on('click', returnList);
+	    
+	  }); 
+	  
   function updateNotice(){
 	  location.href='edit?notice_num=${notice.notice_num}';	  
   }
@@ -48,6 +55,10 @@
     	location.href = 'list';
     }  
   
+  function backpage(){
+		window.location = "../user/logout";
+		location.href = "../notice/readForm";
+	}
   </script>
  
   <style>
@@ -63,10 +74,30 @@
    }
    
    .notice-content{
-    margin-top : 50px;
+    margin-top: 50px;
+    margin-left: 150px;
+    width: 80%;
    }
    
-  
+   .subvis {
+	width: 100%;
+	height: 300px;
+	background-image: url('../resources/image/sunset.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+     }
+
+ h1 {
+	text-align: center;
+	font-family:'Black Han Sans', sans-serif;
+	color: white;
+	margin: auto;
+	top: 100px;
+	position: relative;
+	top: 45%
+   }
+   
 </style>
 
     
@@ -78,7 +109,7 @@
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">BUSAN</a>
+				<a class="navbar-brand" href="../">BUSAN</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -93,12 +124,12 @@
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">명소</a></li>
-								<li><a class="dropdown-item" href="#">먹거리</a></li>
-								<li><a class="dropdown-item" href="#">레저</a></li>
-								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="../notice/recommend">내주변</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -114,25 +145,39 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								꿀팁 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="notice/list">공지</a></li>
-								<li><a class="dropdown-item" href="event/list">이벤트</a></li>
+								<li><a class="dropdown-item" href="../notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="../event/list">이벤트</a></li>
 							</ul>
 						</li>
 				
 						</ul>
 					   
-					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
-                         <ul class="navbar-nav text-center">
-                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">로그인</a>
-                           </li>
-                           <li class="nav-item">
-                             <a class="nav-link" href="#">회원가입</a>
-                           </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
-                           </li>
-                          </ul>
+					 <div class="collapse navbar-collapse justify-content-end"
+						id="navbarNav-menu">
+						<ul class="navbar-nav text-center">
+							<c:if test="${loginId == null && loginAdmin == null}">
+								<li class="nav-item"><a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="../user/joinForm">회원가입</a></li>
+							</c:if>
+							<c:if test="${loginId != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" 
+								href="#" onclick = "backpage()">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+							<c:if test="${loginAdmin != null}">
+								<li class="nav-item"><a class="nav-link">${loginName}님</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" 
+								href="#" onclick = "backpage()">로그아웃</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+								</li>
+							</c:if>
+						</ul>
 				    
 					<form class="d-flex">
 							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -143,52 +188,59 @@
 		</nav>
 	</header>
 
+<main>
 
+ <div class="subvis">
+    <h1>공지사항</h1>
+ </div>
 
- 
+<br><br>
+
 <div class="notice-content">
-<table>
- <colgroup>
-   <col style="background-color: #EAEAEA;">
- </colgroup>
- <tr>
-  <td style="width:100px; text-align:center;">제목</td>
-  <td style="width:800px">${notice.notice_title}</td>
- </tr> 
- 
- <tr>
-  <td style="width:100px; text-align:center;">작성자</td>
-  <td style="width:800px">${notice.admin_id}</td>
- </tr> 
- 
- <tr style="background-color: white;">
-   <td colspan="2">
-   
-   ${notice.notice_content}
-   
-   <c:forEach var="pic" items="${picList}">
-   <img src = "download?noticepic_num=${pic.noticepic_num}"> 
-   </c:forEach>
-   
-   </td>
- </tr>
- 
- <tr id="return" style="background-color: white; border: white; text-align: right;">
-   <td colspan="2">
-     <input type="button" value="수정" onclick="updateNotice()">
-     &nbsp;
-     <input type="button" value="삭제" onclick="deleteNotice()">
-     &nbsp;
-     <input type="button" value="목록" onclick="returnList()">
-   </td>
- </tr>
-</table>
+<table class="table">
+    <tr>
+     <th scope="row" style="width:100px; text-align:center;">제목</th>
+     <td style="width:800px">${notice.notice_title}</td>
+    </tr>
+    
+    <tr>
+     <th scope="row" style="width:100px; text-align:center;">작성자</th>
+     <td style="width:800px">${notice.admin_id}</td>
+    </tr>
+    
+    <tr>
+     <td scope="row" colspan="2">
+        ${notice.notice_content}</td>
+    </tr>
+    
+    <tr>
+     <th scope="row" style="width:100px; text-align:center;">첨부된 파일</th>
+     <td style="width:800px">
+     <c:forEach var="pic" items="${picList}">
+        <a href = "download?noticepic_num=${pic.noticepic_num}">
+          ${pic.savedfile}</a> 
+      </c:forEach></td>
+    </tr>
+    
+				<tr id="return" style="border: white; text-align: right;">
+					<td colspan="2">
+						<button type="button" class="btn btn-outline-secondary"
+							id="updatebtn">수정</button> &nbsp;
+						<button type="button" class="btn btn-outline-secondary"
+							id="deletebtn">삭제</button> &nbsp;
+						<button type="button" class="btn btn-outline-secondary"
+							id="golistbtn">목록</button>
+					</td>
+				</tr>
+
+			</table>
+
 </div>
 
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
-
+</main>
 
 </html>
