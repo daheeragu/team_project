@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <!-- 페이지 이동 스크립트  -->
 <script>
 function pagingFormSubmit(currentPage) {
@@ -17,6 +17,44 @@ function pagingFormSubmit(currentPage) {
 	var page = document.getElementById('page');
 	page.value = currentPage;
 	form.submit();
+}
+
+$.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
+	// data로 할 일...
+//	alert(data.list[0].main.temp_min);
+	var $cTemp = data.main.temp;
+	var $minTemp = data.main.temp_min;
+	var $maxTemp = data.main.temp_max;
+	var $cIcon = data.weather[0].icon;
+	var $now = new Date($.now());
+	var $cDate = $now.getFullYear() + '/' + ($now.getMonth() + 1) + '/' + $now.getDate() + '/' + $now.getHours() + ':' + $now.getMinutes()
+	// A.appendTo(B) B요소의 내용의 뒤에 A를 추가
+	// A.append(B) A요소의 내용의 뒤에 B를 추가
+	// A.prependTo(B) B요소의 내용의 앞에 A를 추가
+	// A.prepend(B) A요소의 내용의 앞에 B를 추가
+	// Date.now();, == $.now : 현재시간 출력
+	// new Date(Date.now());
+	// alert(new Date(Date.now()));
+	// .getFullYear() : 년도
+	// .getHours() : 시간
+	// .getMinutes() : 분
+	// .getMonth() : 월 - 0이 1월
+	// .getDate() : 일
+	
+	$('.ctemp').append($cTemp);
+	$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
+});
+
+function pagingFormSubmit(currentPage) {
+	var form = document.getElementById('pagingForm');
+	var page = document.getElementById('page');
+	page.value = currentPage;
+	form.submit();
+}
+
+function backpage(){
+	window.location = "../user/logout";
+	location.href = "../review/List";
 }
 </script>
 
@@ -71,15 +109,20 @@ function pagingFormSubmit(currentPage) {
 						</li>
 				
 						</ul>
-					   
+					   <div>
+						<a href="https://www.kma.go.kr/busan/html/main/index.jsp"
+							style="text-decoration: none"> <span class="ctemp"
+							style="color: white;">현재 온도 : </span> <span class="cicon"
+							style="width: 25px; height: 25px;"></span></a>
+					   </div>
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
                           <c:if test = "${loginId == null}">
                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="user/loginForm">로그인</a>
+                            <a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a>
                            </li>
                            <li class="nav-item">
-                             <a class="nav-link" href="user/joinForm">회원가입</a>
+                             <a class="nav-link" href="../user/joinForm">회원가입</a>
                            </li>
                           </c:if>
                           <c:if test = "${loginId != 'manager' && loginName != '관리자' && loginId != null}">
@@ -87,20 +130,21 @@ function pagingFormSubmit(currentPage) {
                              <a class="nav-link">${loginName}님</a>
                            </li>
                            <li class="nav-item">
-                            <a class="nav-link" href="user/logout">로그아웃</a>
+                            <a class="nav-link" href="#" onclick = "backpage()">로그아웃</a>
                            </li>
+                           <li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+						   </li>
                           </c:if>
                           <c:if test = "${loginId == 'manager' && loginName == '관리자'}">
                           <li class="nav-item">
                              <a class="nav-link">${loginName}님</a>
                            </li>
                            <li class="nav-item">
-                            <a class="nav-link" href="user/logout">로그아웃</a>
+                            <a class="nav-link" href="#" onclick = "backpage()">로그아웃</a>
                            </li>
                           </c:if>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
-                           </li>
+                           <li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
+							</li>
                           </ul>
 				    
 					<form class="d-flex">
