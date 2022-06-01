@@ -12,16 +12,16 @@
 
 <script type="text/javascript">
 //게시글 삭제
-function deleteBoard(num){
+function deleteReview(num){
 	if(confirm('정말 삭제하시겠습니까?')) {
-		location.href = 'delete?boardnum='+num;
+		location.href = 'delete?review_num='+num;
 	}
 }
 
 //리플 삭제
-function replyDelete(replynum, boardnum) {
+function deleteReply(reply_num, review_num) {
 	if (confirm('리플을 삭제하시겠습니까?')) {
-		location.href='replyDelete?replynum=' + replynum + '&boardnum=' + boardnum;
+		location.href='deleteReply?reply_num=' + reply_num + '&review_num=' + review_num;
 	}
 }
 
@@ -129,6 +129,11 @@ function replyDelete(replynum, boardnum) {
 
 
 <tr>
+<th>글번호</th>
+<td>${review.review_num}</td>
+</tr>
+
+<tr>
 <th>작성일</th>
 <td>${review.review_inputdate}</td>
 </tr>
@@ -172,8 +177,8 @@ function replyDelete(replynum, boardnum) {
 <c:if test="${sessionScope.loginId != null}">
 <form action="replyWrite" method="post" onSubmit="return replyFormCheck();">
 리플내용
-	<input type="hidden" name="boardnum" value="${board.boardnum}">
-	<input type="text" name="text" style="width500px;">
+	<input type="hidden" name="review_num" value="${review.review_num}">
+	<input type="text" name="reply_content" style="width500px;">
 	<input type="submit" value="확인">
 </form>
 </c:if>
@@ -182,17 +187,17 @@ function replyDelete(replynum, boardnum) {
 
 <!-- 리플 목록 출력 시작 -->
 <table class="reply">
-<c:forEach var="reply" items="${replylist}">
+<c:forEach var="reply" items="${replyList}">
 	<tr>
 		<td class="replyid">
-			<b>${reply.id}</b>
+			<b>${reply.user_id}</b>
 		</td>
 		<td class="replytext">
-			${reply.text}
+			${reply.reply_content}
 		</td>
 		<td class="replybutton">
-			<c:if test="${loginId == reply.id}">
-				[<a href="javascript:replyDelete(${reply.replynum}, ${reply.boardnum })">삭제</a>]
+			<c:if test="${sessionScope.loginId == reply.user_id}">
+				[<a href="javascript:deleteReply(${reply.reply_num}, ${reply.review_num })">삭제</a>]
 			</c:if>
 		</td>
 	</tr>	

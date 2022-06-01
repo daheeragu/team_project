@@ -12,6 +12,17 @@
 
 
 </head>
+
+<!-- 페이지 이동 스크립트  -->
+<script>
+function pagingFormSubmit(currentPage) {
+	var form = document.getElementById('pagingForm');
+	var page = document.getElementById('page');
+	page.value = currentPage;
+	form.submit();
+}
+</script>
+
 <body>
 
 <header>
@@ -102,6 +113,11 @@
 <br>
 <br>
 <br>
+
+<p>
+	전체 : ${total}	
+</p>
+
 <table class="table">
   <thead>
     <tr>
@@ -114,7 +130,7 @@
   </thead>
   
   <tbody>
-   <c:forEach var="review" items="${reviewlist}">
+   <c:forEach var="review" items="${reviewList}">
     <tr>
       <th scope="row">${review.review_num}</th>
       <td><a href="readReview?review_num=${review.review_num}">${review.review_title}</a></td>
@@ -126,10 +142,30 @@
   </tbody>
 </table>
 
-<p>
-		<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
-	</p>
+<!-- 페이지 이동 부분 -->
+<div id="navigator">
+<a href="javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})">◁◁ </a> &nbsp;&nbsp;
+	<a href="javascript:pagingFormSubmit(${navi.currentPage - 1})">◀</a> &nbsp;&nbsp;
 
+	<c:forEach var="counter" begin="${navi.startPageGroup}" end="${navi.endPageGroup}"> 
+		<c:if test="${counter == navi.currentPage}"><b></c:if>
+			<a href="javascript:pagingFormSubmit(${counter})">${counter}</a>&nbsp;
+		<c:if test="${counter == navi.currentPage}"></b></c:if>
+	</c:forEach>
+	&nbsp;&nbsp;
+	<a href="javascript:pagingFormSubmit(${navi.currentPage + 1})">▶</a> &nbsp;&nbsp;
+	<a href="javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})">▷▷</a>
+<br/><br/>
+</div>
+<!-- /페이지 이동 끝 -->  
+
+
+<!-- 검색 폼 -->
+<form action="List" method="get">
+제목 : <input type="text" name="searchText" value="${searchText}">
+	 <input type="submit" value="검색">
+</form>
+<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
 
 </body>
 </html>

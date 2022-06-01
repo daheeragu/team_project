@@ -37,8 +37,8 @@ public class ReviewController {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
 	//게시판 관련 상수값들
-//	 final int countPerPage = 10; //페이지당 글 수 
-//	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
+	 final int countPerPage = 10; //페이지당 글 수 
+	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
 //	 final String uploadPath = "/boardfile"; // 파일 업로드 경로 
 	 
 	@Autowired
@@ -46,11 +46,26 @@ public class ReviewController {
 	
 	//리뷰 리스트 이동
 	@RequestMapping(value = "List", method = RequestMethod.GET)
-	public String reviewlist(Model model){
-		ArrayList<Review> review = dao.reviewList();
+	public String reviewlist(Model model, HttpSession session
+			, @RequestParam(value="searchText", defaultValue="") String searchText
+			, @RequestParam(value="page", defaultValue="1") int page){
 		
-		model.addAttribute("reviewlist", review);
+		logger.debug("page: {}, searchText: {}", page, searchText);
 		
+		//전체 글 개수 
+		int total = dao.getTotal(searchText);
+		//페이지 계산을 위한 객체 생성 
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
+		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
+		ArrayList<Review> reviewList = dao.reviewList(searchText, navi.getStartRecord(), navi.getCountPerPage());	
+		
+		
+		//페이지 정보 객체와 글 목록, 검색어를 모델에 저장
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("navi", navi);
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("total", total);
+
 		return "reviewjsp/reviewList";
 	}
 	
@@ -81,7 +96,7 @@ public class ReviewController {
 	
 	//글 읽기로 이동
 	@RequestMapping(value = "readReview", method = RequestMethod.GET)
-	public String readReview(int review_num, Model model) {
+	public String readReview(int review_num, Model model, HttpSession session) {
 		
 		 //글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
 	      Review review = dao.readReview(review_num);
@@ -92,9 +107,12 @@ public class ReviewController {
 	      //결과가 있으면 모델에 글 정보 저장하고 JSP로 포워딩
 	      model.addAttribute("review", review);
 	      
-//	      //이 글에 달린 댓글 목록도 가져감 
-//	      ArrayList<Reply> replyList = dao.listReply(boardnum);
-//	      model.addAttribute("replyList", replyList);
+	      //이 글에 달린 댓글 목록도 가져감 
+	      ArrayList<Reply> replyList = dao.replyList(review_num);
+	      model.addAttribute("replyList", replyList);
+	      
+	      String loginId = (String) session.getAttribute("loginId");
+	      model.addAttribute("loginId", loginId);
 	      
 		return "reviewjsp/readReview";
 		}
@@ -167,49 +185,53 @@ public class ReviewController {
 		return "redirect:List";
 	
 	}
-//	
-//	//글 삭제 처리
-//	@RequestMapping(value = "delete", method = RequestMethod.GET)
-//	public String delete(int boardnum, HttpSession session) {
-//		
-//		String loginId = (String) session.getAttribute("loginId");
-//		
-//		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
-//		Board board = new Board();
-//		board.setBoardnum(boardnum);
-//		board.setId(loginId);
-//		
-//		logger.info("전달된 값: {}", board);
-//	    int result = dao.deleteBoard(board);
-//	    
-//		
-//		return "redirect:list";
-//	}
-//	
-//	//리플 저장	
-//	@RequestMapping(value = "replyWrite", method = RequestMethod.POST)
-//	 public String replyWrite(Reply reply, HttpSession session) {
-//      
-//	 String loginId = (String) session.getAttribute("loginId");
-//	 reply.setId(loginId);
-//	 
-//	 //dao 전달하여 DB에 리플정보 저장 
-//	  logger.info("전달된 값: {}", reply);
-//	  dao.insertReply(reply);
-//	 
-//	  return "redirect:read?boardnum=" + reply.getBoardnum(); 
-//  }
-//  //리플 삭제
-//	@RequestMapping(value = "deleteReply", method = RequestMethod.GET)
-//	public String deleteReply(Reply reply, HttpSession session) {
-//	 
-//        String id = (String) session.getAttribute("loginId");
-//		
-//		//삭제할 글 번호와 본인 글인지 확인할 로그인아이디
-//		reply.setId(id);
-//		
-//		dao.deleteReply(reply);
-//		return "redirect:read?boardnum=" + reply.getBoardnum();
-//	}
+	
+	//글 삭제 처리
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(int review_num, HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
+		
+		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
+		Review review = new Review();
+		review.setReview_num(review_num);
+		review.setUser_id(loginId);
+		
+		logger.info("전달된 값: {}", review);
+	    dao.deleteReview(review);
+	    
+		
+		return "redirect:List";
+	}
+	
+	//댓글 작성
+	@RequestMapping(value = "replyWrite", method = RequestMethod.POST)
+	 public String replyWrite(Reply reply, HttpSession session) {
+      
+	 String loginId = (String) session.getAttribute("loginId");
+	 reply.setUser_id(loginId);
+	 
+	 //dao 전달하여 DB에 리플정보 저장 
+	  logger.info("전달된 값: {}", reply);
+	  dao.insertReply(reply);
+	 
+	  return "redirect:readReview?review_num=" + reply.getReview_num(); 
+  }
+  //리플 삭제
+	@RequestMapping(value = "deleteReply", method = RequestMethod.GET)
+	public String deleteReply(Reply reply, HttpSession session) {
+	 
+        String id = (String) session.getAttribute("loginId");
+		
+		//삭제할 글 번호와 본인 글인지 확인할 로그인아이디
+		reply.setUser_id(id);
+		logger.info("전달된 값: {}", reply);
+		int a = dao.deleteReply(reply);
+		if(a == 0) {
+			logger.info("삭제 실패");
+		}
+		
+		return "redirect:readReview?review_num=" + reply.getReview_num(); 
+	}
 	
 }

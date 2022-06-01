@@ -4,20 +4,20 @@ public class Reply {
 
 	private int reply_num; //댓글 번호
 	private int review_num; //리뷰 글 번호
-	private String content;	//리플 내용
+	private String reply_content;	//리플 내용
 	private String user_id;  //작성자 아이디
-	private String inputdate; //작성일 
+	private String reply_inputdate; //작성일 
 	
 	public Reply() {	
 	}
 
-	public Reply(int reply_num, int review_num, String content, String user_id, String inputdate) {
+	public Reply(int reply_num, int review_num, String reply_content, String user_id, String reply_inputdate) {
 		super();
 		this.reply_num = reply_num;
 		this.review_num = review_num;
-		this.content = content;
+		this.reply_content = reply_content;
 		this.user_id = user_id;
-		this.inputdate = inputdate;
+		this.reply_inputdate = reply_inputdate;
 	}
 
 	public int getReply_num() {
@@ -36,12 +36,12 @@ public class Reply {
 		this.review_num = review_num;
 	}
 
-	public String getContent() {
-		return content;
+	public String getReply_content() {
+		return reply_content;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setReply_content(String reply_content) {
+		this.reply_content = reply_content;
 	}
 
 	public String getUser_id() {
@@ -52,18 +52,18 @@ public class Reply {
 		this.user_id = user_id;
 	}
 
-	public String getInputdate() {
-		return inputdate;
+	public String getReply_inputdate() {
+		return reply_inputdate;
 	}
 
-	public void setInputdate(String inputdate) {
-		this.inputdate = inputdate;
+	public void setReply_inputdate(String reply_inputdate) {
+		this.reply_inputdate = reply_inputdate;
 	}
 
 	@Override
 	public String toString() {
-		return "Reply [reply_num=" + reply_num + ", review_num=" + review_num + ", content=" + content + ", user_id="
-				+ user_id + ", inputdate=" + inputdate + "]";
+		return "Reply [reply_num=" + reply_num + ", review_num=" + review_num + ", reply_content=" + reply_content + ", user_id="
+				+ user_id + ", reply_inputdate=" + reply_inputdate + "]";
 	}
 	
 	
