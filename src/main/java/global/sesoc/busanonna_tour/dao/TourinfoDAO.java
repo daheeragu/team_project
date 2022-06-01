@@ -107,13 +107,10 @@ public class TourinfoDAO {
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num) {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-		 
 		 //조회수 1증가(업데이트)
 		 mapper.addHits(info_num);
 		 //해당 번호의 글정보 읽기
 		 Tourinfo info = mapper.readInfo(info_num);
-		
-		 
 		 return info; 
 	}
 	
@@ -138,14 +135,19 @@ public class TourinfoDAO {
 		 return result;
 	}
 	
+	//글번호로 글찾기
+	public Tourinfo getInfoByNum(int info_num) {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		Tourinfo result = mapper.getInfoByNum(info_num);
+		return result;
+	}
+	
 	//글 삭제
 	public int deleteInfo(Tourinfo info) {
 	      TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 	       int result = 0; 
-	       
 	       result = mapper.deleteInfo(info);
-	       return result; 
-	      
+	       return result;     
 	}
 	
 	//땡기네 1 증가

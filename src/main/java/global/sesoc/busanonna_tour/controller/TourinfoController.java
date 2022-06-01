@@ -265,16 +265,20 @@ public class TourinfoController {
 		
 		String loginAdmin = (String) session.getAttribute("loginAdmin");
 		
-		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
-		Tourinfo info = new Tourinfo();
-		info.setInfo_num(info_num);
-		info.setAdmin_id(loginAdmin);
+		//글번호로 삭제할 글의 객체 찾기
+		Tourinfo info = dao.getInfoByNum(info_num);
+		//해당 객체의 카테고리 이름을 변수로 저장
+		String theme = info.getInfo_theme();
+		
+		//deleteInfo 함수에 보낼 파라미터용 객체 생성하여 세팅
+		Tourinfo realInfo = new Tourinfo();
+		realInfo.setAdmin_id(loginAdmin);
+		realInfo.setInfo_num(info_num);
 		
 		logger.info("전달된 값: {}", info);
-	    int result = dao.deleteInfo(info);
+	    int result = dao.deleteInfo(realInfo);
 	    
-		
-		return "redirect:list";
+		return "redirect:/tourinfo/"+theme;
 	}
 	
 	//땡기네 처리
