@@ -117,7 +117,7 @@ function backpage(){
 					   </div>
 					   <div class="collapse navbar-collapse justify-content-end" id="navbarNav-menu">
                          <ul class="navbar-nav text-center">
-                          <c:if test = "${loginId == null}">
+                          <c:if test = "${loginId == null && loginAdmin == null}">
                            <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a>
                            </li>
@@ -125,7 +125,7 @@ function backpage(){
                              <a class="nav-link" href="../user/joinForm">회원가입</a>
                            </li>
                           </c:if>
-                          <c:if test = "${loginId != 'manager' && loginName != '관리자' && loginId != null}">
+                          <c:if test = "${loginId != null}">
                           <li class="nav-item">
                              <a class="nav-link">${loginName}님</a>
                            </li>
@@ -135,7 +135,7 @@ function backpage(){
                            <li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
 						   </li>
                           </c:if>
-                          <c:if test = "${loginId == 'manager' && loginName == '관리자'}">
+                          <c:if test = "${loginAdmin != null}">
                           <li class="nav-item">
                              <a class="nav-link">${loginName}님</a>
                            </li>
