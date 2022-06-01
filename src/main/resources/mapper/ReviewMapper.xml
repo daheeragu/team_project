@@ -155,12 +155,12 @@
 	</select>
 
 	<!-- 관광지 정보 검색 -->
-	<select id="getTourinfo" parameterType="string" resultType="string">
-		select info_name from
+	<select id="getTourinfo" parameterType="string" resultType="Tourinfo">
+		select info_name, info_num from
 		Tourinfo
 		<if test="_parameter != null">
 			where
-			upper(review_title) like '%' || upper(#{searchText})
+			upper(info_name) like '%' || upper(#{spotName})
 			|| '%'
 		</if>
 	</select>

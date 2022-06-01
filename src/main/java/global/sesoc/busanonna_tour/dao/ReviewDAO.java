@@ -111,9 +111,9 @@ public class ReviewDAO {
 	}
 
 	//관광지 정보 검색
-	public ArrayList<String> getTourinfo(String spotName) {
+	public ArrayList<Tourinfo> getTourinfo(String spotName) {
 		ReviewMapper mapper = sqlSession.getMapper(ReviewMapper.class);
-		ArrayList<String> t = null;
+		ArrayList<Tourinfo> t = null;
 		t = mapper.getTourinfo(spotName);
 		return t;
 	}

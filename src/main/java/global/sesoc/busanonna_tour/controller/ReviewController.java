@@ -2,6 +2,7 @@ package global.sesoc.busanonna_tour.controller;
 
 import java.io.FileInputStream;
 
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -30,7 +31,7 @@ import global.sesoc.busanonna_tour.vo.Board;
 import global.sesoc.busanonna_tour.vo.Reply;
 import global.sesoc.busanonna_tour.vo.review.Review;
 import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
-import global.sesoc.web5.vo.Member;
+
 
 @Controller
 @RequestMapping("review") 
@@ -247,9 +248,9 @@ public class ReviewController {
 	@RequestMapping(value = "spotSearch", method = RequestMethod.POST)
 	public String idcheck(String spotName, Model model) {
 		logger.info("검색할 관광지 : {}", spotName);
-		ArrayList<String> nameList = dao.getTourinfo(spotName);
+		ArrayList<Tourinfo> tourinfo = dao.getTourinfo(spotName);
 		
-		model.addAttribute("nameList", nameList);
+		model.addAttribute("tourinfo", tourinfo);
 		
 		
 		return "reviewjsp/spotSearch";

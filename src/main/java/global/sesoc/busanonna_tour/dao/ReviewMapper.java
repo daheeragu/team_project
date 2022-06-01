@@ -41,7 +41,7 @@ public interface ReviewMapper {
 	void addHits(int review_num);
 
 	//관광정보 검색	
-	ArrayList<String> getTourinfo(String spotName);
+	ArrayList<Tourinfo> getTourinfo(String spotName);
 
 	
 
