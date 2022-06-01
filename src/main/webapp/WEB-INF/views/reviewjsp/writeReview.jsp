@@ -126,15 +126,7 @@ function spotSearchOpen() {
 		</td>
 	</tr>
 	<tr>
-<!--   <label for="spot">관광지</label> 
-		<select id="job" name="info_num" size="1">
-			<option value="">선택하세요</option>
-			<option value="1">해운대</option>
-			<option value="2">광안리</option>
-			<option value="3">남포동</option>
-			
-		</select> <br> -->
-  
+
 <table>   
   <tr>
     <th>내용</th>
