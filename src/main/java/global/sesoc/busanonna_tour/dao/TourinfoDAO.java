@@ -154,6 +154,14 @@ public class TourinfoDAO {
 		 mapper.addLike(info_num);
 	}
 	
-
+	// 떙기네 높은 순으로 찾아오기
+	public ArrayList<Tourinfo> selectLikeList(){
+		ArrayList<Tourinfo> likeList = new ArrayList<>();
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		
+		likeList = mapper.selectLikeList();
+		
+		return likeList;
+	}
 
 }

@@ -34,7 +34,7 @@ function updateForm(){
 }
 
 function backHome(){
-	location.href = "../"
+	window.location = document.referrer;
 
 }
 function formCheck(){
@@ -231,7 +231,7 @@ body {
 			<button type="button" class="btn btn-primary" id="updateForm">정보
 				수정</button>
 			<button type="reset" class="btn btn-secondary">다시 입력</button>
-			<button type="button" class="btn btn-success" id="back">홈 화면</button>
+			<button type="button" class="btn btn-success" id="back">뒤로가기</button>
 		</form>
 	</main>
 	<script

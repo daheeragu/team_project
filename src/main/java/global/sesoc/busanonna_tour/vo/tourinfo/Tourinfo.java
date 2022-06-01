@@ -1,5 +1,7 @@
 package global.sesoc.busanonna_tour.vo.tourinfo;
 
+import java.util.ArrayList;
+
 public class Tourinfo {
 	private int info_num;	//정보글 고유번호
 	private String admin_id;	//관리자 아이디
@@ -160,5 +162,5 @@ public class Tourinfo {
 				+ info_address + ", info_name=" + info_name + ", info_state=" + info_state + ", info_gu=" + info_gu
 				+ ", info_theme=" + info_theme + ", savedfile=" + savedfile +"]";
 	}
-	
+
 }
