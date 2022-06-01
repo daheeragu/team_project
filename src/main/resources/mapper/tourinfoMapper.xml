@@ -242,6 +242,9 @@
 	 	and
 	 		admin_id = #{admin_id}
 	 </delete>
-	 
-	 
+
+	 <!-- 땡기네 높은 순으로 정렬 -->
+	 <select id = "selectLikeList" resultType = "Tourinfo">
+	 	select * from tourinfo order by info_like desc
+	 </select>
 </mapper>

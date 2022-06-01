@@ -36,5 +36,7 @@ public interface TourinfoMapper {
 	public int deleteInfo(Tourinfo info);
 	//기존에 등록된 썸네일 삭제
 	public int deleteFile(int info_num);
+	// 땡기네 높은 순으로 찾기
+	public ArrayList<Tourinfo> selectLikeList();
 	
 }

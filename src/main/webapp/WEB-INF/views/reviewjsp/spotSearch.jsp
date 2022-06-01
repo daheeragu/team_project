@@ -16,8 +16,9 @@ function formCheck() {
 	return true;
 }
 
-function selectid() {
-	opener.document.getElementById('id').value = '${searchId}';
+function selectSpot(name) {
+
+	opener.document.getElementById('spot').value=name;
 	this.close();
 }
 </script>
@@ -32,14 +33,15 @@ function selectid() {
 <!-- 검색 후 -->
 <c:if test="${spotName != null}">
 	<!-- 검색결과가 없음 -->
-	<c:if test="${tourinfo == null}">
+	<c:if test="${tourinfo.size() == 0}">
 		<p>검색어에 해당하는 관광지가 존재하지 않습니다</p>
 		<!-- <p><input type="button" value="ID사용하기" onclick="selectid()"></p> -->
 	</c:if>
 	<!-- 검색결과가 있음 -->
 	<c:if test="${tourinfo != null}">
 		<c:forEach var="tour" items="${tourinfo}">
-			<p>${tour.info_name}</p>
+			<%-- <p>${tour.info_name}</p> --%>
+			<p><input type="button" value="${tour.info_name}" onclick="selectSpot('${tour.info_name}')"></p>
 		</c:forEach>
 	</c:if>
 </c:if>

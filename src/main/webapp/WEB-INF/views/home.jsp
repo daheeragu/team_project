@@ -159,7 +159,7 @@ td {
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">BUSAN</a>
+				<a class="navbar-brand" href="/busanonna_tour">BUSAN</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -260,36 +260,37 @@ td {
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="resources/image/beach.png" class="d-block w-100" alt="송도">
+					<img src="download?info_num=${top1.info_num}" class="d-block w-100" alt="송도">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>부산을 머무르는 다양한 방법</h5>
-						<p>나에게 딱 맞는 부산여행 코스, 여기서 골라봐</p>
+						<h5>'부산온나'의 top1</h5>
+						<p>가장 인기있는 여행지 ${top1.info_name}</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#">자세히 보기</a>
+							<a class="btn btn-lg btn-primary" 
+							href="../tourinfo/read?info_num=${top1.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="resources/image/forest.jpg" class="d-block w-100"
+					<img src="download?info_num=${top2.info_num}" class="d-block w-100"
 						alt="대숲길">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>니들이 게맛을 알어!?</h5>
-						<p>Some representative placeholder content for the second
-							slide.</p>
+						<h5>'부산온나'의 top2</h5>
+						<p>부산에서 둘째가라면 서러운 여행지 ${top2.info_name}</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#">자세히 보기</a>
+							<a class="btn btn-lg btn-primary" 
+							href="../tourinfo/read?info_num=${top2.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="resources/image/town.jpg" class="d-block w-100"
+					<img src="download?info_num=${top3.info_num}" class="d-block w-100"
 						alt="감천문화마을">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Third slide label</h5>
-						<p>Some representative placeholder content for the third
-							slide.</p>
+						<h5>'부산온나'의 top3</h5>
+						<p>부산의 자랑. 3번째로 추천하는 여행지 ${top3.info_name}</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#">자세히 보기</a>
+							<a class="btn btn-lg btn-primary" 
+							href="../tourinfo/read?info_num=${top3.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
