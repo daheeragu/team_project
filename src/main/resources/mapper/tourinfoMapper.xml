@@ -54,6 +54,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, info_theme
 			, savedfile
 		from
 			tourinfo
@@ -72,6 +73,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, info_theme
 			, savedfile
 		from
 			tourinfo
@@ -90,6 +92,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, info_theme
 			, savedfile
 		from
 			tourinfo
@@ -108,6 +111,7 @@
 			, to_char(info_inputdate, 'MM/DD') info_inputdate
 			, info_hits
 			, info_like
+			, info_theme
 			, savedfile
 		from
 			tourinfo
@@ -173,6 +177,7 @@
 			, info_address
 			, info_content
 			, info_state
+			, info_theme
 			, savedfile
 			)
 		values
@@ -185,6 +190,7 @@
 			, #{info_address}
 			, #{info_content}
 			, #{info_state}
+			, #{info_theme}
 			, #{savedfile}
 			)
 	</insert>
@@ -206,4 +212,54 @@
 			info_num = #{info_num}
 			and admin_id = #{admin_id}
 	</update>
+	
+	<!-- 수정 폼에 개별적으로 파일 삭제(공백을 넣어서 업데이트) -->
+	 <update id="deleteFile" parameterType="int">
+	   update
+            tourinfo
+	   set 
+			savedfile = ' '	   
+       where
+            info_num = #{info_num}
+	 </update>
+	 
+	 <!-- 글번호로 글 찾기 -->
+	 <select id="getInfoByNum" parameterType="int" resultType="Tourinfo">
+	 	select 
+	 		*
+	 	from 
+	 		tourinfo
+	 	where 
+	 		info_num = #{info_num}
+	 </select>
+	 
+	 <!-- 글 삭제 -->
+	 <delete id="deleteInfo" parameterType="Tourinfo">
+	 	delete from
+	 		tourinfo
+	 	where
+	 		info_num = #{info_num}
+	 	and
+	 		admin_id = #{admin_id}
+	 </delete>
+
+	 <!-- 땡기네 높은 순으로 정렬 -->
+	 <select id = "selectLikeList" resultType = "Tourinfo">
+	 	select * from tourinfo order by info_like desc
+	 </select>
+	 
+	 <!-- 조회수 가장 높은 여행정보(홈화면에서 사용) -->
+	 <select id="selectTopHits" resultType="Tourinfo">
+	 	select
+	 		info_num
+	 		, info_title
+	 		, info_subtitle
+	 		, savedfile
+	 	from
+	 		tourinfo
+	 	where
+	 		info_hits 
+	 		= (select max(info_hits) from tourinfo)
+	 </select>
+	 
 </mapper>

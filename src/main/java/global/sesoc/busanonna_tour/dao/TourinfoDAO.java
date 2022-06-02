@@ -20,15 +20,6 @@ public class TourinfoDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	//글쓰기
-	public int write(Tourinfo info) {
-	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-	    int result = 0; 
-	    
-	    result = mapper.write(info);
-	    return result; 
-		
-	}
 	//명소 글개수
 	public int getTotalSpot(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -37,6 +28,7 @@ public class TourinfoDAO {
 		result = mapper.getTotalSpot(theme);
 	    return result;
 	}
+	
 	//먹거리 글개수
 	public int getTotalFood(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -45,6 +37,7 @@ public class TourinfoDAO {
 		result = mapper.getTotalFood(theme);
 	    return result;
 	}
+	
 	//레저 글개수
 	public int getTotalLeisure(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -54,7 +47,7 @@ public class TourinfoDAO {
 	    return result;
 	}
 	
-	//레저 글개수
+	//체험 글개수
 	public int getTotalExp(String theme) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		int result = 0; 
@@ -62,6 +55,7 @@ public class TourinfoDAO {
 		result = mapper.getTotalExp(theme);
 	    return result;
 	}
+	
 	//명소 글목록
 	public ArrayList<Tourinfo> spotlist(int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -73,6 +67,7 @@ public class TourinfoDAO {
 		ArrayList<Tourinfo> result = mapper.spotlist(rb);
 		return result;
 	}
+	
 	//먹거리 글목록
 	public ArrayList<Tourinfo> foodlist(int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
@@ -97,7 +92,7 @@ public class TourinfoDAO {
 			return result;
 		}
 		
-		//레저 글목록
+		//체험 글목록
 		public ArrayList<Tourinfo> explist(int startRecord, int countPerPage) {
 			TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 			
@@ -109,39 +104,77 @@ public class TourinfoDAO {
 			return result;
 		}
 
+	//글 읽을 때 조회수 1 증가
+	public void addHits(int info_num) {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		//조회수 1증가(업데이트)
+		mapper.addHits(info_num);
+	}
+		
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num) {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-		 
-		 //조회수 1증가(업데이트)
-		 mapper.addHits(info_num);
 		 //해당 번호의 글정보 읽기
 		 Tourinfo info = mapper.readInfo(info_num);
-		
-		 
 		 return info; 
 	}
+	
+	//글쓰기
+	public int writeInfo(Tourinfo info) {
+	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+	    int result = mapper.writeInfo(info);
+	    return result; 
+	}
+	
     //글 수정
 	public int updateInfo(Tourinfo info) {
 	    TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 	    int result = mapper.updateInfo(info);
 	    return result; 
-		
 	}
+	
+	//글 수정 페이지에서 기존에 등록된 썸네일 삭제
+	public int deleteFile(int info_num) {
+		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		 int result = mapper.deleteFile(info_num);
+		 return result;
+	}
+	
+	//글번호로 글찾기
+	public Tourinfo getInfoByNum(int info_num) {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		Tourinfo result = mapper.getInfoByNum(info_num);
+		return result;
+	}
+	
 	//글 삭제
 	public int deleteInfo(Tourinfo info) {
 	      TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 	       int result = 0; 
-	       
 	       result = mapper.deleteInfo(info);
-	       return result; 
-	      
+	       return result;     
 	}
 	
 	//땡기네 1 증가
 	public void addLike(int info_num) {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		 mapper.addLike(info_num);
+	}
+	
+	// 떙기네 높은 순으로 찾아오기
+	public ArrayList<Tourinfo> selectLikeList(){
+		ArrayList<Tourinfo> likeList = new ArrayList<>();
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		
+		likeList = mapper.selectLikeList();
+		return likeList;
+	}
+	
+	//조회수 최다 게시글
+	public Tourinfo selectTopHits() {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		Tourinfo result = mapper.selectTopHits();
+		return result;
 	}
 
 }

@@ -20,6 +20,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.busanonna_tour.dao.TourinfoDAO;
@@ -38,7 +39,7 @@ public class TourinfoController {
 	private static final Logger logger = LoggerFactory.getLogger(TourinfoController.class);
 	
 	//게시판 관련 상수값들
-	 final int countPerPage = 10; //페이지당 글 수 
+	 final int countPerPage = 12; //페이지당 글 수 
 	 final int pagePerGroup = 5;  //페이지 이동 링크를 표시할 페이지 수 
 	 final String uploadPath = "/tourinfoThumb"; // 파일 업로드 경로 
 	 
@@ -147,8 +148,9 @@ public class TourinfoController {
 		logger.info("파일정보:{}", upload.getOriginalFilename());
 
 		//세션에서 아이디 받아오기 
-		String loginId = (String) session.getAttribute("loginId");
-		info.setAdmin_id(loginId);
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		logger.info("세팅될 아이디:{}", loginAdmin);
+		info.setAdmin_id(loginAdmin);
 		
 		//info 객체에 썸네일 이미지 세팅
 		String savedfile = FileService.saveFile(upload, uploadPath);
@@ -156,9 +158,9 @@ public class TourinfoController {
 		
 	    //Board객체를 DAO로 보내서 글쓰기
 		logger.info("저장할 글정보 : {}", info);
-		dao.write(info);
+		dao.writeInfo(info);
 		
-		return "redirect:/" + info.getInfo_theme();
+		return "redirect:/tourinfo/" + info.getInfo_theme();
 		
 	}
 	
@@ -204,12 +206,13 @@ public class TourinfoController {
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public String read(int info_num, Model model) {
 		
-		 //글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
-	      Tourinfo info = dao.readInfo(info_num);
-	     //결과가 없으면 글 목록으로 이동 
-	      if(info == null) {
-	    	  return "redirect:/";
-	      }
+		//글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
+	     Tourinfo info = dao.readInfo(info_num);
+	    //결과가 없으면 글 목록으로 이동 
+	     if(info == null) {
+	   	  return "redirect:/";
+	     }
+	    dao.addHits(info_num);
 	      //결과가 있으면 모델에 글 정보 저장하고 JSP로 포워딩
 	    model.addAttribute("info", info);
 	      
@@ -248,36 +251,46 @@ public class TourinfoController {
 	
 	}
 	
+	//수정 폼에 개별적으로 파일 삭제
+	@ResponseBody
+	@RequestMapping (value="deleteFile", method=RequestMethod.POST)
+	public int deleteFile(int info_num) {
+		logger.info("전달된 번호 : {}", info_num);
+		int result = dao.deleteFile(info_num);
+		return result;
+	}
+	
 	//글 삭제 처리
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(int info_num, HttpSession session) {
 		
-		String loginId = (String) session.getAttribute("loginId");
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
 		
-		//삭제할 글 번호와 본인 글인지 확인할 로그인 아이디
-		Tourinfo info = new Tourinfo();
-		info.setInfo_num(info_num);
-		info.setAdmin_id(loginId);
+		//글번호로 삭제할 글의 객체 찾기
+		Tourinfo info = dao.getInfoByNum(info_num);
+		//해당 객체의 카테고리 이름을 변수로 저장
+		String theme = info.getInfo_theme();
+		
+		//deleteInfo 함수에 보낼 파라미터용 객체 생성하여 세팅
+		Tourinfo realInfo = new Tourinfo();
+		realInfo.setAdmin_id(loginAdmin);
+		realInfo.setInfo_num(info_num);
 		
 		logger.info("전달된 값: {}", info);
-	    int result = dao.deleteInfo(info);
+	    int result = dao.deleteInfo(realInfo);
 	    
-		
-		return "redirect:list";
+		return "redirect:/tourinfo/"+theme;
 	}
 	
 	//땡기네 처리
 	@RequestMapping(value = "like", method = RequestMethod.GET)
 	public String like(int info_num, HttpSession session) {
-		
 		String loginId = (String) session.getAttribute("loginId");
+		Tourinfo info =dao.readInfo(info_num);
 		
-		//로그인 한 상태에만 땡기네 처리
-		if(loginId != null) {
-			dao.addLike(info_num);
-		}
+		dao.addLike(info_num);
 		
-		return "tourinfojsp/readForm";
+		return "redirect:read?info_num="+info.getInfo_num();
 	}
 	
 	

@@ -6,8 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
-
+<script src = "../resources/ckeditor/ckeditor.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+<script>
+function spotSearchOpen() {
+	window.open('spotSearch', 'win', 'top=300,left=500,width=400,height=300,location=no,status=no');
+}
+</script>
+
 
 </head>
 
@@ -111,28 +118,35 @@
     <td><input type="text" name="review_title" id="title"></td> 
   </tr>
 </table>
-  
-  <label for="spot">관광지</label> 
-		<select id="job" name="info_num" size="1">
-			<option value="">선택하세요</option>
-			<option value="1">해운대</option>
-			<option value="2">광안리</option>
-			<option value="3">남포동</option>
-			
-		</select> <br>
-  
+  <tr>
+		<th>관광지</th>
+		<td>
+			<input type="text" name="spot" id="spot" maxlength="10" placeholder="관광지를 입력하세요" readonly="readonly">
+			<input type="button" value="관광지 검색" onclick="spotSearchOpen()">
+		</td>
+	</tr>
+	<tr>
+
 <table>   
   <tr>
     <th>내용</th>
-    <td><textarea rows="15" cols="70" name="review_content" 
-                  id="contents" style="resize:none;"></textarea> 
+      <td>
+		 <textarea id="editor" name="reivew_content"></textarea>
+	            <script>
+	                CKEDITOR.replace('editor'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	            </script>
+		  </td>
   </tr>
   
   <tr id="save">
-    <td colspan ="2" >
-      <input type="submit" value="저장" style="float:right">
-    </td>
-  </tr>
+	    <td colspan ="2">
+	      <input type="submit" value="등록">
+	    </td>
+	  </tr>
   
 </table>
 

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import global.sesoc.busanonna_tour.dao.TourinfoDAO;
 import global.sesoc.busanonna_tour.dao.NoticeDAO;
 import global.sesoc.busanonna_tour.vo.Notice;
 import global.sesoc.busanonna_tour.vo.Notice_pic;
+import global.sesoc.busanonna_tour.vo.tourinfo.*;
 
 /**
  * 메인 콘트롤러
@@ -27,6 +29,8 @@ public class HomeController {
 	
 	@Autowired
 	NoticeDAO dao;
+	@Autowired
+	TourinfoDAO tourdao;
 	
 	/**
 	 * 메인 화면으로 이동
@@ -42,7 +46,19 @@ public class HomeController {
 		noticeList = dao.listNoticeForHome();
  
 		model.addAttribute("noticeList", noticeList);
-		
+	
+		 ArrayList<Tourinfo> likeList = new ArrayList<>(); 
+		 
+		 likeList = tourdao.selectLikeList();  
+		 model.addAttribute("top1", likeList.get(0)); 
+		 model.addAttribute("top2", likeList.get(1));
+		 model.addAttribute("top3", likeList.get(2)); 
+		 System.out.println(likeList.get(0));
+		 
+		 //하단 글 리스트
+		 //1. 조회수 최다 여행정보글
+		 Tourinfo info = tourdao.selectTopHits();
+		 model.addAttribute("info", info);
 		return "home";
 	}
 	

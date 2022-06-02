@@ -68,6 +68,37 @@ public class ImageUploadController {
 	    out.flush();
 	    outStr.close();
 		}
+	@RequestMapping(value = "review/imageUpload.do")
+	@ResponseBody
+	public void reviewImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
+		
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
+		String fileName=upload.getOriginalFilename();
+		
+		
+		Date date = new Date();
+		SimpleDateFormat imsi = new SimpleDateFormat("yyMMddHHmmssZ");
+		fileName = imsi.format(date)+"_"+fileName;
+		byte[] bytes = upload.getBytes();
+		
+		
+		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"/resources/image/ckImage";
+		OutputStream outStr = new FileOutputStream(new File(uploadPath + fileName));
+		
+		outStr.write(bytes);
+		
+		//String callback=request.getParameter("CKEditorFuncNum");
+		PrintWriter out=response.getWriter();
+		String fileUrl=request.getContextPath()+"/resources/image/ckImage"+fileName;
+		
+		//out.println("<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'"+fileUrl+"','이미지가 업로드되었습니다.')"+"</script>");
+		out.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+		
+		out.flush();
+		outStr.close();
+	}
 	
 	@RequestMapping(value = "tourinfo/imageUpload.do")
 	@ResponseBody

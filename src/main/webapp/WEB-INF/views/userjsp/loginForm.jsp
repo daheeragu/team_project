@@ -21,7 +21,7 @@ $(document).ready(function(){
 });
 
 function backHome(){
-	location.href = "../"
+	window.location = document.referrer;
 }
 
 function submit() {
@@ -186,7 +186,7 @@ button {
 				</label>
 			</div>
 			<button type="submit" class="btn btn-primary" id="submit">로그인</button>
-			<button type="button" id="back" class="btn btn-success">홈 화면</button>
+			<button type="button" id="back" class="btn btn-success">뒤로가기</button>
 		</form>
 	</main>
 	<script

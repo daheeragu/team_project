@@ -6,6 +6,32 @@
 <meta charset="UTF-8">
 <title>여행정보 글 수정</title>
 <script src = "../ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+	//삭제 버튼에 클릭이벤트 처리
+	 $('#deletebtn').on('click', fileDelete);  
+  });
+  
+ function fileDelete(){
+	 //클릭한 버튼의 info_num의 속성값을 읽음
+	 var num = $(this).attr('data-num');
+	 
+	 //서버로 삭제할 글번호를 전달 
+		$.ajax({
+			url: 'deleteFile',
+			type: 'POST',
+			data: {"info_num" : num},
+			success: function(cnt) {
+				if (cnt == 0) {
+					alert('삭제 실패');
+				}
+				else {
+					alert('삭제되었습니다.');
+				}
+			}
+		});
+	 }
+</script>
 </head>
 <style>
    * {
@@ -94,17 +120,23 @@
 		  </td>
 	  </tr>
 	  
+	  <!-- 기존에 업로드한 이미지 파일 불러오기 -->
 	  <tr>
 	  	<th>썸네일 이미지 첨부</th>
 	  	<td>
-	  		<input type="file" name="upload" size="30" value="이미지 업로드">
-	  		<div id="group"></div>
+	  		<a href="download?info_num=${info.info_num}">
+	  			<img style="width: 100px; height: 100px;"
+				src="download?info_num=${info.info_num}">
+	  		</a>
+			<input type="button" id="deletebtn"
+				data-num="${info.info_num}" value="X">
+	  		<button id="addbtn" type="button">파일 추가</button>
 	  	</td>	
 	  </tr>
 	
 	  <tr id="save">
 	    <td colspan ="2">
-	      <input type="submit" value="저장">
+	      <input type="submit" value="저장"> <button type="button" onClick="location.href='${info.info_theme}'">취소</button>
 	    </td>
 	  </tr>
 </table>

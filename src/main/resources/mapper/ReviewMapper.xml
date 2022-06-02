@@ -3,21 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="global.sesoc.busanonna_tour.dao.ReviewMapper">
-	
+
+
+
 	<!-- 리뷰 목록 출력 -->
-	<select id="reviewList" resultType="review">
-	select * from review order by review_num desc
+	<select id="reviewList" parameterType="string"
+		resultType="review">
+		select
+		r.review_num
+		,r.review_title
+		,r.user_id
+		,r.review_hits
+		,r.review_inputdate
+		,i.info_name
+		from
+		review r, tourinfo i
+		where
+		r.info_num = i.info_num
+		<if test="_parameter !=null">
+			and
+			upper(review_title) like '%' || upper(#{searchText})
+			|| '%'
+		</if>
+		order by
+		review_num desc
 	</select>
-	
-	<!-- 글 등록 -->
+
+
+	<!-- 댓글 목록 출력 -->
+	<select id="replyList" resultType="reply">
+		select
+		reply_num
+		, review_num
+		,
+		user_id
+		, reply_content
+		from
+		reply
+		where
+		review_num = #{review_num}
+		order by
+		reply_num desc
+	</select>
+
+	<!-- 리뷰 등록 -->
 	<insert id="writeReview" parameterType="review">
-	insert into review
+		insert into review
 		(
-		user_id             
-		, info_num                  
-		, review_num                
-		, review_title      
-		, review_content        
+		user_id
+		, info_num
+		, review_num
+		, review_title
+		, review_content
 		)
 		values
 		(
@@ -27,27 +64,107 @@
 		,#{review_title}
 		,#{review_content}
 		)
-		
-	</insert>	
-	
-	<!-- 리뷰 번호로 검색 -->
+
+	</insert>
+
+	<!-- 리뷰 번호로 검색(읽기) -->
 	<select id="readReview" parameterType="int" resultType="review">
-		select * from review 
-			where
-				review_num = #{review_num} 
+		select *
+		from review
+		where
+		review_num = #{review_num}
 	</select>
-	
+
+	<!-- 조회수 1증가 -->
+	<update id="addHits" parameterType="int">
+		update
+		review
+		set
+		review_hits = review_hits + 1
+		where
+		review_num = #{review_num}
+	</update>
+
+
 	<!-- 리뷰 수정 -->
 	<update id="updateReview" parameterType="review">
 		update
-			review
+		review
 		set
-			review_title=#{review_title},	
-			review_content=#{review_content}
+		review_title=#{review_title},
+		review_content=#{review_content}
 		where
-			review_num = #{review_num}
+		review_num = #{review_num}
 		and
-			user_id = #{user_id}			
+		user_id = #{user_id}
 	</update>
-	
+
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="review">
+		delete
+		from
+		review
+		where
+		review_num = #{review_num}
+		and
+		user_id = #{user_id}
+
+	</delete>
+
+	<!-- 댓글 쓰기 -->
+	<insert id="insertReply" parameterType="reply">
+		insert
+		into
+		reply(
+		reply_num
+		,review_num
+		,reply_content
+		,user_id
+		,reply_inputdate
+		)
+		values(
+		reply_sec.nextval
+		,#{review_num}
+		,#{reply_content}
+		,#{user_id}
+		,sysdate
+		)
+	</insert>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="reply">
+		delete
+		from
+		reply
+		where
+		user_id = #{user_id}
+		and
+		reply_num = #{reply_num}
+
+	</delete>
+
+	<!-- 글 개수 -->
+	<select id="getTotal" parameterType="string" resultType="int">
+		select
+		count(*) <!-- 데이터의 개수 추출 -->
+		from
+		review
+		<if test="_parameter != null">
+			where
+			upper(review_title) like '%' || upper(#{searchText})
+			|| '%'
+		</if>
+
+	</select>
+
+	<!-- 관광지 정보 검색 -->
+	<select id="getTourinfo" parameterType="string" resultType="Tourinfo">
+		select info_name, info_num from
+		Tourinfo
+		<if test="_parameter != null">
+			where
+			upper(info_name) like '%' || upper(#{spotName})
+			|| '%'
+		</if>
+	</select>
 </mapper>
