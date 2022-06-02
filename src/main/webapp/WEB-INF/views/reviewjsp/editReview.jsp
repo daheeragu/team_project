@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
+<script src = "../resources/ckeditor/ckeditor.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 <style>
   table{
    margin: auto;
@@ -37,19 +40,26 @@
 			</tr>
 
             <tr>
-               <th>내용</th>
-               <td><textarea rows="15" cols="70" 
-                             id="contents" name="review_content">${review.review_content}</textarea></td>
-            </tr>
-            
-<!--             <tr>
-            <th>파일첨부</th>
-            <td><input type="button" value="파일 선택">
-                                 선택된 파일 없음</td>
-            </tr> -->
+    <th>내용</th>
+      <td>
+		 <textarea id="editor" name="review_content">${review.review_content}</textarea>
+	            <script>
+	                CKEDITOR.replace('editor'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	            </script>
+		  </td>
+  </tr>
+  
+  <tr id="save">
+	    <td colspan ="2">
+	      <input type="submit" value="등록">
+	    </td>
+	  </tr>
 		</table>
-     <br>
-	 <input type="submit" value="수정">
+   
      </form>
   </div>
 </body>
