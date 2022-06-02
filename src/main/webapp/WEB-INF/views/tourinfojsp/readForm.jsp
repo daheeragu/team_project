@@ -117,12 +117,14 @@ $(document).ready(function(){
   
   function like(){
 	 let loginId = '<%=(String)session.getAttribute("loginId")%>';
+	 let loginAdmin = '<%=(String)session.getAttribute("loginAdmin")%>';
 	 
-	 if(loginId != "null") {
-		 location.href = 'like?info_num=${info.info_num}';
-	 } else {
-		 alert('로그인 후 이용할 수 있습니다.');
+	 if(loginId == null && loginAdmin == null) {
+		 alert('로그인 후 이용할 수 있습니다.')
 		 location.href = '../user/loginForm';
+	 } else {
+		 alert('땡기네! 표시를 하였습니다.')
+		 location.href = 'like?info_num=${info.info_num}';
 	 }
   }
 

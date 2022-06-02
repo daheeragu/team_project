@@ -169,5 +169,12 @@ public class TourinfoDAO {
 		likeList = mapper.selectLikeList();
 		return likeList;
 	}
+	
+	//조회수 최다 게시글
+	public Tourinfo selectTopHits() {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		Tourinfo result = mapper.selectTopHits();
+		return result;
+	}
 
 }

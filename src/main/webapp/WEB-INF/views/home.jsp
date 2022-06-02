@@ -113,6 +113,11 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 	}
 }
 
+.boardTitle {
+	text-decoration: none;
+	color: #5A5A5A;
+}
+
 .intro_notice {
 	width: 400px;
 	height: 160px;
@@ -404,22 +409,15 @@ td {
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading">
-						First featurette heading. <span class="text-muted">It’ll
-							blow your mind.</span>
-					</h2>
-					<p class="lead">Some great placeholder content for the first
-						featurette here. Imagine some exciting prose here.</p>
+					<a class="boardTitle" href="tourinfo/read?info_num=${info.info_num}">
+						${info.info_title}
+					</a></h2>
+					<br>
+					<p class="lead">${info.info_subtitle}</p>
 				</div>
 				<div class="col-md-5">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-						role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="#eee" />
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+					<img style="width:500px; height:350px;"
+						src="tourinfo/download?info_num=${info.info_num}" class="card-img-top" alt="${info.info_title}">
 				</div>
 			</div>
 

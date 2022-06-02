@@ -54,6 +54,11 @@ public class HomeController {
 		 model.addAttribute("top2", likeList.get(1));
 		 model.addAttribute("top3", likeList.get(2)); 
 		 System.out.println(likeList.get(0));
+		 
+		 //하단 글 리스트
+		 //1. 조회수 최다 여행정보글
+		 Tourinfo info = tourdao.selectTopHits();
+		 model.addAttribute("info", info);
 		return "home";
 	}
 	

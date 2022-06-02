@@ -285,13 +285,10 @@ public class TourinfoController {
 	//땡기네 처리
 	@RequestMapping(value = "like", method = RequestMethod.GET)
 	public String like(int info_num, HttpSession session) {
-		
 		String loginId = (String) session.getAttribute("loginId");
+		Tourinfo info =dao.readInfo(info_num);
 		
-		//로그인 한 상태에만 땡기네 처리
-		if(loginId != null) {
-			dao.addLike(info_num);
-		}
+		dao.addLike(info_num);
 		
 		return "redirect:read?info_num="+info.getInfo_num();
 	}
