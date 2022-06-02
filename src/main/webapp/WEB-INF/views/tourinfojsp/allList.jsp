@@ -85,7 +85,7 @@ h1 {
 }
 
 .card-img-top {
-	height: 100%;
+	height: 200px;
 }
 
 .firstLine {
@@ -242,7 +242,7 @@ h1 {
 				<div class="col-lg-3" style="padding-top: 20px;">
 					<a href="read?info_num=${list.info_num}">
 						<div class="card" style="width: 18rem;">
-						 	<img src="download?info_num=${list.info_num}" class="card-img-top" alt="${info.info_title}"> 
+						 	<img  src="download?info_num=${list.info_num}" class="card-img-top" alt="${info.info_title}"> 
 							<div class="card-body">
 								<h5 class="card-title">${list.info_title}</h5>
 								<p class="card-text">${list.info_subtitle}</p>
