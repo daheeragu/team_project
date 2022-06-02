@@ -162,7 +162,6 @@ public class TourinfoDAO {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		
 		likeList = mapper.selectLikeList();
-		
 		return likeList;
 	}
 
