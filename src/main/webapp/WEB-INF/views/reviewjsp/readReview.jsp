@@ -121,12 +121,17 @@ function deleteReply(reply_num, review_num) {
 		</nav>
 	</header>
 
-<table>
+<table style="margin-top: 50px;" >
 <tr>
 <th style="width:100px;">작성자</th>
 <td style="width:600px;">${review.user_id}</td>
 </tr>
 
+
+<tr>
+<th>관광지</th>
+<td>${review.info_name}</td>
+</tr>
 
 <tr>
 <th>글번호</th>

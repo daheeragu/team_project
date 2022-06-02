@@ -69,11 +69,23 @@
 
 	<!-- 리뷰 번호로 검색(읽기) -->
 	<select id="readReview" parameterType="int" resultType="review">
-		select *
-		from review
+		select 
+			r.user_id
+			, r.info_num
+			, r.review_num
+			, r.review_title
+			, r.review_content
+			, r.review_inputdate
+			, r.review_hits
+			, i.info_name
+		from
+			review r, tourinfo i
 		where
-		review_num = #{review_num}
+			review_num = #{review_num}
+		and
+			r.info_num = i.info_num
 	</select>
+	
 
 	<!-- 조회수 1증가 -->
 	<update id="addHits" parameterType="int">
