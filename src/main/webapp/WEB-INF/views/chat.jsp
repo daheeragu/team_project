@@ -38,12 +38,18 @@
 	position: relative;
 	left: 10px;
 }
+#time {
+	font-size: small;
+	position: relative;
+	left: 10px;
+}
 .swal-title {
 	margin: 0px;
 	font-size: 16px;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
 	margin-bottom: 28px;
 }
+
 </style>
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -67,7 +73,6 @@ function openSession() {
 		    title: "어서오세요!",
 		    text: "즐거운 시간 되세요!"
 		});
-		
 	}
 	sock.onmessage = receiveMessage;
 }
@@ -85,8 +90,14 @@ function sendMessage() {
 }
 // 메시지를 받으면 화면에 출력
 function receiveMessage(msg) {
-	$('#outputDiv').append("<div id='chat'>" + msg.data + "</div><br>");
+	var d = new Date();
+
+	var timeStr = d.toLocaleTimeString();
+	
+	$('#outputDiv').append("<div id='chat'>" + msg.data + "</div>"
+	+ "<div id='time'>" + timeStr + "</div><br>");
 }
+
 window.setInterval(function() {
     var elem = document.getElementById('outputDiv');
     elem.scrollTop = elem.scrollHeight;
