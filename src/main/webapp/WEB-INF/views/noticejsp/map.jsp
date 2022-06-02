@@ -246,7 +246,7 @@ var content_Haeundae = [
 	'<div class="iw_inner" style="width:200px; height:200px; text-align: center;">',
     '   <h4>해운대 해수욕장</h4><br/>',
     '   <p> <img src="../resources/image/haeundae.jpg" width="100" height="100" alt="해운대 해수욕장" class="thumb" /><br/>',
-    '       <a href="http://www.seoul.go.kr" target="_blank">상세보기</a>',
+    '       <a href="http://localhost:8888/busanonna_tour/tourinfo/read?info_num=30" target="_blank">상세보기</a>',
     '   </p>',
     '</div>'
 ].join('');
@@ -285,7 +285,7 @@ var content_Gwangan = [
 	'<div class="iw_inner" style="width:200px; height:200px; text-align: center;">',
     '   <h4>광안리 해수욕장</h4><br/>',
     '   <p> <img src="../resources/image/gwangan.jpg" width="100" height="100" alt="해운대 해수욕장" class="thumb" /><br/>',
-    '       <a href="http://www.seoul.go.kr" target="_blank">상세보기</a>',
+    '       <a href= "http://localhost:8888/busanonna_tour/tourinfo/read?info_num=29" target="_blank">상세보기</a>',
     '   </p>',
     '</div>'
 ].join('');
@@ -324,7 +324,7 @@ var content_cul = [
 	'<div class="iw_inner" style="width:200px; height:200px; text-align: center;">',
     '   <h3>감천문화마을</h3><br/>',
     '   <p> <img src="../resources/image/culture.jpg" width="100" height="100" alt="감천문화마을" class="thumb" /><br/>',
-    '       <a href="http://www.seoul.go.kr" target="_blank">상세보기</a>',
+    '       <a href="http://localhost:8888/busanonna_tour/tourinfo/read?info_num=31" target="_blank">상세보기</a>',
     '   </p>',
     '</div>'
 ].join('');

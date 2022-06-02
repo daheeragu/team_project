@@ -409,7 +409,7 @@ td {
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading">
-					<a class="boardTitle" href="tourinfo/read?info_num=${info.info_num}">
+					<a class="boardTitle" href="tourinfo/read?info_num=${info.info	_num}">
 						${info.info_title}
 					</a></h2>
 					<br>
@@ -464,7 +464,7 @@ td {
 			<div class="noticeListForHome">
 				<table class="table table-striped table-hover">
 
-					<c:forEach var="notice" items="${noticeList}" begin="1" end="5">
+					<c:forEach var="notice" items="${noticeList}" begin="0" end="4">
 						<tr>
 							<th scope="row"><a class="goNotice"
 								href="notice/read?notice_num=${notice.notice_num}">
