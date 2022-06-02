@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>여행정보 글 수정</title>
+
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <script src = "../ckeditor/ckeditor.js"></script>
+
 <script type="text/javascript">
   $(document).ready(function(){
 	//삭제 버튼에 클릭이벤트 처리
@@ -130,7 +134,7 @@
 	  		</a>
 			<input type="button" id="deletebtn"
 				data-num="${info.info_num}" value="X">
-	  		<button id="addbtn" type="button">파일 추가</button>
+	  		<input type="file" name="upload" size="30" value="이미지 업로드">
 	  	</td>	
 	  </tr>
 	
