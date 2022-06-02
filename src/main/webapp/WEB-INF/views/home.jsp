@@ -13,8 +13,9 @@
 
 <title>부산온나</title>
 <script>
+	
 	function new_window(){
-		w = window.open('http://localhost:8888/busanonna_tour/chatView', 'top=100, left=500, width=300, height=300');
+		w = window.open('chatView', 'win', 'top=500, left=500, width=600, height=550, location=no, status=no');
 	}
 	
 	function backpage(){
@@ -388,11 +389,11 @@ td {
      <p><a href="javascript:new_window()"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
     </div>
 	 -->
-
+	 
 			<div id="fixed_layer">
 				<p>
-					<a href="./chatView" target="_blank"><img
-						src="resources/image/chat.png" width="49" height="49" border="0"></a>
+					<!-- <a href="./chatView" target="_blank">-->
+					<img src="resources/image/chat.png" width="49" height="49" border="0" onclick="new_window()">
 				</p>
 			</div>
 
