@@ -89,6 +89,13 @@ h1 {
 	margin-left: 50px;
 }
 
+.card-img-top{
+   height: 200px;
+}
+.card-body{
+    height: 150px;
+    text-decoration: none;
+}
 .pagingForm {
 	margin-left: 1030px;
 }
@@ -110,7 +117,7 @@ h1 {
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">BUSAN</a>
+				<a class="navbar-brand" href="../">BUSAN</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"

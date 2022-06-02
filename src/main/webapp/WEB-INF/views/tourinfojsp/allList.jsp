@@ -88,6 +88,10 @@ h1 {
 	height: 200px;
 }
 
+.card-body{
+    height: 200px;
+}
+
 .firstLine {
 	margin-top: 150px;
 	margin-left: 50px;
