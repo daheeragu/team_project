@@ -263,6 +263,7 @@ h1 {
     <tr id="upper">
       <th scope="col">번호</th>
       <th scope="col">제목</th>
+      <th scope="col">관광지</th>
       <th scope="col">작성자</th>
       <th scope="col">조회수</th>
       <th scope="col">등록일</th>
@@ -274,6 +275,7 @@ h1 {
     <tr>
       <th scope="row">${review.review_num}</th>
       <td><a href="readReview?review_num=${review.review_num}">${review.review_title}</a></td>
+      <td>${review.info_name}</td>
       <td>${review.user_id}</td>
       <td>${review.review_hits}</td>
       <td>${review.review_inputdate}</td>

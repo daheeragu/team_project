@@ -10,15 +10,18 @@
 	<select id="reviewList" parameterType="string"
 		resultType="review">
 		select
-		review_num
-		,review_title
-		,user_id
-		,review_hits
-		,review_inputdate
+		r.review_num
+		,r.review_title
+		,r.user_id
+		,r.review_hits
+		,r.review_inputdate
+		,i.info_name
 		from
-		review
+		review r, tourinfo i
+		where
+		r.info_num = i.info_num
 		<if test="_parameter !=null">
-			where
+			and
 			upper(review_title) like '%' || upper(#{searchText})
 			|| '%'
 		</if>

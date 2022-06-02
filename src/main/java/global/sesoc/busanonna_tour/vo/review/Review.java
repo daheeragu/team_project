@@ -2,7 +2,8 @@ package global.sesoc.busanonna_tour.vo.review;
 
 public class Review {
 	private String user_id;	//작성자 아이디
-	private int info_num;	//리뷰와 관련된 여행지 
+	private int info_num;	//리뷰와 관련된 여행지 번호
+	private String info_name; //리뷰와 관련된 여행지 이름
 	private int review_num;	//리뷰글 고유번호
 	private String review_title;	//리뷰 제목
 	private String review_content;	//리뷰 내용
@@ -13,17 +14,32 @@ public class Review {
 	public Review() {
 	}
 
-	public Review(String user_id, int info_num, int review_num, String review_title, String review_content,
-			String review_inputdate, int review_like, int review_hits) {
+	
+
+	
+	public Review(String user_id, int info_num, String info_name, int review_num, String review_title,
+			String review_content, String review_inputdate, int review_like, int review_hits) {
 		super();
 		this.user_id = user_id;
 		this.info_num = info_num;
+		this.info_name = info_name;
 		this.review_num = review_num;
 		this.review_title = review_title;
 		this.review_content = review_content;
 		this.review_inputdate = review_inputdate;
 		this.review_like = review_like;
 		this.review_hits = review_hits;
+	}
+
+
+
+
+	public String getInfo_name() {
+		return info_name;
+	}
+
+	public void setInfo_name(String info_name) {
+		this.info_name = info_name;
 	}
 
 	public String getUser_id() {
