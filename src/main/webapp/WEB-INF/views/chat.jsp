@@ -32,6 +32,7 @@ span {
 	border: 2px solid lightyellow;
 	border-color: lightyellow;
 	border-radius: 5px;
+	display: inline-block;
 	max-width: 350px;
 	background-color: lightyellow;
 	position: relative;
@@ -101,7 +102,7 @@ function receiveMessage(msg) {
 	var timeStr = d.toLocaleTimeString();
 	
 	$('#outputDiv').append("<br>" + "<div><span id='chat'>" + msg.data + "</span></div>"
-	+ "<div id='time'>" + timeStr + "</div><br>");
+	+ "<div id='time'>" + timeStr + "</div>");
 }
 
 window.setInterval(function() {
