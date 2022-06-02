@@ -11,6 +11,9 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+	rel="stylesheet">
 <script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 </head>
 
@@ -134,7 +137,7 @@ h1 {
 								<li><a class="dropdown-item" href="leisure">레저</a></li>
 								<li><a class="dropdown-item" href="experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="../notice/recommend">내주변</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -201,7 +204,7 @@ h1 {
 
 	<br>
 	<div class="firstLine">
-		<h1>
+		<h1 style="font-family:'Black Han Sans', sans-serif; font-size: 60px; color:#5A5A5A;">
 			<c:if test="${theme == 'spot'}">
 		여행지 - 명소
 	</c:if>
