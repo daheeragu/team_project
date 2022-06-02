@@ -63,13 +63,6 @@
 <script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function(){
-    $('#gobtn').on('click', returnList);
-    $('#editbtn').on('click', updateInfo);
-    $('#deletebtn').on('click', deleteInfo);
-    $('#likebtn').on('click', like);
-  }); 
-  
 $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
 	// data로 할 일...
 //	alert(data.list[0].main.temp_min);
@@ -95,6 +88,13 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 	$('.ctemp').append($cTemp);
 	$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
 });
+
+$(document).ready(function(){
+    $('#gobtn').on('click', returnList);
+    $('#editbtn').on('click', updateInfo);
+    $('#deletebtn').on('click', deleteInfo);
+    $('#likebtn').on('click', like);
+  }); 
 
   function backpage(){
 	window.location = "../user/logout";
@@ -275,7 +275,7 @@ h3 {
 	<div class="container">
 		<table class="table">
 			<tbody>
-
+					
 				<tr>
 					<th scope="row">제목</th>
 					<td>${info.info_title}</td>
@@ -302,16 +302,17 @@ h3 {
 				<tr>
 					<th scope="row">이용 가능 여부</th>
 					<td><c:if test="${info.info_state == 'available'}">
-      	이용 가능
-      </c:if> <c:if test="${info.info_state == 'unavailable'}">
-      	이용 불가
-      </c:if></td>
+				      	이용 가능
+				      </c:if> <c:if test="${info.info_state == 'unavailable'}">
+				      	이용 불가
+				      </c:if></td>
 				</tr>
 
 				<tr>
 					<td class="contnet" scope="row" colspan="2">
 						${info.info_content}</td>
 				</tr>
+				
 
 				<tr>
 					<th scope="row" colspan="2" style="text-align: center;">
@@ -452,8 +453,10 @@ h3 {
 				<tr>
 					<th scope="row" colspan="2" style="text-align: center;">
 						<button id="gobtn" type="button" class="btn btn-outline-dark">목록</button>
+						<c:if test="${sessionScope.loginAdmin != null}">
 						<button id="editbtn" type="button" class="btn btn-outline-dark">수정</button>
 						<button id="deletebtn" type="button" class="btn btn-outline-dark">삭제</button>
+						</c:if>
 					</th>
 				</tr>
 
