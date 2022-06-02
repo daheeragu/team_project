@@ -58,6 +58,37 @@ $(document).ready(function(){
 	  location.href = 'delete?event_num=${event.event_num}';
 	  }
   }
+  
+  function backpage(){
+		window.location = "../user/logout";
+		location.href = "../event/list";
+	}
+  
+  $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac2190fcb873d3f767de9e3773f21704&units=metric', function(data){
+		// data로 할 일...
+//		alert(data.list[0].main.temp_min);
+		var $cTemp = data.main.temp;
+		var $minTemp = data.main.temp_min;
+		var $maxTemp = data.main.temp_max;
+		var $cIcon = data.weather[0].icon;
+		var $now = new Date($.now());
+		var $cDate = $now.getFullYear() + '/' + ($now.getMonth() + 1) + '/' + $now.getDate() + '/' + $now.getHours() + ':' + $now.getMinutes()
+		// A.appendTo(B) B요소의 내용의 뒤에 A를 추가
+		// A.append(B) A요소의 내용의 뒤에 B를 추가
+		// A.prependTo(B) B요소의 내용의 앞에 A를 추가
+		// A.prepend(B) A요소의 내용의 앞에 B를 추가
+		// Date.now();, == $.now : 현재시간 출력
+		// new Date(Date.now());
+		// alert(new Date(Date.now()));
+		// .getFullYear() : 년도
+		// .getHours() : 시간
+		// .getMinutes() : 분
+		// .getMonth() : 월 - 0이 1월
+		// .getDate() : 일
+		
+		$('.ctemp').append($cTemp);
+		$('.cicon').append('<img style = "width : 50px; height:50px;" src = "http://openweathermap.org/img/wn/' +$cIcon+ '@2x.png">')
+	});
 
 </script>
   
@@ -137,7 +168,13 @@ $(document).ready(function(){
 						</li>
 				
 						</ul>
-
+					<div style="text-align: center;">
+						<a href="https://www.kma.go.kr/busan/html/main/index.jsp"
+							style="text-decoration: none"> <span class="ctemp"
+							style="color: white;">현재 온도 : </span> <span class="cicon"
+							style="width: 25px; height: 25px;"></span>
+						</a>
+					</div>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navbarNav-menu">
 						<ul class="navbar-nav text-center">
@@ -148,7 +185,7 @@ $(document).ready(function(){
 							<c:if test="${loginId != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								<li class="nav-item"><a class="nav-link" href="#" onclick="backpage()">로그아웃</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
 								</li>
@@ -156,7 +193,7 @@ $(document).ready(function(){
 							<c:if test="${loginAdmin != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="../user/logout">로그아웃</a>
+								<li class="nav-item"><a class="nav-link" href="#" onclick="backpage()">로그아웃</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="../user/mypage">마이페이지</a>
 								</li>
@@ -210,8 +247,10 @@ $(document).ready(function(){
     <tr>
       <th scope="row" colspan="2" style="text-align:center;">
       <button id="gobtn" type="button" class="btn btn-outline-dark">목록</button>
+     <c:if test = "${loginAdmin != null}">
       <button id="editbtn" type="button" class="btn btn-outline-dark">수정</button>
       <button id="deletebtn" type="button" class="btn btn-outline-dark">삭제</button>
+     </c:if>
       </th>
     </tr>
   </tbody>

@@ -57,7 +57,7 @@
   
   function backpage(){
 		window.location = "../user/logout";
-		location.href = "../notice/readForm";
+		location.href = "../notice/list";
 	}
   </script>
  
@@ -224,10 +224,12 @@
     
 				<tr id="return" style="border: white; text-align: right;">
 					<td colspan="2">
+					   <c:if test="${loginAdmin != null}">
 						<button type="button" class="btn btn-outline-secondary"
 							id="updatebtn">수정</button> &nbsp;
 						<button type="button" class="btn btn-outline-secondary"
 							id="deletebtn">삭제</button> &nbsp;
+					   </c:if>
 						<button type="button" class="btn btn-outline-secondary"
 							id="golistbtn">목록</button>
 					</td>
