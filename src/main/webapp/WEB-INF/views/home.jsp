@@ -260,37 +260,37 @@ td {
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="download?info_num=${top1.info_num}" class="d-block w-100" alt="송도">
+					<img src="tourinfo/download?info_num=${top1.info_num}" class="d-block w-100" alt="송도">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>'부산온나'의 top1</h5>
 						<p>가장 인기있는 여행지 ${top1.info_name}</p>
 						<p>
 							<a class="btn btn-lg btn-primary" 
-							href="../tourinfo/read?info_num=${top1.info_num}">자세히 보기</a>
+							href="tourinfo/read?info_num=${top1.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="download?info_num=${top2.info_num}" class="d-block w-100"
+					<img src="tourinfo/download?info_num=${top2.info_num}" class="d-block w-100"
 						alt="대숲길">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>'부산온나'의 top2</h5>
 						<p>부산에서 둘째가라면 서러운 여행지 ${top2.info_name}</p>
 						<p>
 							<a class="btn btn-lg btn-primary" 
-							href="../tourinfo/read?info_num=${top2.info_num}">자세히 보기</a>
+							href="tourinfo/read?info_num=${top2.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="download?info_num=${top3.info_num}" class="d-block w-100"
+					<img src="tourinfo/download?info_num=${top3.info_num}" class="d-block w-100"
 						alt="감천문화마을">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>'부산온나'의 top3</h5>
 						<p>부산의 자랑. 3번째로 추천하는 여행지 ${top3.info_name}</p>
 						<p>
 							<a class="btn btn-lg btn-primary" 
-							href="../tourinfo/read?info_num=${top3.info_num}">자세히 보기</a>
+							href="tourinfo/read?info_num=${top3.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>

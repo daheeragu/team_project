@@ -293,7 +293,7 @@ public class TourinfoController {
 			dao.addLike(info_num);
 		}
 		
-		return "tourinfojsp/readForm";
+		return "redirect:read?info_num="+info.getInfo_num();
 	}
 	
 	
