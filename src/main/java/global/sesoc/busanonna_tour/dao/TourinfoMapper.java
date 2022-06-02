@@ -10,15 +10,16 @@ import global.sesoc.busanonna_tour.vo.tourinfo.Tourinfo;
 
 public interface TourinfoMapper {
 	//글개수
-	public int getTotalSpot(String theme);
-	public int getTotalFood(String theme);
-	public int getTotalLeisure(String theme);
-	public int getTotalExp(String theme);
+	public int getTotalSpot(String searchText);
+	public int getTotalFood(String searchText);
+	public int getTotalLeisure(String searchText);
+	public int getTotalExp(String searchText);
+	
     //글목록
-	public ArrayList<Tourinfo> spotlist(RowBounds rb);
-	public ArrayList<Tourinfo> foodlist(RowBounds rb);
-	public ArrayList<Tourinfo> leisurelist(RowBounds rb);
-	public ArrayList<Tourinfo> explist(RowBounds rb);
+	public ArrayList<Tourinfo> spotlist(String searchText, RowBounds rb);
+	public ArrayList<Tourinfo> foodlist(String searchText, RowBounds rb);
+	public ArrayList<Tourinfo> leisurelist(String searchText, RowBounds rb);
+	public ArrayList<Tourinfo> explist(String searchText, RowBounds rb);
 
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num);

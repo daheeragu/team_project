@@ -48,25 +48,24 @@ public class TourinfoController {
 	@Autowired
 	UserDAO udao;
 	
-	//명소 글목록 이동
+	//명소 글목록 이동+검색결과 화면
 	@RequestMapping(value = "spot", method = RequestMethod.GET)
-	public String spotList(Model model, HttpSession session
+	public String spotList(Model model
+			, @RequestParam(value="searchText", defaultValue="") String searchText
 			, @RequestParam(value="page", defaultValue="1") int page){
 		
 		//전체 글 개수 
-		int total = dao.getTotalSpot("spot");
+		int total = dao.getTotalSpot(searchText);
 		//페이지 계산을 위한 객체 생성 
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
 		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
-		ArrayList<Tourinfo> infolist = dao.spotlist(navi.getStartRecord(), navi.getCountPerPage());	
-		
-		//세션에서 관리자 아이디 받아오기 
-		session.getAttribute("loginAdmin");
+		ArrayList<Tourinfo> infolist = dao.spotlist(searchText, navi.getStartRecord(), navi.getCountPerPage());	
 		
 		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
 		model.addAttribute("infolist", infolist);
 		model.addAttribute("navi", navi);
 		model.addAttribute("theme", "spot");
+		model.addAttribute("searchText", searchText);
 		
 		return "tourinfojsp/allList";
 	}
@@ -74,19 +73,21 @@ public class TourinfoController {
 	//먹거리 글목록 이동
 	@RequestMapping(value = "food", method = RequestMethod.GET)
 	public String foodList(Model model
+			, @RequestParam(value="searchText", defaultValue="") String searchText
 			, @RequestParam(value="page", defaultValue="1") int page){
 		
 		//전체 글 개수 
-		int total = dao.getTotalFood("food");
+		int total = dao.getTotalFood(searchText);
 		//페이지 계산을 위한 객체 생성 
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
 		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
-		ArrayList<Tourinfo> infolist = dao.foodlist(navi.getStartRecord(), navi.getCountPerPage());	
+		ArrayList<Tourinfo> infolist = dao.foodlist(searchText, navi.getStartRecord(), navi.getCountPerPage());	
 		
 		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
 		model.addAttribute("infolist", infolist);
 		model.addAttribute("navi", navi);
 		model.addAttribute("theme", "food");
+		model.addAttribute("searchText", searchText);
 		
 		return "tourinfojsp/allList";
 	}
@@ -94,19 +95,21 @@ public class TourinfoController {
 	//레저 글목록 이동
 	@RequestMapping(value = "leisure", method = RequestMethod.GET)
 	public String leisureList(Model model
+			, @RequestParam(value="searchText", defaultValue="") String searchText
 			, @RequestParam(value="page", defaultValue="1") int page){
 		
 		//전체 글 개수 
-		int total = dao.getTotalLeisure("leisure");
+		int total = dao.getTotalLeisure(searchText);
 		//페이지 계산을 위한 객체 생성 
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
 		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
-		ArrayList<Tourinfo> infolist = dao.leisurelist(navi.getStartRecord(), navi.getCountPerPage());	
+		ArrayList<Tourinfo> infolist = dao.leisurelist(searchText, navi.getStartRecord(), navi.getCountPerPage());	
 		
 		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
 		model.addAttribute("infolist", infolist);
 		model.addAttribute("navi", navi);
 		model.addAttribute("theme", "leisure");
+		model.addAttribute("searchText", searchText);
 		
 		return "tourinfojsp/allList";
 	}
@@ -114,19 +117,21 @@ public class TourinfoController {
 	//체험 글목록 이동
 	@RequestMapping(value = "experience", method = RequestMethod.GET)
 	public String expList(Model model
+			, @RequestParam(value="searchText", defaultValue="") String searchText
 			, @RequestParam(value="page", defaultValue="1") int page){
 		
 		//전체 글 개수 
-		int total = dao.getTotalLeisure("experience");
+		int total = dao.getTotalLeisure(searchText);
 		//페이지 계산을 위한 객체 생성 
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
 		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
-		ArrayList<Tourinfo> infolist = dao.explist(navi.getStartRecord(), navi.getCountPerPage());	
+		ArrayList<Tourinfo> infolist = dao.explist(searchText, navi.getStartRecord(), navi.getCountPerPage());	
 		
 		//페이지 정보 객체와 글목록, 검색어를 모델에 저장
 		model.addAttribute("infolist", infolist);
 		model.addAttribute("navi", navi);
 		model.addAttribute("theme", "exp");
+		model.addAttribute("searchText", searchText);
 		
 		return "tourinfojsp/allList";
 	}

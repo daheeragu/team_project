@@ -123,6 +123,7 @@ function spotSearchOpen() {
 		<td>
 			<input type="text" name="spot" id="spot" maxlength="10" placeholder="관광지를 입력하세요" readonly="readonly">
 			<input type="button" value="관광지 검색" onclick="spotSearchOpen()">
+			<input type="hidden" name="info_num" id="info_num">
 		</td>
 	</tr>
 	<tr>
@@ -131,7 +132,7 @@ function spotSearchOpen() {
   <tr>
     <th>내용</th>
       <td>
-		 <textarea id="editor" name="reivew_content"></textarea>
+		 <textarea id="editor" name="review_content"></textarea>
 	            <script>
 	                CKEDITOR.replace('editor'
 	                		, {filebrowserUploadUrl:'imageUpload.do'
