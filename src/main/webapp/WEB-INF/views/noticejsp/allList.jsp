@@ -223,7 +223,7 @@ h1 {
 								<li class="nav-item"><a class="nav-link"
 									href="#" onclick = "backpage()">로그아웃</a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="../user/mypage" ">마이페이지</a></li>
+									href="../user/mypage">마이페이지</a></li>
 							</c:if>
 							<c:if test="${loginAdmin != null}">
 								<li class="nav-item"><a class="nav-link">${loginName}님</a>
@@ -261,11 +261,12 @@ h1 {
 		</div>
 		<!-- 공지사항 목록 출력 -->
 		<table style="margin: auto;">
-
+           <c:if test="${loginAdmin !=null}">
 			<tr id="top-bt">
 				<td colspan="4" style="padding-bottom: 10px;"><input
 					type="button" value="등록" onclick="location.href='write'"></td>
 			</tr>
+           </c:if>
 			<tr id="upper">
 				<td style="width: 100px">글번호</td>
 				<td style="width: 600px">제목</td>

@@ -29,6 +29,7 @@ public class HomeController {
 	
 	@Autowired
 	NoticeDAO dao;
+	@Autowired
 	TourinfoDAO tourdao;
 	
 	/**
@@ -45,12 +46,20 @@ public class HomeController {
 		noticeList = dao.listNoticeForHome();
  
 		model.addAttribute("noticeList", noticeList);
-		/*
-		 * ArrayList<Tourinfo> likeList = new ArrayList<>(); likeList =
-		 * tourdao.selectLikeList(); if(likeList != null) { model.addAttribute("top1",
-		 * likeList.get(0)); model.addAttribute("top2", likeList.get(1));
-		 * model.addAttribute("top3", likeList.get(2)); }
-		 */
+	
+		 ArrayList<Tourinfo> likeList = new ArrayList<>(); 
+		 
+		 likeList = tourdao.selectLikeList();  
+		 model.addAttribute("top1", likeList.get(0)); 
+		 model.addAttribute("top2", likeList.get(1));
+		 model.addAttribute("top3", likeList.get(2)); 
+		 
+		 System.out.println(likeList.get(0));
+		 
+		//하단 글 리스트
+	       //1. 조회수 최다 여행정보글
+	       Tourinfo info = tourdao.selectTopHits();
+	       model.addAttribute("info", info);
 		return "home";
 	}
 	

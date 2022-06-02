@@ -13,8 +13,9 @@
 
 <title>부산온나</title>
 <script>
+	
 	function new_window(){
-		w = window.open('http://localhost:8888/busanonna_tour/chatView', 'top=100, left=500, width=300, height=300');
+		w = window.open('chatView', 'win', 'top=500, left=500, width=600, height=550, location=no, status=no');
 	}
 	
 	function backpage(){
@@ -110,6 +111,11 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1838524&appid=ac21
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;
 	}
+}
+
+.boardTitle {
+	text-decoration: none;
+	color: #5A5A5A;
 }
 
 .intro_notice {
@@ -260,37 +266,37 @@ td {
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="download?info_num=${top1.info_num}" class="d-block w-100" alt="송도">
+					<img src="tourinfo/download?info_num=${top1.info_num}" class="d-block w-100" alt="송도">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>'부산온나'의 top1</h5>
-						<p>가장 인기있는 여행지 ${top1.info_name}</p>
+						<h5 style = "text-shadow: 2px 2px 2px gray;">'부산온나'의 top1</h5>
+						<p style = "text-shadow: 2px 2px 2px gray;">가장 인기있는 여행지 ${top1.info_name}</p>
 						<p>
 							<a class="btn btn-lg btn-primary" 
-							href="../tourinfo/read?info_num=${top1.info_num}">자세히 보기</a>
+							href="tourinfo/read?info_num=${top1.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="download?info_num=${top2.info_num}" class="d-block w-100"
+					<img src="tourinfo/download?info_num=${top2.info_num}" class="d-block w-100"
 						alt="대숲길">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>'부산온나'의 top2</h5>
-						<p>부산에서 둘째가라면 서러운 여행지 ${top2.info_name}</p>
+						<h5 style = "text-shadow: 2px 2px 2px gray;">'부산온나'의 top2</h5>
+						<p style = "text-shadow: 2px 2px 2px gray;">부산에서 둘째가라면 서러운 여행지 ${top2.info_name}</p>
 						<p>
 							<a class="btn btn-lg btn-primary" 
-							href="../tourinfo/read?info_num=${top2.info_num}">자세히 보기</a>
+							href="tourinfo/read?info_num=${top2.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="download?info_num=${top3.info_num}" class="d-block w-100"
+					<img src="tourinfo/download?info_num=${top3.info_num}" class="d-block w-100"
 						alt="감천문화마을">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>'부산온나'의 top3</h5>
-						<p>부산의 자랑. 3번째로 추천하는 여행지 ${top3.info_name}</p>
+						<h5 style = "text-shadow: 2px 2px 2px gray;">'부산온나'의 top3</h5>
+						<p style = "text-shadow: 2px 2px 2px gray;">부산의 자랑. 3번째로 추천하는 여행지 ${top3.info_name}</p>
 						<p>
 							<a class="btn btn-lg btn-primary" 
-							href="../tourinfo/read?info_num=${top3.info_num}">자세히 보기</a>
+							href="tourinfo/read?info_num=${top3.info_num}">자세히 보기</a>
 						</p>
 					</div>
 				</div>
@@ -388,11 +394,11 @@ td {
      <p><a href="javascript:new_window()"><img src="resources/image/chat.png" width="49" height="49" border="0"></a></p>
     </div>
 	 -->
-
+	 
 			<div id="fixed_layer">
 				<p>
-					<a href="./chatView" target="_blank"><img
-						src="resources/image/chat.png" width="49" height="49" border="0"></a>
+					<!-- <a href="./chatView" target="_blank">-->
+					<img src="resources/image/chat.png" width="49" height="49" border="0" onclick="new_window()">
 				</p>
 			</div>
 
@@ -403,22 +409,15 @@ td {
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading">
-						First featurette heading. <span class="text-muted">It’ll
-							blow your mind.</span>
-					</h2>
-					<p class="lead">Some great placeholder content for the first
-						featurette here. Imagine some exciting prose here.</p>
+					<a class="boardTitle" href="tourinfo/read?info_num=${info.info_num}">
+						${info.info_title}
+					</a></h2>
+					<br>
+					<p class="lead">${info.info_subtitle}</p>
 				</div>
 				<div class="col-md-5">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-						role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="#eee" />
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+					<img style="width:500px; height:350px;"
+						src="tourinfo/download?info_num=${info.info_num}" class="card-img-top" alt="${info.info_title}">
 				</div>
 			</div>
 

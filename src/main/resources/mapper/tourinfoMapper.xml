@@ -247,4 +247,19 @@
 	 <select id = "selectLikeList" resultType = "Tourinfo">
 	 	select * from tourinfo order by info_like desc
 	 </select>
+	 
+	 <!-- 조회수 가장 높은 여행정보(홈화면에서 사용) -->
+	 <select id="selectTopHits" resultType="Tourinfo">
+	 	select
+	 		info_num
+	 		, info_title
+	 		, info_subtitle
+	 		, savedfile
+	 	from
+	 		tourinfo
+	 	where
+	 		info_hits 
+	 		= (select max(info_hits) from tourinfo)
+	 </select>
+	 
 </mapper>

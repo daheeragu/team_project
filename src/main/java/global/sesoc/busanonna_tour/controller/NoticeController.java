@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.busanonna_tour.dao.NoticeDAO;
+import global.sesoc.busanonna_tour.dao.UserDAO;
 import global.sesoc.busanonna_tour.util.FileService;
 import global.sesoc.busanonna_tour.util.PageNavigator;
 import global.sesoc.busanonna_tour.vo.Board;
 import global.sesoc.busanonna_tour.vo.Notice;
 import global.sesoc.busanonna_tour.vo.Notice_pic;
+import global.sesoc.busanonna_tour.vo.user.Admin;
 
 @Controller
 @RequestMapping("notice")
@@ -41,6 +43,9 @@ public class NoticeController {
 
 	@Autowired
 	NoticeDAO dao;
+	@Autowired
+	UserDAO userdao;
+	
 	//네이버 지도 API (내주변) 
 	@RequestMapping(value = "recommend", method = RequestMethod.GET)
 	public String recommend() {
@@ -51,9 +56,13 @@ public class NoticeController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model model
 			, @RequestParam(value="searchText", defaultValue="") String searchText
-	        , @RequestParam(value="page", defaultValue="1") int page) { 	
+	        , @RequestParam(value="page", defaultValue="1") int page
+	        , HttpSession session) { 	
 		
 		logger.debug("page: {}, searchText: {}", page, searchText);
+		
+		//관리자 세션 아이디 불러오기
+	
 		
 		//전체 글 개수
 		int total = dao.getTotal(searchText);
@@ -72,7 +81,7 @@ public class NoticeController {
 	
 	//공지사항 읽기 이동
 	@RequestMapping(value = "read", method = RequestMethod.GET)
-	public String read(int notice_num, Model model) {
+	public String read(int notice_num, Model model, HttpSession session) {
 		
      //글 번호 전달하면 읽어오기
 		Notice notice = dao.readNotice(notice_num);

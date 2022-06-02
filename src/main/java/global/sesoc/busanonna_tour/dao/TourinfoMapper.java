@@ -38,5 +38,7 @@ public interface TourinfoMapper {
 	public int deleteFile(int info_num);
 	// 땡기네 높은 순으로 찾기
 	public ArrayList<Tourinfo> selectLikeList();
+	//조회수 가장 높은 게시글
+	public Tourinfo selectTopHits();
 	
 }

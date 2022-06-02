@@ -15,35 +15,48 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+
 #outputDiv {
+	border-radius: 5px;
 	width: 500px;
 	min-width: 500px;
 	height: 450px;
 	
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: ivory;
+	background-color: #b7d7e8;
 	word-break: break-all;
-	border: 3px solid skyblue;
-	border-radius: 5px;
 }
-#text {
-	width: 440px;
-}
-#chat {
-	border: 1px solid black;
+
+span {
+	border: 2px solid lightyellow;
+	border-color: lightyellow;
 	border-radius: 5px;
+	display: inline-block;
 	max-width: 350px;
-	background-color: white;
+	background-color: lightyellow;
 	position: relative;
 	left: 10px;
 }
+
+#text {
+	border: 1px solid black;
+	width: 440px;
+}
+
+#time {
+	font-size: small;
+	position: relative;
+	left: 10px;
+}
+
 .swal-title {
 	margin: 0px;
 	font-size: 16px;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
 	margin-bottom: 28px;
 }
+
 </style>
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -67,7 +80,6 @@ function openSession() {
 		    title: "어서오세요!",
 		    text: "즐거운 시간 되세요!"
 		});
-		
 	}
 	sock.onmessage = receiveMessage;
 }
@@ -85,8 +97,14 @@ function sendMessage() {
 }
 // 메시지를 받으면 화면에 출력
 function receiveMessage(msg) {
-	$('#outputDiv').append("<div id='chat'>" + msg.data + "</div><br>");
+	var d = new Date();
+
+	var timeStr = d.toLocaleTimeString();
+	
+	$('#outputDiv').append("<br>" + "<div><span id='chat'>" + msg.data + "</span></div>"
+	+ "<div id='time'>" + timeStr + "</div>");
 }
+
 window.setInterval(function() {
     var elem = document.getElementById('outputDiv');
     elem.scrollTop = elem.scrollHeight;

@@ -46,7 +46,7 @@ public class EventController {
 	public String list(Model model
 			, @RequestParam(value="searchText", defaultValue="") String searchText
 			, @RequestParam(value="page", defaultValue="1") int page
-			) {
+			, HttpSession session) {
         
 		 
 		logger.debug("page: {}, searchText: {}", page, searchText);
@@ -162,7 +162,7 @@ public class EventController {
 	
 	//이벤트 읽기
 	@RequestMapping(value = "read", method = RequestMethod.GET)
-	public String read(int event_num, Model model) {
+	public String read(int event_num, Model model, HttpSession session) {
 		
        //이벤트 글 번호 전달하면 읽어오기 
 		Event event = dao.readEvent(event_num);
