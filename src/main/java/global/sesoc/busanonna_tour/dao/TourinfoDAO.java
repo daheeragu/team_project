@@ -21,86 +21,86 @@ public class TourinfoDAO {
 	SqlSession sqlSession;
 	
 	//명소 글개수
-	public int getTotalSpot(String theme) {
+	public int getTotalSpot(String searchText) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		int result = 0; 
 		    
-		result = mapper.getTotalSpot(theme);
+		result = mapper.getTotalSpot(searchText);
 	    return result;
 	}
 	
 	//먹거리 글개수
-	public int getTotalFood(String theme) {
+	public int getTotalFood(String searchText) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		int result = 0; 
 		    
-		result = mapper.getTotalFood(theme);
+		result = mapper.getTotalFood(searchText);
 	    return result;
 	}
 	
 	//레저 글개수
-	public int getTotalLeisure(String theme) {
+	public int getTotalLeisure(String searchText) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		int result = 0; 
 		    
-		result = mapper.getTotalLeisure(theme);
+		result = mapper.getTotalLeisure(searchText);
 	    return result;
 	}
 	
 	//체험 글개수
-	public int getTotalExp(String theme) {
+	public int getTotalExp(String searchText) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		int result = 0; 
 		    
-		result = mapper.getTotalExp(theme);
+		result = mapper.getTotalExp(searchText);
 	    return result;
 	}
 	
 	//명소 글목록
-	public ArrayList<Tourinfo> spotlist(int startRecord, int countPerPage) {
+	public ArrayList<Tourinfo> spotlist(String searchText, int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		
 		//전체 검색 결과 중 읽을 시작위치와 개수
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
 		
 		//검색어와 읽을 범위를 전달
-		ArrayList<Tourinfo> result = mapper.spotlist(rb);
+		ArrayList<Tourinfo> result = mapper.spotlist(searchText, rb);
 		return result;
 	}
 	
 	//먹거리 글목록
-	public ArrayList<Tourinfo> foodlist(int startRecord, int countPerPage) {
+	public ArrayList<Tourinfo> foodlist(String searchText, int startRecord, int countPerPage) {
 		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 		
 		//전체 검색 결과 중 읽을 시작위치와 개수
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
 		
 		//검색어와 읽을 범위를 전달
-		ArrayList<Tourinfo> result = mapper.foodlist(rb);
+		ArrayList<Tourinfo> result = mapper.foodlist(searchText, rb);
 		return result;
 	}
 	
 	//레저 글목록
-		public ArrayList<Tourinfo> leisurelist(int startRecord, int countPerPage) {
+		public ArrayList<Tourinfo> leisurelist(String searchText, int startRecord, int countPerPage) {
 			TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 			
 			//전체 검색 결과 중 읽을 시작위치와 개수
 			RowBounds rb = new RowBounds(startRecord, countPerPage);
 			
 			//검색어와 읽을 범위를 전달
-			ArrayList<Tourinfo> result = mapper.leisurelist(rb);
+			ArrayList<Tourinfo> result = mapper.leisurelist(searchText, rb);
 			return result;
 		}
 		
 		//체험 글목록
-		public ArrayList<Tourinfo> explist(int startRecord, int countPerPage) {
+		public ArrayList<Tourinfo> explist(String searchText, int startRecord, int countPerPage) {
 			TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
 			
 			//전체 검색 결과 중 읽을 시작위치와 개수
 			RowBounds rb = new RowBounds(startRecord, countPerPage);
 			
 			//검색어와 읽을 범위를 전달
-			ArrayList<Tourinfo> result = mapper.explist(rb);
+			ArrayList<Tourinfo> result = mapper.explist(searchText, rb);
 			return result;
 		}
 

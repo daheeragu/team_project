@@ -13,6 +13,10 @@
 			tourinfo
 		where
 			info_theme = 'spot'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 	</select>
 	
 		<!-- 먹거리 글 개수 -->
@@ -23,6 +27,10 @@
 			tourinfo
 		where
 			info_theme = 'food'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 	</select>
 	
 		<!-- 레저 글 개수 -->
@@ -33,6 +41,10 @@
 			tourinfo
 		where
 			info_theme = 'leisure'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 	</select>
 	
 		<!-- 체험 글 개수 -->
@@ -43,6 +55,10 @@
 			tourinfo
 		where
 			info_theme = 'experience'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 	</select>
 
 	<!-- 명소 글 목록 -->
@@ -60,6 +76,10 @@
 			tourinfo
 		where
 			info_theme = 'spot'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 		order by
 			info_num desc
 	</select>
@@ -79,6 +99,10 @@
 			tourinfo
 		where
 			info_theme = 'food'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 		order by
 			info_num desc
 	</select>
@@ -98,6 +122,10 @@
 			tourinfo
 		where
 			info_theme = 'leisure'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 		order by
 			info_num desc
 	</select>
@@ -117,6 +145,10 @@
 			tourinfo
 		where
 			info_theme = 'experience'
+		<if test="_parameter != null">
+		and
+			lower(info_title) like lower('%' || #{searchText} || '%')
+		</if>
 		order by
 			info_num desc
 	</select>
