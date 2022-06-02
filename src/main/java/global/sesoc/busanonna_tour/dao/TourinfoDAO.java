@@ -104,11 +104,16 @@ public class TourinfoDAO {
 			return result;
 		}
 
+	//글 읽을 때 조회수 1 증가
+	public void addHits(int info_num) {
+		TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
+		//조회수 1증가(업데이트)
+		mapper.addHits(info_num);
+	}
+		
 	//게시판 글읽기
 	public Tourinfo readInfo(int info_num) {
 		 TourinfoMapper mapper = sqlSession.getMapper(TourinfoMapper.class);
-		 //조회수 1증가(업데이트)
-		 mapper.addHits(info_num);
 		 //해당 번호의 글정보 읽기
 		 Tourinfo info = mapper.readInfo(info_num);
 		 return info; 

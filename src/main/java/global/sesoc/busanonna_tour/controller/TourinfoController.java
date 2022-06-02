@@ -206,12 +206,13 @@ public class TourinfoController {
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public String read(int info_num, Model model) {
 		
-		 //글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
-	      Tourinfo info = dao.readInfo(info_num);
-	     //결과가 없으면 글 목록으로 이동 
-	      if(info == null) {
-	    	  return "redirect:/";
-	      }
+		//글 번호 전달하면 dao에서 조회수 수정하고 해당글 읽어옴
+	     Tourinfo info = dao.readInfo(info_num);
+	    //결과가 없으면 글 목록으로 이동 
+	     if(info == null) {
+	   	  return "redirect:/";
+	     }
+	    dao.addHits(info_num);
 	      //결과가 있으면 모델에 글 정보 저장하고 JSP로 포워딩
 	    model.addAttribute("info", info);
 	      
