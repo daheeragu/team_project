@@ -16,8 +16,9 @@ function formCheck() {
 	return true;
 }
 
-function selectSpot(name) {
+function selectSpot(name,num) {
 
+	opener.document.getElementById('info_num').value=num;
 	opener.document.getElementById('spot').value=name;
 	this.close();
 }
@@ -41,7 +42,8 @@ function selectSpot(name) {
 	<c:if test="${tourinfo != null}">
 		<c:forEach var="tour" items="${tourinfo}">
 			<%-- <p>${tour.info_name}</p> --%>
-			<p><input type="button" value="${tour.info_name}" onclick="selectSpot('${tour.info_name}')"></p>
+			<p><input type="button" value="${tour.info_name}" onclick="selectSpot('${tour.info_name}','${tour.info_num}')"></p>
+			
 		</c:forEach>
 	</c:if>
 </c:if>

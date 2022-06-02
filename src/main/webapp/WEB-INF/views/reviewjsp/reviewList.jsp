@@ -301,17 +301,17 @@ h1 {
 				<li class="page-item"><a class="page-link"
 					href="javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})">Next</a></li>
 			</ul>
-			<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
 		</div>
+		<input type="button" value="글쓰기" onclick="location.href='write'" style="float : right;">
 		
 		<!-- /페이지 이동 끝 -->
 		
 <!-- 검색 폼 -->
 		<div class="pagingForm">
 			<form id="pagingForm" method="get" action="List">
-				<input type="hidden" name="page" id="page"> 검색어 : <input
-					type="text" name="searchText" value="${searchText}"> <input
-					type="button" onclick="pagingFormSubmit(1)" value="검색">
+				<input type="hidden" name="page" id="page"> 검색어 : 
+				<input type="text" name="searchText" value="${searchText}"> 
+				<input type="button" onclick="pagingFormSubmit(1)" value="검색">
 			</form>
 		</div>
 		<!-- /검색폼 -->

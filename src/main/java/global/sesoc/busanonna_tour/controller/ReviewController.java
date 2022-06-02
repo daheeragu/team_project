@@ -253,6 +253,7 @@ public class ReviewController {
 		model.addAttribute("tourinfo", tourinfo);
 		model.addAttribute("spotName",spotName);
 		
+		
 		return "reviewjsp/spotSearch";
 	}	
 	
