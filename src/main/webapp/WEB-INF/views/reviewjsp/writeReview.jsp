@@ -24,7 +24,7 @@ function spotSearchOpen() {
 <header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">BUSAN</a>
+				<a class="navbar-brand" href="../">BUSAN</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -39,19 +39,19 @@ function spotSearchOpen() {
 								여행지 </a>
 								
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">명소</a></li>
-								<li><a class="dropdown-item" href="#">먹거리</a></li>
-								<li><a class="dropdown-item" href="#">레저</a></li>
-								<li><a class="dropdown-item" href="#">체험</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/spot">명소</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/food">먹거리</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/leisure">레저</a></li>
+								<li><a class="dropdown-item" href="../tourinfo/experience">체험</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">내주변</a></li>
+								<li><a class="dropdown-item" href="../notice/recommend">내주변</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								회원마당 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="review/List">리뷰</a></li>
+								<li><a class="dropdown-item" href="../review/List">리뷰</a></li>
 								<li><a class="dropdown-item" href="#">질문과 답변</a></li>
 							</ul>
 						</li>
@@ -60,8 +60,8 @@ function spotSearchOpen() {
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								꿀팁 </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">공지</a></li>
-								<li><a class="dropdown-item" href="#">이벤트</a></li>
+								<li><a class="dropdown-item" href="../notice/list">공지</a></li>
+								<li><a class="dropdown-item" href="../event/list">이벤트</a></li>
 							</ul>
 						</li>
 				
@@ -71,10 +71,10 @@ function spotSearchOpen() {
                          <ul class="navbar-nav text-center">
                           <c:if test = "${loginId == null}">
                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="user/loginForm">로그인</a>
+                            <a class="nav-link active" aria-current="page" href="../user/loginForm">로그인</a>
                            </li>
                            <li class="nav-item">
-                             <a class="nav-link" href="user/joinForm">회원가입</a>
+                             <a class="nav-link" href="../user/joinForm">회원가입</a>
                            </li>
                           </c:if>
                           <c:if test = "${loginId != 'manager' && loginName != '관리자' && loginId != null}">
@@ -82,7 +82,7 @@ function spotSearchOpen() {
                              <a class="nav-link">${loginName}님</a>
                            </li>
                            <li class="nav-item">
-                            <a class="nav-link" href="user/logout">로그아웃</a>
+                            <a class="nav-link" href="../user/logout">로그아웃</a>
                            </li>
                           </c:if>
                           <c:if test = "${loginId == 'manager' && loginName == '관리자'}">
@@ -90,12 +90,9 @@ function spotSearchOpen() {
                              <a class="nav-link">${loginName}님</a>
                            </li>
                            <li class="nav-item">
-                            <a class="nav-link" href="user/logout">로그아웃</a>
+                            <a class="nav-link" href="../user/logout">로그아웃</a>
                            </li>
                           </c:if>
-                           <li class="nav-item">
-                            <a class="nav-link" href="#">Language</a>
-                           </li>
                           </ul>
 				    
 					<form class="d-flex">
