@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
-
+<script src = "../resources/ckeditor/ckeditor.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 <script>
@@ -130,15 +130,23 @@ function spotSearchOpen() {
 <table>   
   <tr>
     <th>내용</th>
-    <td><textarea rows="15" cols="70" name="review_content" 
-                  id="contents" style="resize:none;"></textarea> 
+      <td>
+		 <textarea id="editor" name="reivew_content"></textarea>
+	            <script>
+	                CKEDITOR.replace('editor'
+	                		, {filebrowserUploadUrl:'imageUpload.do'
+	                		, extraPlugins:'image2'
+	                		, height:'600px'
+	                				});
+	            </script>
+		  </td>
   </tr>
   
   <tr id="save">
-    <td colspan ="2" >
-      <input type="submit" value="저장" style="float:right">
-    </td>
-  </tr>
+	    <td colspan ="2">
+	      <input type="submit" value="등록">
+	    </td>
+	  </tr>
   
 </table>
 
