@@ -19,6 +19,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.busanonna_tour.dao.NoticeDAO;
@@ -61,8 +62,6 @@ public class NoticeController {
 		
 		logger.debug("page: {}, searchText: {}", page, searchText);
 		
-		//관리자 세션 아이디 불러오기
-	
 		
 		//전체 글 개수
 		int total = dao.getTotal(searchText);
@@ -114,13 +113,14 @@ public class NoticeController {
 		
 	    //다오에 만든 시퀀스 다음 번호를 읽어오는 기능 호출 
 		int num = dao.getNextNum();
-	    String admin_id = "hong";
+	    //String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
 		
 	    //위의 num을 noitce.set에 추가
 		notice.setNotice_num(num);
 		
 		//임시로 admin_id 'hong'으로 설정
-		notice.setAdmin_id(admin_id);
+		notice.setAdmin_id(loginAdmin);
 		
 		//notice 객체 DB 저장
 		dao.writeNotice(notice);
@@ -186,7 +186,7 @@ public class NoticeController {
 		
 	 //공지사항 수정 폼
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String edit(int notice_num, Model model) {
+	public String edit(int notice_num, Model model, HttpSession session) {
 	 
 		//전달받은 글 번호로 글 정보 검색해서 모델에 저장
 		Notice notice = dao.readNotice(notice_num);
@@ -198,6 +198,7 @@ public class NoticeController {
 		
 		//관리자 아이디 임시 설정
 		String admin_id = "hong";
+		//String loginAdmin = (String) session.getAttribute("loginAdmin");
 		notice.setAdmin_id(admin_id);
 		
 		model.addAttribute("notice", notice);
@@ -209,46 +210,61 @@ public class NoticeController {
 	//공지사항 수정 처리
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	 public String edit(Notice notice, HttpSession session, ArrayList<MultipartFile> upload) {
+		
 		//세션의 관리자 아이디를 추가해서 DB 업데이트(임시로 지정)
-		String admin_id = "hong";
-		notice.setAdmin_id(admin_id);
+		//String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		notice.setAdmin_id(loginAdmin);
 		
 		logger.info("전달된 값:{}", notice);
+		//공지사항 내용 수정
+		dao.updateNotice(notice);
 		
-		
-		//Notice_pic을 수정 
+		//이미지 파일을 새로 추가
 		for(MultipartFile file : upload) {
 			Notice_pic pic = new Notice_pic();
 			pic.setNotice_num(notice.getNotice_num());
 			
-		    dao.updateFile(pic.getNotice_num());	 
+			//dao.updateFile(pic.getNotice_num());	 
 			
 		    //멀티파트파일의 오리지널 파일이름을 노티스 픽 객체에 대입
 		    pic.setSavedfile(file.getOriginalFilename()); 
-		   
 			String savedfile = FileService.saveFile(file, uploadPath);
-		     pic.setSavedfile(savedfile);
+		    pic.setSavedfile(savedfile);
+		    
+		    dao.insertFile(pic);
 			  	  
 		}
 		
-		  dao.updateNotice(notice);
-		
-		
-		
+		  
+	
 		return "redirect:read?notice_num=" + notice.getNotice_num();
 		
 		
 	}
-	
+	//수정 폼에 개별적으로 파일 삭제
+	@ResponseBody
+	@RequestMapping (value="deleteFile", method=RequestMethod.POST)
+	public int deleteFile(int noticepic_num) {
+     
+		logger.info("전달된 번호 : {}", noticepic_num);
+		
+		int result = dao.deleteFile(noticepic_num);
+        
+		return result;
+		 
+	}
 	//공지사항 글 삭제 처리
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(int notice_num, HttpSession session) {
 		
 		//세션에서 아이디 받아오기 
-		String admin_id = "hong";
+		//String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		
 		//삭제할 공지사항 번호와 관리자 아이디 확인
 		Notice notice = new Notice(); 
-		notice.setAdmin_id(admin_id);
+		notice.setAdmin_id(loginAdmin);
 		notice.setNotice_num(notice_num);
 		
 		logger.info("전달된 값: {}", notice);

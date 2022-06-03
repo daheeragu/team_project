@@ -76,7 +76,7 @@
      , notice_num
      , notice_title
      , notice_content
-           
+        
      )
     values
      (
@@ -166,4 +166,16 @@
       and 
           admin_id = #{admin_id}
 </delete>
+
+<!-- 수정 폼에 개별적으로 파일 삭제(ajax 활용) -->
+
+<delete id="deleteFile" parameterType="int">
+   delete
+         from 
+              notice_pic
+          where 
+              noticepic_num = #{noticepic_num}
+ 
+ </delete>
+ 
 </mapper>
