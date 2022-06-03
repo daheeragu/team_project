@@ -68,18 +68,18 @@ public class HomeController {
 	public String read(int notice_num, Model model) {
 		
 		//글 번호 전달하면 읽어오기
-				Notice notice = dao.readNotice(notice_num);
-				//결과 없으면 글 목록으로 이동
-				if(notice == null) {
-					 return "redirect:list";
-				}
-		     //파일로 업로드된 이미지 불러오기 
-				ArrayList<Notice_pic> picList = dao.fileList(notice_num);
-				
-				//결과 있으면 모델에 저장
-				model.addAttribute("notice", notice);
-				model.addAttribute("picList", picList);
-				
+		Notice notice = dao.readNotice(notice_num);
+		//결과 없으면 글 목록으로 이동
+		if(notice == null) {
+			 return "redirect:list";
+		}
+		//파일로 업로드된 이미지 불러오기 
+		ArrayList<Notice_pic> picList = dao.fileList(notice_num);
+		
+		//결과 있으면 모델에 저장
+		model.addAttribute("notice", notice);
+		model.addAttribute("picList", picList);
+		
 		return "noticejsp/readForm";
 	}
 	/**

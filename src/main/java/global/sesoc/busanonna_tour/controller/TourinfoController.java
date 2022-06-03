@@ -256,17 +256,16 @@ public class TourinfoController {
 		info.setInfo_num(info.getInfo_num());
 		
 		//info 객체에 썸네일 이미지 세팅
-		info.setSavedfile(upload.getOriginalFilename());
 		String savedfile = FileService.saveFile(upload, uploadPath);
 		info.setSavedfile(savedfile);
-		
-	    //Board객체를 DAO로 보내서 글쓰기
+
+		//Board객체를 DAO로 보내서 글쓰기
 		logger.info("저장할 글정보 : {}", info);
 		int result = dao.updateInfo(info);
 		if(result == 0) {
 			logger.info("글 수정 실패");
 		}
-
+		
 		return "redirect:read?info_num="+info.getInfo_num();
 	
 	}
