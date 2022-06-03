@@ -424,7 +424,7 @@ td {
 			<hr class="featurette-divider">
 
 			<div class="row featurette">
-				<div class="col-md-7">
+				<div class="col-md-7 order-md-2">
 					<h2 class="featurette-heading">
 					<a class="boardTitle" href="tourinfo/read?info_num=${top2.info_num}">
 						${top2.info_title}
@@ -432,7 +432,7 @@ td {
 					<br>
 					<p class="lead">${top2.info_subtitle}</p>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5 order-md-1">
 					<img style="width:500px; height:350px;"
 						src="tourinfo/download?info_num=${top2.info_num}" class="card-img-top" alt="${top2.info_title}">
 				</div>
