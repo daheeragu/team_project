@@ -246,7 +246,7 @@ var content_Haeundae = [
 	'<div class="iw_inner" style="width:200px; height:200px; text-align: center;">',
     '   <h4>해운대 해수욕장</h4><br/>',
     '   <p> <img src="../resources/image/haeundae.jpg" width="100" height="100" alt="해운대 해수욕장" class="thumb" /><br/>',
-    '       <a href="http://localhost:8888/busanonna_tour/tourinfo/read?info_num=30" target="_blank">상세보기</a>',
+    '       <a href="http://localhost:8888/busanonna_tour/tourinfo/read?info_num=53" target="_blank">상세보기</a>',
     '   </p>',
     '</div>'
 ].join('');
