@@ -4,12 +4,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>리뷰 읽기</title>
-<link rel="stylesheet" type="text/css" href="../resources/css/default.css"/> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+   
+    <title>꿀팁 | 공지 | BUSANONNA </title>
+   
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 //게시글 삭제
 function deleteReview(num){
@@ -24,11 +47,49 @@ function deleteReply(reply_num, review_num) {
 		location.href='deleteReply?reply_num=' + reply_num + '&review_num=' + review_num;
 	}
 }
-
-
-
-
 </script>
+
+<style>
+   
+   table{
+     margin: auto; 
+   }
+   
+ 
+   tr{
+    border: 1px solid;
+    border-color: #BDBDBD;
+   }
+   
+   .notice-content{
+    margin-top: 50px;
+    margin-left: 150px;
+    width: 80%;
+   }
+   
+   .subvis {
+	width: 100%;
+	height: 300px;
+	background-image: url('../resources/image/sunset.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+     }
+
+ h1 {
+	text-align: center;
+	font-family:'Black Han Sans', sans-serif;
+	color: white;
+	margin: auto;
+	top: 100px;
+	position: relative;
+	top: 45%
+   }
+   
+</style>
+
+ <!-- Custom styles for this template -->
+    <link href="../resources/css/carousel.css" rel="stylesheet">
 </head>
 <body>
 
@@ -121,86 +182,67 @@ function deleteReply(reply_num, review_num) {
 		</nav>
 	</header>
 
-<table style="margin-top: 50px;" >
+<table style="margin-top: 50px;" class="table"  >
+
 <tr>
-<th style="width:100px;">작성자</th>
-<td style="width:600px;">${review.user_id}</td>
+<th scope="row" style="width:100px; text-align:center;" >제목</th>
+<td style="width:800px;" >${review.review_title}</td>
+</tr>
+
+<tr>
+<th scope="row" style="width:100px; text-align:center;"  >작성자</th>
+<td style="width:800px;">${review.user_id}</td>
 </tr>
 
 
 <tr>
-<th>관광지</th>
-<td>${review.info_name}</td>
+<th scope="row" style="width:100px; text-align:center;" >관광지</th>
+<td style="width:800px;" >${review.info_name}</td>
 </tr>
 
 <tr>
-<th>글번호</th>
-<td>${review.review_num}</td>
+<th scope="row" style="width:100px; text-align:center;" >글번호</th>
+<td style="width:800px;" >${review.review_num}</td>
 </tr>
 
 <tr>
-<th>작성일</th>
-<td>${review.review_inputdate}</td>
-</tr>
-
-
-<tr>
-<th>조회수</th>
-<td>${review.review_hits}</td>
+<th scope="row" style="width:100px; text-align:center;" >작성일</th>
+<td style="width:800px;" >${review.review_inputdate}</td>
 </tr>
 
 
 <tr>
-<th>제목</th>
-<td>${review.review_title}</td>
+<th scope="row" style="width:100px; text-align:center;" >조회수</th>
+<td style="width:800px;" >${review.review_hits}</td>
 </tr>
 
 <tr>
-<th>내용</th>
-<td>${review.review_content}</td>
+<th scope="row" style="width:100px; text-align:center;" >내용</th>
+<td style="width:800px;" >${review.review_content}</td>
 </tr>
 
-<%-- <tr>
-<th>파일첨부</th>
-<td>
-	<a href = "download"?boardnum=${board.boardnum}">${board.originalfile}</a>
-</td><!-- 글번호가 컨트롤러의 파일 다운로드 메소드로 전달됨 -->
-</tr> --%>
 </table>
 
 <!-- 본인 글 수정/삭제 출력하고 있는 ID와 세션에 저장된 ID가 같을 때만 보임-->
 <c:if test="${sessionScope.loginId == review.user_id}">
-	<a href="edit?review_num=${review.review_num}">수정</a>
-	<a href="javascript:deleteReview(${review.review_num})">삭제</a>
+	<a href="edit?review_num=${review.review_num}"><button class="btn btn-outline-secondary">수정</button></a>
+	<a href="javascript:deleteReview(${review.review_num})"><button class="btn btn-outline-secondary">삭제</button></a>
 </c:if>
-
 <!-- 목록보기 -->
-<a href="List">목록보기</a>
-
-
-<!-- 리플 작성 폼 (로그인 한 사람에게만 보이게)-->
-<c:if test="${sessionScope.loginId != null}">
-<form action="replyWrite" method="post" onSubmit="return replyFormCheck();">
-리플내용
-	<input type="hidden" name="review_num" value="${review.review_num}">
-	<input type="text" name="reply_content" style="width500px;">
-	<input type="submit" value="확인">
-</form>
-</c:if>
-
+<a href="List"><button class="btn btn-outline-secondary">목록보기</button></a>
 
 
 <!-- 리플 목록 출력 시작 -->
 <table class="reply">
 <c:forEach var="reply" items="${replyList}">
 	<tr>
-		<td class="replyid">
+		<th scope="row" style="width:100px; text-align:center;" class="replyid">
 			<b>${reply.user_id}</b>
-		</td>
-		<td class="replytext">
+		</th>
+		<td style="width:800px" class="replytext">
 			${reply.reply_content}
 		</td>
-		<td class="replybutton">
+		<td style="width:800px" class="replybutton">
 			<c:if test="${sessionScope.loginId == reply.user_id}">
 				[<a href="javascript:deleteReply(${reply.reply_num}, ${reply.review_num })">삭제</a>]
 			</c:if>
@@ -208,7 +250,17 @@ function deleteReply(reply_num, review_num) {
 	</tr>	
 </c:forEach>
 </table>
-<!-- /리플 목록 출력 끝 --> 
+<!-- /리플 목록 출력 끝 -->
+<!-- 리플 작성 폼 (로그인 한 사람에게만 보이게)-->
+<c:if test="${sessionScope.loginId != null}">
+<form action="replyWrite" method="post" onSubmit="return replyFormCheck();">
+리플 입력
+	<input type="hidden" name="review_num" value="${review.review_num}">
+	<input type="text" name="reply_content" placeholder="리플을 입력하세요" style="width:800px;height:30px;">
+	<input type="submit" class="btn btn-outline-secondary" value="리플 등록">
+</form>
+</c:if>
+ 
 </div>
 </body>
 </html>
