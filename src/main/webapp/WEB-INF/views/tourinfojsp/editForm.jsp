@@ -128,12 +128,13 @@
 	  <tr>
 	  	<th>썸네일 이미지 첨부</th>
 	  	<td>
-	  		<a href="download?info_num=${info.info_num}">
-	  			<img style="width: 100px; height: 100px;"
+	  		<img style="width: 100px; height: 100px;"
 				src="download?info_num=${info.info_num}">
-	  		</a>
+	  		<a href="download?info_num=${info.info_num}">
+	  			${info.savedfile} </a>
 			<input type="button" id="deletebtn"
 				data-num="${info.info_num}" value="X">
+	  		
 	  		<input type="file" name="upload" size="30" value="이미지 업로드">
 	  	</td>	
 	  </tr>

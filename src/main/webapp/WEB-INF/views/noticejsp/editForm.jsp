@@ -16,8 +16,31 @@
 	 $('#addbtn').on('click', function(){
 		  $('#group').append('<input type="file" class="file_group" name="upload" size="30"><br>'); 
 	  });
+	
+	//삭제 버튼에 클릭이벤트 처리
+	 $('#deletebtn').on('click', fileDelete);
 	  
   });
+  
+  function fileDelete(){
+		 //클릭한 버튼의 Noticepic_num의 속성값을 읽음
+		 var num = $(this).attr('data-num');
+		 
+		 //서버로 삭제할 글번호를 전달 
+			$.ajax({
+				url: 'deleteFile',
+				type: 'POST',
+				data: {"noticepic_num" : num},
+				success: function(cnt) {
+					if (cnt == 0) {
+						alert('삭제 실패');
+					}
+					else {
+						alert('삭제되었습니다.');
+					}
+				}
+			});
+	 }
   </script>
  <style>
  
@@ -67,7 +90,20 @@
 	            </script>
 	            </td>
             </tr>
-            
+            <tr>
+				<th>기존의 이미지</th>
+					<td>
+					  <c:forEach var="pic" items="${picList}">
+								<img style="width: 100px; height: 100px;"
+									src="download?noticepic_num=${pic.noticepic_num}">
+								<a href="download?noticepic_num=${pic.noticepic_num}">
+									${pic.savedfile} </a>
+								<input type="button" id="deletebtn"
+									data-num="${pic.noticepic_num}" value="X">
+						</c:forEach>
+						
+						</td>
+				</tr>
             <tr>
             <th>새파일첨부</th>
 					<td>

@@ -240,18 +240,32 @@ public class TourinfoController {
 	//글 수정 처리
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	 public String edit(Tourinfo info, HttpSession session, MultipartFile upload) {
-		if (!upload.isEmpty()) {
-			String savedfile = FileService.saveFile(upload, uploadPath);
-			info.setSavedfile(savedfile);
-		}
 		
 		//DB에 업데이트(update구문의 where 조건은 글번호와 작성자 아이디)
 		logger.info("전달된 값: {}", info);
+		
+		//upload에 저장된 파일의 정보 출력
+		logger.info("파일정보:{}", upload.getContentType());
+		logger.info("파일정보:{}", upload.getName());
+		logger.info("파일정보:{}", upload.getOriginalFilename());
+
+		//세션에서 아이디 받아오기 
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		logger.info("세팅될 아이디:{}", loginAdmin);
+		info.setAdmin_id(loginAdmin);
+		info.setInfo_num(info.getInfo_num());
+		
+		//info 객체에 썸네일 이미지 세팅
+		String savedfile = FileService.saveFile(upload, uploadPath);
+		info.setSavedfile(savedfile);
+
+		//Board객체를 DAO로 보내서 글쓰기
+		logger.info("저장할 글정보 : {}", info);
 		int result = dao.updateInfo(info);
 		if(result == 0) {
 			logger.info("글 수정 실패");
 		}
-
+		
 		return "redirect:read?info_num="+info.getInfo_num();
 	
 	}

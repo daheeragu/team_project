@@ -426,35 +426,25 @@ td {
 			<div class="row featurette">
 				<div class="col-md-7 order-md-2">
 					<h2 class="featurette-heading">
-						Oh yeah, it’s that good. <span class="text-muted">See for
-							yourself.</span>
-					</h2>
-					<p class="lead">Another featurette? Of course. More placeholder
-						content here to give you an idea of how this layout would work
-						with some actual real-world content in place.</p>
+					<a class="boardTitle" href="tourinfo/read?info_num=${top2.info_num}">
+						${top2.info_title}
+					</a></h2>
+					<br>
+					<p class="lead">${top2.info_subtitle}</p>
 				</div>
 				<div class="col-md-5 order-md-1">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-						role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="#eee" />
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+					<img style="width:500px; height:350px;"
+						src="tourinfo/download?info_num=${top2.info_num}" class="card-img-top" alt="${top2.info_title}">
 				</div>
 			</div>
 
 			<hr class="featurette-divider">
 
 			<div class="intro_notice">
-				<h3
-					style="font-weight: bold; font-family: 'Black Han Sans', sans-serif;">
+				<h3 style="font-weight: bold; font-family: 'Black Han Sans', sans-serif;">
 					공지사항
 					<h3>
-						<p
-							style="font-size: 24px; font-family: 'Black Han Sans', sans-serif;">
+						<p style="font-size: 24px; font-family: 'Black Han Sans', sans-serif;">
 							부산온나의 이슈와 <br> 새로운 소식을 전해드립니다
 						</p>
 						<button type="button" id="goNoticeBtn"

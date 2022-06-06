@@ -126,4 +126,13 @@ public class NoticeDAO {
 		
 		return result;
 	}
+	
+	//수정폼에서 기존의 이미지 파일 삭제
+	public int deleteFile(int noticepic_num) {
+        
+		NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
+		int result = mapper.deleteFile(noticepic_num);
+		
+		return result;
+	}
 }

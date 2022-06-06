@@ -33,4 +33,6 @@ public interface NoticeMapper {
 	public int updateFile(int notice_num); 
 	//공지사항 글 삭제
 	public int deleteNotice(Notice notice);
+	//수정 폼에 개별적으로 파일 삭제
+	public int deleteFile(int noticepic_num);
 }

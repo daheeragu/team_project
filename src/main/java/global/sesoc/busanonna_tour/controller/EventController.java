@@ -80,13 +80,14 @@ public class EventController {
 		public String write(Model model, HttpSession session) {
 			
 		//세션으로 관리자 아이디 받기
-		String admin_id = "hong";
+		//String admin_id = "hong";
 		
+		String loginAdmin = (String) session.getAttribute("loginAdmin"); 
 		Event event = new Event();
-		event.setAdmin_id(admin_id);
+		event.setAdmin_id(loginAdmin);
 		
 		
-		model.addAttribute("admin_id", admin_id);
+		model.addAttribute("admin_id", loginAdmin);
 		   
 			return "eventjsp/writeForm";
 		}
@@ -97,10 +98,11 @@ public class EventController {
 		
 		//시퀀스 다음 번호를 읽어오는 기능 
 		int num = dao.getNextNum();
-		String admin_id = "hong";
+		//String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin"); 
 		
 	    event.setEvent_num(num);
-	    event.setAdmin_id(admin_id);
+	    event.setAdmin_id(loginAdmin);
 	    
 	    dao.writeEvent(event);
 	    
@@ -168,8 +170,9 @@ public class EventController {
 		Event event = dao.readEvent(event_num);
 		
 		//관리자 아이디로 설정
-		String admin_id = "hong";
-		event.setAdmin_id(admin_id);
+		//String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		event.setAdmin_id(loginAdmin);
 		
 		//결과 없으면 글 목록으로 이동
 				if(event == null) {
@@ -186,7 +189,7 @@ public class EventController {
 	
 	//이벤트 수정 폼
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String edit(int event_num, Model model) {
+	public String edit(int event_num, Model model, HttpSession session) {
 		
 		Event event = dao.readEvent(event_num);
 		if(event == null) {
@@ -195,8 +198,9 @@ public class EventController {
 		ArrayList<Event_pic> picList = dao.fileList(event_num);
 		
 		//관리자 아이디 임시로 세팅
-		String admin_id = "hong";
-		event.setAdmin_id(admin_id);
+		//String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		event.setAdmin_id(loginAdmin);
 		
 		model.addAttribute("event", event);
 		model.addAttribute("picList", picList);
@@ -208,8 +212,9 @@ public class EventController {
 	 public String edit(Event event, ArrayList<MultipartFile> upload, HttpSession session) {
 		
 	   //관리자 아이디 받아오기 
-		String admin_id = "hong";
-		event.setAdmin_id(admin_id);
+	   //String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
+		event.setAdmin_id(loginAdmin);
 		
 	   //이벤트 내용 수정
 		dao.updateEvent(event);
@@ -250,11 +255,12 @@ public class EventController {
 	public String delete(int event_num, HttpSession session) {
 		
 		//아이디 임시 세팅
-		String admin_id = "hong";
+		//String admin_id = "hong";
+		String loginAdmin = (String) session.getAttribute("loginAdmin");
 		
 		//삭제할 이벤트 번호와 관리자 아이디 확인
 		Event event = new Event();
-		event.setAdmin_id(admin_id);
+		event.setAdmin_id(loginAdmin);
 		event.setEvent_num(event_num);
 		
 		dao.deleteEvent(event);
