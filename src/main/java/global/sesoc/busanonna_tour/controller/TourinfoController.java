@@ -121,7 +121,7 @@ public class TourinfoController {
 			, @RequestParam(value="page", defaultValue="1") int page){
 		
 		//전체 글 개수 
-		int total = dao.getTotalLeisure(searchText);
+		int total = dao.getTotalExp(searchText);
 		//페이지 계산을 위한 객체 생성 
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total); 
 		//검색어와 시작 위치, 페이지당 글 수를 전달하여 목록 읽기
