@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="centerdiv">
-<h1>[글 수정]</h1>
+<h1>[리뷰 수정]</h1>
 	<form action="edit" method="post" onsubmit="return formCheck()">
 	<input type="hidden" name="review_num" value="${review.review_num}">
 	<input type="hidden" name="info_num" value="${review.info_num}">
